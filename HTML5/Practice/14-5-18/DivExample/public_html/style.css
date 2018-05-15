@@ -1,14 +1,29 @@
 #maincontainer{
     width:90%;
-    height: 500px;
+    height: auto;
     background: #ccc;
     margin: 0 auto;
 }
+
 #headercontainer{
-    width:100%;
+    width:10%;
     height: 100px;
     background: green;
-    margin: 0 auto; 
+    float: left 
+}
+#hright{
+    width:90%;
+    height: 100px;
+    background: green;
+    float: left;
+    text-align: center
+        
+}
+#menu{
+   width:100%;
+    height: 50px;
+    background: #ccc;
+    margin: 0 auto;  
 }
 #bodycontainer1{
     width:100%;
@@ -20,13 +35,13 @@
     width:50%;
     height: 220px;
     background: violet;
-   float: left;
+    float: left;
 }
 #right{
     width:50%;
     height: 220px;
     background: rosybrown;
-   float: right; 
+    float: right; 
 }
 #bodycontainer2{
     width:100%;
@@ -38,7 +53,7 @@
     width:30%;
     height: 130px;
     background: brown;
-   float: left; 
+    float: left; 
 }
 #topic{
     width:40%;
@@ -68,11 +83,14 @@
     width:30%;
     height: 50px;
     background: darkcyan;
-   float: right;
+    float: right;
 }
 .list{
     color: yellow;
 }
 .head{
     color: red;
+}
+p, h1, h2, h3, h4, h5{
+    padding: 0px 10px;
 }
