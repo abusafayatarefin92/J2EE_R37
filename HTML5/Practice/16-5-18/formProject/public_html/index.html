@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Project Form
+        </div>
+        <fieldset>
+            <legend>Members Details</legend>
+            <form>
+                <label>Members Name:</label>
+                <input type="text" name="membersname" id="membersname" placeholder="Type name here" required />
+                <br/>
+                <label>Gender:</label>
+                <input type="radio" name="gender" id="gender" value="male"/> Male
+                <input type="radio" name="gender" id="gender" value="female"/> Female
+                <br/>
+                <label>Educational Qualification:</label>
+                <input type="checkbox" name="ssc" value="ssc" checked="checked"/>SSC
+                <input type="checkbox" name="hsc" value="hsc" checked="checked"/>HSC
+                <input type="checkbox" name="hons" value="hons" checked="checked"/>Hons
+                <input type="checkbox" name="masters" value="masters"/>Masters
+                <br/>
+                <label>Subject:</label>
+                <select name="subject">
+                    <option>Select your subject</option>
+                    <option>JAVA</option>
+                    <option>C#</option>
+                    <option>Database</option>
+                    <option>WPS</option>
+                    <option>Networking</option>
+                    <option>Graphics design</option>
+                    <option>AutoCad</option>
+                </select>
+                <br/>
+                <label>Short Brief of Project:</label>
+                <textarea name="msg" rows="10" cols="20"></textarea>
+                <br/>
+                <input type="checkbox" name="subscribe"/>Yes! I'm a current student if IDB-BISEW
+                <br/>
+                <input type="reset" name="Reset Form"/>
+                <input type="submit" name="Submit"/>
+            </form>
+        </fieldset>
+    </body>
+</html>
