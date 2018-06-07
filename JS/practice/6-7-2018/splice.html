@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<button onClick="workingWithSplice()">Click Me</button>
+
+<p id="display"></p>
+
+<script>
+var countyList = ['BD' , 'USA' , 'Japan' , 'UK'];
+document.getElementById("display").innerHTML = countyList;
+
+function workingWithSplice(){
+	countyList.splice(1, 0, "Germany");
+	document.getElementById("display").innerHTML = countyList;
+	}
+</script>
+
+</body>
+</html>
