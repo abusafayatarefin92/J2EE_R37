@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Javascript Operators</title>
+</head>
+
+<body>
+<script>
+// + Add or Concatenate Operators
+var x = 10;
+var y = 5;
+var result = x + y;
+document.write("Result: " + result + "<br/>");
+var fName = "Donal";
+var mName = "J";
+var lName = "Trump";
+var fullName = fName +" "+ mName +" "+ lName;
+document.write("Full Name: " + fullName + "<br/>");
+document.write("<hr/>");
+// - Subtract or negative Operators
+var p = 10;
+var q = -p;
+var result2 = p - q;
+document.write("Result (P - Q)" + result2 + "<br/>");
+document.write("<hr/>");
+// * Multiply Operators
+var result3 = x * y;
+document.write("Result (X * Y)" + result3 + "<br/>");
+document.write("<hr/>");
+// / Divide Operators
+var result4 = x / y;
+document.write("Result (X / Y)" + result4 + "<br/>");
+document.write("<hr/>");
+// % Modulas/Remainder Operators
+var result5 = x % y;
+document.write("Result (X % Y)" + result5 + "<br/>");
+document.write("<hr/>");
+// ++ Increment, -- Decrement Operators
+++x;//Pre-Increment
+--y;//Pre-Decrement
+p++;//Post-Increment
+q--;//Post-Decrement
+document.write("X: " + x +" " + "Y: " + y +" " +"P: " + p +" " + "Q: " + q + "<br/>");
+document.write("<hr/>");
+// < Less Than Operators
+var result6 = x < y;
+document.write("Result (X < Y)" + result6 + "<br/>");
+document.write("<hr/>");
+// > Greater Than Operators
+var result7 = x > y;
+document.write("Result (X > Y)" + result7 + "<br/>");
+document.write("<hr/>");
+// <= Less Than or Equal Operators
+var result8 = x <= y;
+document.write("Result (X <= Y)" + result8 + "<br/>");
+document.write("<hr/>");
+// >= Greater Than or Equal Operators
+var result9 = x >= y;
+document.write("Result (X >= Y)" + result9 + "<br/>");
+document.write("<hr/>");
+//&& Logical AND, == Test for Equality
+var m = 10;
+var n = 5;
+if((m == 10) && (n == 5)){
+	document.write("Above both conditions are true"+ "<br/>");
+	}else{
+		document.write("Above one or both conditions are False"+ "<br/>");
+		}
+//|| Logical OR, == Test for Equality	
+if((m == 10) || (n == 4)){
+	document.write("Above both conditions are true"+ "<br/>");
+	}else{
+		document.write("Above one or both conditions are False"+ "<br/>");
+		}
+document.write("<hr/>");
+// === Test for Strict Equality
+var ab = 10;
+var cd = "10";
+if(ab === cd){
+	document.write("Above condition is true"+ "<br/>");
+	}else{
+		document.write("Above condition is False"+ "<br/>");
+		}
+if(ab == cd){
+	document.write("Above condition is true"+ "<br/>");
+	}else{
+		document.write("Above condition is False"+ "<br/>");
+		}
+document.write("<hr/>");
+// != Test for inequality
+var ab = 10;
+var cd = "10";
+if(ab != cd){
+	document.write("Above condition is true"+ "<br/>");
+	}else{
+		document.write("Above condition is False"+ "<br/>");
+		}
+document.write("<hr/>");
+// !== Test for Strict inequality
+var ab = 10;
+var cd = "10";
+if(ab !== cd){
+	document.write("Above condition is true"+ "<br/>");
+	}else{
+		document.write("Above condition is False"+ "<br/>");
+		}
+document.write("<hr/>");		
+// = += -= *= /= %=
+var z = 10;//Assign
+z += 5;//x=x+5, x=10+5, x=15
+document.write("Z += " + z + "<br/>");
+z -= 8;//x=x-8, x=10-8, x=2
+document.write("Z -= " + z + "<br/>");
+z *= 2;//x=x*2, x=10*2, x=20
+document.write("Z *=  " + z + "<br/>");
+z /= 5; ////x=x/5, x=10/5, z=2
+document.write("Z /= " + z + "<br/>");
+z %= 6;//z=z%3, z=10%3, z=1
+document.write("Z %= " + z + "<br/>");
+document.write("<hr/>");
+// ?: Ternary Operator
+var age = 25;
+var rs = age > 28 ? true : false;
+document.write("Result: " + rs + "<br/>");
+var wc = age >= 18 ? "Welcome" : "Not Permitted";
+document.write("Result: " + wc + "<br/>");
+document.write("<hr/>");
+// typeof Operator
+var salary = 50000;
+var name = "Donald J Trump";
+var students = ['Arefin','Mita','mehedeeeee'];
+var result = true;
+var abc;
+var rs = null;
+document.write("Salary: " + typeof salary + "<br/>");
+document.write("Name: " + typeof name + "<br/>");
+document.write("Students: " + typeof students + "<br/>");
+document.write("Result: " + typeof result + "<br/>");
+document.write("ABC: " + typeof abc + "<br/>");
+document.write("RS: " + typeof rs + "<br/>");
+document.write("<hr/>");
+// delete Operator
+var ppp = [10, 20, 30];
+delete(ppp[1]);
+document.write([ppp]);
+</script>
+<a href="javascript:void alert('Wow! JavaScript is Awesome!!!')">Hit Me</a>
+</body>
+</html>
