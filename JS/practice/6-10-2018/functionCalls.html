@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<script>
+function simpleFunction1(){
+	document.write("Hello!");
+	}
+	simpleFunction1();
+document.write("<hr/>");	
+function simpleWithArgument(fn, mn, ln){
+	document.write("Ful Name: " + fn + " " + mn + " "  + ln);
+	}
+	simpleWithArgument("Mr." , "Donald" , "Trump");
+document.write("<hr/>");
+function simpleWithArgumentWithReturn(fn, mn, ln){
+	var fullName =  fn + " " + mn + " "  + ln;
+	return  fullName;
+	}
+	document.write(simpleWithArgumentWithReturn("Mr." , "Donald" , "Trump"));	
+</script>
+</body>
+</html>
