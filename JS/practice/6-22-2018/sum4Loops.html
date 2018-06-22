@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sum Using 4 Loops</title>
+</head>
+
+<body>
+<h2>Sum Using Four Loops</h2>
+<script>
+var sum = 0;
+var startingNumber = parseInt(prompt("Enter First Number Here: ", ""));
+var endingingNumber = parseInt(prompt("Enter Last Number Here: ", ""));
+while(startingNumber <= endingingNumber){
+	sum += startingNumber;
+	startingNumber++;
+	}
+	document.write("Sum using while loop: " + sum);
+	document.write("<hr/>");
+	
+var sum2 = 0;
+var sn = parseInt(prompt("Enter First Number Here: ", ""));
+var en = parseInt(prompt("Enter Last Number Here: ", ""));
+for(sn ; sn <= en ; sn++){
+	sum2 += sn;
+	}
+	document.write("Sum using for loop: " + sum2);
+	document.write("<hr/>");
+	
+var sum3 = 0;
+var firstNumber = parseInt(prompt("Enter First Number Here: ", ""));
+var lastNumber = parseInt(prompt("Enter Last Number Here: ", ""));
+do{
+	sum3 += firstNumber;
+	firstNumber++;
+	}while(firstNumber <= lastNumber);
+	document.write("Sum using doWhile loop: " + sum3);
+	document.write("<hr/>");
+	
+var sum4 = 0;
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+for(var i in numbers){
+	sum4 += numbers[i];
+	}
+	document.write("Sum using in loop: " + sum4);
+	document.write("<hr/>");
+</script>
+</body>
+</html>
