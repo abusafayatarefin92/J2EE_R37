@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Scroll</title>
+<style type="text/css">
+.jLeft{
+	font-size:60pt;
+	font-family:Verdana;
+	color:black;
+	font-weight:bold;
+	}
+a{
+	color:#e39102;
+	}
+.jRight{
+	font-size:60pt;
+	font-family:Verdana;
+	color:#e2d155;
+	font-weight:bold;
+	}
+</style>
+</head>
+
+<body bgcolor="#e39102">
+<table border="0" cellspacing="0" bgcolor="black" width="1200" height="500">
+<tr>
+<td align="center" valign="middle" bgcolor="#e2d155">
+<span class="jLeft">Java</span><br/>
+<a href="#" onClick="goRight()">Scroll Right</a>
+</td>
+<td align="center" valign="middle" bgcolor="#983803">
+<span class="jRight">Script</span><br/>
+<a href="#" onClick="goLeft()">Scroll Left</a>
+</td>
+</tr>
+</table>
+
+<script>
+function goRight(){
+	scroll(600, 50);
+	}
+function goLeft(){
+	scroll(-120, 40);
+	}
+</script>
+</body>
+</html>

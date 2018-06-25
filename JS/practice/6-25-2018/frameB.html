@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Window Properties</title>
+</head>
+
+<body bgcolor="#c6d699">
+
+<script>
+var diaplay = "<h3>" + self.name + "</h3>";
+
+var gone = " ";
+var alpha = self.closed;
+if(alpha == false){
+	var gone = " never ";
+	}
+diaplay += "This window has" + gone + "been closed.<br/>";
+//Change the message in the lower left cornar
+self.defaultStatus = "\"This window property can be changed.\"";
+diaplay += "The default status reads: " + self.defaultStatus + "<br/>";
+document.write(diaplay);
+</script>
+<p>
+<a href="dummy.html">Go Dummy</a>
+</p>
+</body>
+</html>
