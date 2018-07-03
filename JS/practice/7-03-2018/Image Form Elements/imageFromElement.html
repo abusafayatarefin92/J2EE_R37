@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Image From Element</title>
+<style>
+body{
+	font-family:Verdana;
+	font-size:11pt;
+	color:red;
+	background-color:#ffb7d0;
+	font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+<center>
+<form name="heart">
+Click the heart five times to learn how he feels about you!<br/>
+<input type="image" src="heart.jpg" name="ache" onClick="lovesMe()" border="0"/><br/>
+If the answer is incorrect, click the button five more times....
+</form>
+</center>
+<script>
+function lovesMe(){
+	var cupid = Math.random();
+	cupid = Math.floor(cupid*100);
+	var throb = "";
+	if(cupid > 50){
+		throb = "She loves me!";
+		}else{
+			throb = "She loves me not...."
+			}
+			alert(throb);
+	}
+</script>
+</body>
+</html>
