@@ -1,0 +1,78 @@
+1.	Which operator can be used as an alternative of conditional statement?
+Answer. Ternary operator can be used as an alternative of conditional statement. Ternary operator combine three expressions into one. Most commonly used to create
+	a shorthand expression for conditional statements, The only ternary operator in JavaScript is ?:. For example:
+	if(a == b){
+		c = "Ok!";
+	}else{
+		c = "Not Ok!";
+	}
+	This conditional statement can be written as follows:
+	a == b ? c = "Ok!" : c = "Not Ok!";
+2.	What are the three basic structure of JavaScript?
+Answer. The three basic structure of JavaScript are:
+	i. 	 Sequences;
+	ii.  Branches;
+	iii. Loops;
+3.	What are the three categories of operators? 
+Answer. The three categories of operators are:
+	i.   binary;
+	ii.  unary;
+	iii. ternary.
+	Binary operators, most commonly associated with the concept of operator, take two expressions and combine them into a third complex or compound expression.
+	Unary operators work on a single variable or literal. All negative numbers are assigned using a unary operator.
+	Ternary operators combine three expressions into one. Most commonly used to create a shorthand expression for conditional statements.
+4.	Which loop checks the condition at the end of the statement?
+Answer. The do/while loop checks the condition at the end of the statement. 
+	Syntex: 
+	do{
+		Statements
+		counter increment/decrement
+	}while(termination condition);
+5.	What are the three parts of for loop?
+Answer. The three parts of for loop are: 
+	i.   start value or initial value;
+	ii.  condition;
+	iii. increment/decrement;
+	Syntex:
+	for(initial value; condition; increment/decrement){
+		Statements;
+	}
+6.	Where return statement is used?
+Answer. Return statement is used as part of a function. The role of return statement is to provide the value of the expressions within the function. For example:
+	function returnMessage(){
+		var part1 = "Good";
+		var part2 = "Morning";
+		var wholeThing = part1 + " " + part2;
+		return wholeThing
+	}
+	returnMessage();
+	The Output will be: Good Morning
+7.	What is the benefit of using with statement?
+Answer. The with statement is a shortcut. Because, using the with statement, we can specify the object name once and then follow it with all the properties and 
+	their values. For example:
+	function showEm(){
+		with(document.customer){
+			var a = fname.value;
+			var b = lname.value;
+			var c = address.value;
+			var d = city.value;
+			var e = state.value;
+		}
+		var fullName = a + " " + b + "\n";
+		var livesHere = c + "\n" + d + ", " + e;
+		var f = fullName + livesHere;
+		return f;
+	}
+	showEm();
+	The output will be: 
+	Abc Def
+	Dhanmondi
+	Dhaka, Bangladesh
+8.	How can you fire a function?
+Answer. Event handlers launch a JavaScript function.
+9.	What are the three main event categories?
+Answer. The three main event categories are:
+	i.   Keyboard and mouse events;
+	ii.  Load events;
+	iii. Form-related events.
+	
