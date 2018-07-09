@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<script>
+var fatherAge = parseInt(prompt("Enter the Father's age", ""));
+var sonAge = parseInt(prompt("Enter the Son's age", ""));
+function age(n){
+	var newFAge = fatherAge + n;
+	var newSAge = sonAge + n;
+	var newTotalAge = newFAge + newSAge;
+	document.write("The total age of father and son after is: " + newTotalAge);
+	}
+age(parseInt(prompt("Enter the value", "")));
+</script>
+</body>
+</html>
