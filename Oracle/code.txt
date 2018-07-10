@@ -21,3 +21,7 @@ Using the Trunc Function
 select trunc(45.923, 2), trunc(45.923, 0), trunc(45.923, -1) from dual;
 Using the Mod Function
 select last_name, salary, mod(salary, 5000) from employees where job_id = 'SA_REP';
+Working with Dates
+select last_name, hire_date from employees where hire_date < '01-FEB-88';
+Using Arithmetic Operators with Dates
+select last_name, (sysdate-hire_date)/7 as weeks from employees where department_id = 90;
