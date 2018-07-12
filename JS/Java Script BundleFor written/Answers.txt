@@ -79,4 +79,15 @@ Answer. The three main event categories are:
 	i.   Keyboard and mouse events;
 	ii.  Load events;
 	iii. Form-related events.
+10.	How function constructor and function literals are declared?
+Answer. The Function() constructor looks like the new object or array constructor. It has this general format:
+	var variableName = new Function("exp1","exp2","return exp3");
+	Here, exp1 is a necessary first expression, exp2 is an optional secomd expression, and exp3 is an expression made of exp1 and exp2.
+	Function literal look more like function statements, in that use curly braces. However, like the Function() constructor, they have no unique name of their 
+	own for purpose of reference. Their general format is:
+	var variableName + new function(arg1,arg2){return exp1};
+11. Show the hierarchy of HTML form.
+Answer. In JavaScript, to reference the hierarchy, the dor(.) operator serves as a linking device for the different levels in the object hierarchy, with the
+	highest level begining on the left and working its way to the right. In JavaScript, a form object would look like the following:
+	window.document.formName.elementName.value
 	
