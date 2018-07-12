@@ -90,4 +90,40 @@ Answer. The Function() constructor looks like the new object or array constructo
 Answer. In JavaScript, to reference the hierarchy, the dor(.) operator serves as a linking device for the different levels in the object hierarchy, with the
 	highest level begining on the left and working its way to the right. In JavaScript, a form object would look like the following:
 	window.document.formName.elementName.value
-	
+12. What do you understand by prototype concept in JavaScript?
+Answer. In JavaScript , the concept of class revolves around the concept of a prototype. Unlike the set concept of class that treats an instance of an object
+	to be a member of the class, the prototype concept treats the named object with all of the properties that all members of the class have.
+13. Why object-oriented programming is essential in JavaScript?
+Answer. In JavaScript object-oriented programming is essential because, we can write a complex piece of code as a module (It is a program units, which can be
+	shared with others on a programming team and can be reused), the next time the same code is required, we can either make small changes to the module(such
+	as different arguments values) or use the same module elsewhere in the script. By doing so, the time spent on the original code design pays off in the 
+	long run.
+14. What is Document Object Model (DOM)?
+Answer. In the JavaScript document object model (DOM), the primary document is an HTML page. The document object contains the properties whose information
+	is used by JavaScript. JavaScript DOM is sum total of the document object's properties and methods, including the arrays automatically generated on an HTML
+	page, and the manner in which these objects are accessed by JavaScript.
+15. What is the benefit of preloading image?
+Answer. When designing a page one grapic replaces another, the image swapping should be immediate, and the viewer should not require to wait while the new 
+	image loads. In JavaScript preloading image solved the problem. For this we have to place a new image in the browser's cache as following:
+	var sampleImage = new Image();
+	sampleImage.src = "abc.jpg";
+16. What are the functions of open and close method?
+Answer. 
+17. What are the events in HTML and JavaScript?
+Answer. The events in HTML and JavaScript are:
+	i.   Mouse events;
+	ii.  Key events;
+	iii. Form events;
+	iv.  Page/window/image events.
+18. What are the three crossbrowser methods of history object?
+Answer. The history object is a property of window object. It has single crossbrowser property, length, and three crossbrowser methods, they are:
+	i.   back();
+	ii.  forward();
+	iii. go(n)
+	Depending on the order of the pages were visited, we can specify back() or forward(). The history.go(n) method uses positive values to go to a forward 
+	reference and negative numbers to go to a backward reference.
+19. What are the two methods of location objects?
+Answer. The location object has two methods, they are:
+	i.  reload();
+	ii. replace()
+	The reload() method acts like just the Reload button on a browser. However, the replace() method acts more like the location object itself.	
