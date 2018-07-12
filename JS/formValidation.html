@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+<style>
+label{
+	color:#F30;
+	padding:3px 10px;
+}
+</style>
+</head>
+
+<body>
+<div style="width:40%; margin:0 auto; background-color:#FC9;">
+<center>
+<h3>Form Validation</h3>
+<form name="myForm" action="formValidation.html" onSubmit="return validation()">
+ID: <input type="number" name="id"/><label id="id"></label><br/>
+User Name: <input type="text" name="uname"/><label id="uname"></label><br/>
+Email: <input type="email" name="email"/><label id="email"></label><br/>
+Password: <input type="password" name="password"/><label id="password"></label><br/>
+<table>
+<tr>
+<td>Comments: </td>
+<td><textarea rows="2" cols="16" name="comments"></textarea><label id="comments"></label></td>
+</tr>
+</table>
+Gender: <input type="radio" name="gender" value="Male"/>Male
+<input type="radio" name="gender" value="Female"/>Female<label id="gender"></label><br/>
+Education: <input type="checkbox" name="ssc" value="SSC"/>SSC
+<input type="checkbox" name="hsc" value="HSC"/>HSC<label id="education"></label><br/>
+<input type="reset" value="Reset"/>
+<input type="submit" value="Submit"/>
+</form>
+<script>
+function validation(){
+	var id = document.forms["myForm"]["id"].value;
+	var uname = document.forms["myForm"]["uname"].value;
+	var email = document.forms["myForm"]["email"].value;
+	var password = document.forms["myForm"]["password"].value;
+	var comments = document.forms["myForm"]["comments"].value;
+	var gender = document.forms["myForm"]["gender"].value;
+	var education = "";
+	if(document.forms["myForm"].ssc.checked){
+		education += document.forms["myForm"]["ssc"].value;
+		}
+	if(document.forms["myForm"].hsc.checked){
+		education += ", " + document.forms["myForm"]["hsc"].value;
+		}
+	if(id == ""){
+		document.getElementById('id').innerHTML = "Please! insert your id";
+		return false;
+		}else if(id.length != 7){
+			document.getElementById('id').innerHTML = "ID must be 7 character";
+			return false;
+			}else if(uname == ""){
+			document.getElementById('uname').innerHTML = "Please! insert your user name";
+			return false;
+			}else if(uname.length < 5 || uname.length > 25){
+			document.getElementById('uname').innerHTML = "User Name should be between 5 to 25 characters";
+			return false;
+			}else if(email == ""){
+			document.getElementById('email').innerHTML = "Please! insert your email address";
+			return false;
+			}else if(password.length < 3 || password.length > 20){
+			document.getElementById('password').innerHTML = "Password should be between 3 to 20 characters";
+			return false;
+			}else if(comments.length < 10){
+			document.getElementById('comments').innerHTML = "You should at least input 10 characters";
+			return false;
+			}else if(gender == ""){
+			document.getElementById('gender').innerHTML = "Select your gender";
+			return false;
+			}else if(!document.forms["myForm"].ssc.checked && !document.forms["myForm"].hsc.checked){
+			document.getElementById('education').innerHTML = "Select your education";
+			return false;
+			}else{
+				document.write("ID: " + id + "<br/>");
+				document.write("User Name: " + uname + "<br/>");
+				document.write("Email: " + email + "<br/>");
+				document.write("Password: " + password + "<br/>");
+				document.write("Comments: " + comments + "<br/>");
+				document.write("Gender: " + gender + "<br/>");
+				document.write("Education: " + education + "<br/>");
+				}
+	}
+</script>
+</center>
+</div>
+</body>
+</html>
