@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+label{
+	color:red;
+	padding:3px 10px;
+}
+</style>
+</head>
+
+<body>
+<form name="myForm" action="formValidation.html" onSubmit="return validation()">
+Name: <input type="text" name="fname"/><label id="fname"></label><br/>
+ID: <input type="number" name="id"/><label id="id"></label><br/>
+Gender: <input type="radio" name="gender" value="Male"/>Male
+<input type="radio" name="gender" value="Female"/>Female
+<label id="gender"></label><br/>
+Round: <select name="round">
+<option value="Select A Round" selected>Select A Round</option>
+<option value="Round-36">Round-36</option>
+<option value="Round-37">Round-37</option>
+<option value="Round-37">Round-38</option>
+</select><label id="round"></label><br/>
+Education: <input type="checkbox" name="ssc" value="SSC"/>SSC
+<input type="checkbox" name="hsc" value="HSC"/>HSC
+<label id="education"></label><br/>
+Comments: <textarea rows="2" cols="16" name="comments"></textarea><label id="comments"></label><br/>
+<input type="reset" value="Reset"/>
+<input type="submit" value="Submit"/>
+</form>
+<script>
+function validation(){
+var fname = document.forms["myForm"]["fname"].value;
+var id = document.forms["myForm"]["id"].value;
+var gender = document.forms["myForm"]["gender"].value;
+var round = document.forms["myForm"]["round"].value;
+var education = "";
+if(document.forms["myForm"].ssc.checked){
+	education += document.forms["myForm"]["ssc"].value;
+	}
+if(document.forms["myForm"].hsc.checked){
+	education += ", " + document.forms["myForm"]["hsc"].value;
+	}
+var comments = document.forms["myForm"]["comments"].value;
+if(fname == ""){
+	document.getElementById('fname').innerHTML = "Please! insert your name";
+	return false;
+	}else if(id == ""){
+		document.getElementById('id').innerHTML = "Please! insert your id";
+	return false;
+		}else if(gender == ""){
+		document.getElementById('gender').innerHTML = "Please! select your gender";
+	return false;
+		}else if(round == "Select A Round"){
+		document.getElementById('round').innerHTML = "Please! select your round";
+	return false;
+		}else if(education == ""){
+		document.getElementById('education').innerHTML = "Please! select your education";
+	return false;
+		}else if(comments == ""){
+		document.getElementById('comments').innerHTML = "Please! input comments";
+	return false;
+		}else{
+			document.write("Name: " + fname + "<br/>");
+			document.write("ID: " + id + "<br/>");
+			document.write("Gender: " + gender + "<br/>");
+			document.write("Round: " + round + "<br/>");
+			document.write("Education: " + education + "<br/>");
+			document.write("Comments: " + comments + "<br/>");
+			}
+}
+</script>
+</body>
+</html>
