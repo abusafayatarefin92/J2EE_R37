@@ -1,1 +1,59 @@
-07-04-2018
+Illigal Quaries Using Group Functions
+select department_id, count(last_name)
+from employees;
+select department_id, count(last_name)
+from employees
+group by department_id;
+select department_id, avg(salary)
+from employees
+where avg(salary) > 8000
+group by department_id;
+select department_id, avg(salary)
+from employees
+having avg(salary) > 8000
+group by department_id;
+Restricting Group Results with the Having Clause
+select department_id, max(salary)
+from employees
+group by department_id
+having max(salary) > 10000;
+select department_id, avg(salary)
+from employees
+group by department_id
+having max(salary) > 10000;
+Using Having Clause
+select job_id, sum(salary) payroll
+from employees
+where job_id not like '%REP%'
+group by job_id
+having sum(salary) > 13000
+order by sum(salary);
+Nesting Group Functions
+select max(avg(salary))
+from employees
+group by department_id;
+Retrieving Records with Natural Joins
+select department_id, department_name, location_id, city
+from departments
+natural join locations;
+select department_id, department_name, location_id, city
+from departments
+natural join locations 
+where department_id in (20, 50);
+Creating Joins with the Using Clause
+select l.city, d.department_name
+from locations l join departments d using (location_id)
+where location_id  = 1400;
+select l.city, d.department_name
+from locations l join departments d using (location_id)
+where d.location_id = 1400;
+ORA-25154: column part of USING clause cannot have qualifier
+Retrieving Records with the Using Clause
+select employees.employee_id, employees.last_name, departments.location_id, department_id
+from employees join departments
+using (department_id);
+Qualifying Ambiguous Column Names
+select employees.employee_id, employees.last_name, departments.department_id, departments.location_id
+from employees join departments
+on employees.department_id = departments.department_id;
+Using Table Aliases
