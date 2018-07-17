@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+label{
+	color:red;
+	padding:3px 10px;
+}
+</style>
+</head>
+
+<body>
+<div style="width:40%; margin:0 auto; background-color:#FFC;">
+<center>
+<form name="myForm" action="formValidation.html" onSubmit="return validate()" method="post">
+<fieldset>
+<legend><b>Form Validation</b></legend>
+Name: <input type="text" name="fname"/><label id="fname"></label><br/>
+ID: <input type="number" name="id"/><label id="id"></label><br/>
+Gender: <input type="radio" name="gender" value="Male"/>Male
+<input type="radio" name="gender" value="Female"/>Female<label id="gender"></label><br/>
+Round: <select name="round">
+<option value="Select A Round" selected>Select A Round</option>
+<option value="Round-36">Round-36</option>
+<option value="Round-37">Round-37</option>
+<option value="Round-38">Round-38</option>
+</select><label id="round"></label><br/>
+Education: <input type="checkbox" name="ssc" value="SSC"/>SSC
+<input type="checkbox" name="hsc" value="HSC"/>HSC<label id="education"></label><br/>
+Comments: <textarea rows="2" cols="20" name="msg" placeholder="Enter at least 10 characters"></textarea><label id="msg"></label><br/>
+<input type="reset" value="Reset"/>
+<input type="submit" value="Submit"/>
+</fieldset>
+</form>
+<script>
+function validate(){
+	var fname = document.forms["myForm"]["fname"].value;
+	var id = document.forms["myForm"]["id"].value;
+	var gender = document.forms["myForm"]["gender"].value;
+	var round = document.forms["myForm"]["round"].value;
+	var edu = "";
+	if(document.forms["myForm"].ssc.checked){
+		edu += document.forms["myForm"]["ssc"].value;
+		}
+	if(document.forms["myForm"].hsc.checked){
+		edu += " " + document.forms["myForm"]["hsc"].value;
+		}
+	var msg = document.forms["myForm"]["msg"].value;
+	if(fname == ""){
+		document.getElementById('fname').innerHTML = "Please! insert your Name";
+		return false;
+		}else if(fname.length < 3 || fname.length > 25){
+			document.getElementById('fname').innerHTML = "Your name should be between 3 to 25 characters";
+		return false;
+			}else if(id == ""){
+			document.getElementById('id').innerHTML = "Please! insert your id";
+		return false;
+			}else if(gender == ""){
+			document.getElementById('gender').innerHTML = "Please! select your gender";
+		return false;
+			}else if(round == "Select A Round"){
+			document.getElementById('round').innerHTML = "Please! select your round";
+		return false;
+			}else if(!document.forms["myForm"].ssc.checked && !document.forms["myForm"].hsc.checked){
+			document.getElementById('education').innerHTML = "Please! select your education";
+		return false;
+			}else if(msg.length < 10){
+			document.getElementById('msg').innerHTML = "Please! insert at least 10 characters";
+		return false;
+			}else{
+				document.write("Name: " + fname + "<br/>");
+				document.write("ID: " + id + "<br/>");
+				document.write("Gender: " + gender + "<br/>");
+				document.write("Round: " + round + "<br/>");
+				document.write("Education: " + edu + "<br/>");
+				document.write("Comments: " + msg + "<br/>");
+				}
+	}
+</script>
+</center>
+</div>
+</body>
+</html>
