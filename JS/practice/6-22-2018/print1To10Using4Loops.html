@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Printing 1 to 10 Using 4 Loops</title>
+</head>
+
+<body>
+<h2>Printing 1 to 10 Using 4 Loops</h2>
+<script>
+var startingNumber = 0;
+var endingNumber = 10;
+while(startingNumber < endingNumber){
+	startingNumber++;
+	document.write("Printing 1 to 10 using while loop: " + startingNumber + "<br/>");
+	}
+	
+	document.write("<hr/>");
+	
+var sn = 0;
+var en = 10;
+for(sn; sn < en; sn++){
+	document.write("Printing 1 to 10 using for loop: " + sn + "<br/>");
+	}
+	document.write("<hr/>");
+	
+var firstNumber = 0;
+var lastNumber = 10;
+do{
+	firstNumber++;
+	document.write("Printing 1 to 10 using doWhile loop: " + firstNumber + "<br/>");
+	}while(firstNumber < lastNumber);
+	document.write("<hr/>");
+	
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+for(var i in numbers){
+	numbers[i];
+	document.write("Printing 1 to 10 using in loop: " + numbers + "<br/>");
+	}
+	document.write("<hr/>");
+</script>
+</body>
+</html>

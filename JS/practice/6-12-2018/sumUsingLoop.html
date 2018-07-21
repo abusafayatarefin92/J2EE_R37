@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sum Using Loop</title>
+</head>
+
+<body>
+<h2>Sum Using Loop</h2>
+<script>
+var sum = 0;
+var startingNumber = parseInt(prompt("Enter the first number: " + ""));
+var endingNumber = parseInt(prompt("Enter the last number: " + ""));
+while(startingNumber <= endingNumber){
+	sum += startingNumber;
+	startingNumber++;
+	}
+	document.write("Sum using while loop: " + sum);
+	
+	document.write("<hr/>");
+	
+var sum2 = 0;
+var sn = parseInt(prompt("Enter the first number: " + ""));
+var en = parseInt(prompt("Enter the last number: " + ""));
+for(sn; sn <= en; sn++){
+	sum2 += sn;
+	}
+	document.write("Sum using for loop: " + sum2);
+	
+	document.write("<hr/>");
+	
+var sum3 = 0;
+var firstNumber = parseInt(prompt("Enter the first number: " + ""));
+var lastNumber = parseInt(prompt("Enter the last number: " + ""));;
+do{
+	sum3 += firstNumber;
+	firstNumber++;
+	}while(firstNumber <= lastNumber);
+	document.write("Sum using doWhile loop: " + sum3);
+	
+	document.write("<hr/>");
+	
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var sum4 = 0;
+for(var i in numbers){
+	sum4 += numbers[i];
+	}
+	document.write("Sum using in loop: " + sum4);
+</script>
+</body>
+</html>

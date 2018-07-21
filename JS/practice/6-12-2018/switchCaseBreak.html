@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>break</title>
+</head>
+
+<body bgcolor="lightgreen">
+<script>
+var puppy = "Irish Wolfhound";
+puppy = puppy.toLowerCase();
+var found;
+switch(puppy){
+	case 'great dane':
+	alert("Big Guy Breeders have Great Danes");
+	found = "Big Guy Breeders phone: 555-9943";
+	break;
+	case 'irish wolfhound':
+	alert("Gentle Giant Breeders have Irish Wolfhounds");
+	found = "Gentle Giant Breeders phone: 555-1912";
+	break;
+	case 'greater swiss mountain dog':
+	alert("The Swissy Center Breeders have Greater Swiss Mountain Dogs");
+	found = "The Swissy Center Breeders phone: 555-5432";
+	break;
+	default:
+	alert("Contact the American Kennel Club for other breeds and breeders.");
+	found = "American Kennel Club: 555-8989";
+	}
+	var message = ("<p><p>Be sure to contact them as soon as possible")+" "+("<h2>"+ found + "<h2>");
+	document.write(message);
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Focus This</title>
+</head>
+
+<body bgcolor="gainsboro">
+<form name="info">
+Please enter your email address:
+<input type="text" name="email" onFocus="fillItIn()"/>
+</form>
+
+<script>
+function fillItIn(){
+	//Substitute your own email address on the next line
+	document.info.email.value = "safayatarefin@gmail.com";
+	}
+	fillItIn();
+</script>
+</body>
+</html>

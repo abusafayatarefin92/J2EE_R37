@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Printing 1 to 10 Without 3 and 7</title>
+</head>
+
+<body>
+<script>
+function print1To10Without3And7(){
+	var sn = 0;
+	var en = 10;
+	while(sn < en){
+		sn++
+		if(sn == 3 || sn == 7){
+			continue;
+			}
+			document.write(sn + "<br/>");
+		}
+	}
+	print1To10Without3And7();
+</script>
+</body>
+</html>

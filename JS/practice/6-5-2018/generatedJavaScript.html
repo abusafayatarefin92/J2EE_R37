@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Swap Simple</title>
+<script language="javascript">
+	var sample2=new Image();
+	sample2.src="sample2.jpg";
+	var sample1=new Image();
+	sample1.src="sample1.jpg";
+	function switch2(){
+		document.sample.src=sample2.src;
+		}
+		function switch1(){
+			document.sample.src=sample1.src
+			}
+</script>
+</head>
+
+<body>
+<a href="#" onMouseOver="switch2()" onMouseOut="switch1()">
+<img name="sample1.jpg" border="0"/>
+</a>
+</body>
+</html>

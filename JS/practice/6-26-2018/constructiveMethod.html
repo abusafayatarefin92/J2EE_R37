@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Constructive Method</title>
+</head>
+
+<body bgcolor="mintcream">
+<script>
+var stName;
+var shop;
+var product;
+//Constructor Function
+function Mall(stName, shop, product){
+	this.stName = stName;
+	this.shop = shop;
+	this.product = product;
+	}
+var Bloomfield = new Mall("Bloomy", "Nuts and Lightning Bolts", "Organic Electricity");
+var display = Bloomfield.stName + "<br/>";
+display += Bloomfield.shop + "<br/>";
+display += Bloomfield.product;
+document.write(display);
+</script>
+</body>
+</html>
