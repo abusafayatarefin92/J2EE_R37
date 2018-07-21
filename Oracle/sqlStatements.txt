@@ -65,7 +65,7 @@ select DISTINCT department_id, job_id
 from employees;
 ============================================================================
 Using the Where Clause:
-select employee_id,last_name,job_id,department_id 
+select employee_id, last_name, job_id, department_id 
 from employees 
 where department_id = 90;
 ============================================================================
@@ -73,6 +73,11 @@ Character Strings and Dates:
 select last_name,job_id,department_id 
 from employees 
 where last_name = 'Whalen';
+
+select last_name,job_id,department_id 
+from employees 
+where last_name = 'WHALEN';
+no data found
 =============================================================================
 Using Comparison Conditions:
 select last_name, salary 
@@ -97,11 +102,11 @@ select employee_id, last_name, salary, manager_id
 from employees 
 where manager_id in(100,101,201);
 
-select employee_id, manager_id,department_id 
+select employee_id, manager_id, department_id 
 from employees 
 where last_name in ('Hartstein', 'Vargas');
 
-select employee_id, manager_id,department_id 
+select employee_id, manager_id, department_id 
 from employees 
 where last_name not in ('Hartstein', 'Vargas');
 ==============================================================================
@@ -110,13 +115,13 @@ select first_name
 from employees 
 where first_name like 'S%';
 
-select last_name,hire_date 
-from employees where hire_date like '%95';
+select last_name, hire_date 
+from employees where hire_date like '%05';
 
 select last_name from employees 
 where last_name like '_o%';
 
-select employee_id,last_name,job_id 
+select employee_id, last_name, job_id 
 from employees 
 where job_id like '%SA\_%' escape'\';
 
@@ -125,13 +130,21 @@ from employees
 where last_name not like '%een%';
 ================================================================================
 Using the null Conditions:
-select last_name,manager_id 
+select last_name, manager_id 
 from employees 
 where manager_id is null;
 
-select last_name,job_id,commission_pct 
+select last_name, manager_id 
+from employees 
+where manager_id is not null;
+
+select last_name,job_id, commission_pct 
 from employees 
 where commission_pct is null;
+
+select last_name,job_id, commission_pct 
+from employees 
+where commission_pct is not null;
 ===========================================================================
 Using the And Operator:
 select employee_id, last_name, job_id, salary 
@@ -169,8 +182,8 @@ Using the Order By Clause:
 select last_name, job_id, department_id, hire_date 
 from employees 
 order by hire_date;
-
-Sorting
+===================================================================================
+Sorting:
 select last_name, job_id, department_id, hire_date 
 from employees 
 order by hire_date desc;
@@ -211,6 +224,7 @@ Using Case-Manipulation Functions:
 select employee_id, last_name, department_id 
 from employees 
 where last_name = 'higgins';
+no data found
 
 select employee_id, last_name, department_id 
 from employees 
