@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+label{
+	color:red;
+	padding:3px 10px;
+}
+</style>
+</head>
+
+<body>
+<div style="width:40%; margin:0 auto; background-color:#FFC;">
+<center>
+<form name="myForm">
+<h2>Form Validation</h2>
+Name: <input type="text" name="fname"/><label id="fname"></label><br/>
+ID: <input type="number" name="id"/><label id="id"></label><br/>
+Gender: <input type="radio" name="gender" value="Male"/>Male
+<input type="radio" name="gender" value="Female"/>Female<label id="gender"></label><br/>
+Education: <input type="checkbox" name="ssc" value="SSC"/>SSC
+<input type="checkbox" name="hsc" value="HSC"/>HSC<label id="edu"></label><br/>
+Round: <select name="round">
+<option value="Select A Value" selected>Select A Value</option>
+<option value="Round-36">Round-36</option>
+<option value="Round-37">Round-37</option>
+<option value="Round-38">Round-38</option>
+</select><label id="round"></label><br/>
+Comments: <textarea rows="2" cols="20" name="msg"></textarea><label id="msg"></label><br/>
+<input type="reset" value="Reset"/>
+
+</form>
+<button onClick="validate()">Submit</button>
+<button onClick="onClose()">Close Window</button>
+<script>
+var win;
+function onClose(){
+	win.close();
+	}
+function validate(){
+	var fname = document.forms["myForm"]["fname"].value;
+	var id = document.forms["myForm"]["id"].value;
+	var gender = document.forms["myForm"]["gender"].value;
+	var edu = "";
+	if(document.forms["myForm"].ssc.checked){
+		edu += document.forms["myForm"]["ssc"].value;
+		}
+	if(document.forms["myForm"].hsc.checked){
+		edu += "  " + document.forms["myForm"]["hsc"].value;
+		}
+	var round = document.forms["myForm"]["round"].value;
+	var msg = document.forms["myForm"]["msg"].value;
+	if(fname == ""){
+		document.getElementById('fname').innerHTML = "Please! insert your name";
+		return false
+		}else if(fname.length < 3){
+			document.getElementById('fname').innerHTML = "Name must be more than 3 characters";
+		return false
+			}else{
+				document.getElementById('fname').innerHTML = "";
+				}
+	if(id == ""){
+		document.getElementById('id').innerHTML = "Please! insert your id";
+		return false
+		}else{
+				document.getElementById('id').innerHTML = "";
+				}
+	if(gender == ""){
+		document.getElementById('gender').innerHTML = "Please! select your gender";
+		return false
+		}else{
+				document.getElementById('gender').innerHTML = "";
+				}
+	if(!document.forms["myForm"].ssc.checked && !document.forms["myForm"].hsc.checked){
+		document.getElementById('edu').innerHTML = "Please! select your education";
+		return false
+		}else{
+				document.getElementById('edu').innerHTML = "";
+				}
+	if(round == "Select A Value"){
+		document.getElementById('round').innerHTML = "Please! select your round";
+		return false
+		}else{
+				document.getElementById('round').innerHTML = "";
+				}
+	if(msg.length < 10){
+		document.getElementById('msg').innerHTML = "Please! insert at least 10 characters";
+		return false
+		}else{
+				document.getElementById('msg').innerHTML = "";
+				win = window.open("", "", "width=400");
+				win.document.write("<h2><center>Form Data</center></h2><hr/>");
+				win.document.write("Name: " + fname + "<br/>");
+				win.document.write("ID: " + id + "<br/>");
+				win.document.write("Gender: " + gender + "<br/>");
+				win.document.write("Education: " + edu + "<br/>");
+				win.document.write("Round: " + round + "<br/>");
+				win.document.write("Comments: " + msg + "<br/>");
+				}
+	}
+</script>
+</center>
+</div>
+</body>
+</html>
