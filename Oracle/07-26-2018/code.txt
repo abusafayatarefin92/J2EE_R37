@@ -1,0 +1,125 @@
+Using the Union Operator:
+select employee_id, job_id
+from employees
+union
+select employee_id, job_id
+from job_history;
+
+select employee_id, job_id, department_id
+from employees
+union
+select employee_id, job_id, department_id
+from job_history;
+=============================================================
+Using the Union All Operator:
+select employee_id, job_id, department_id
+from employees
+union all
+select employee_id, job_id, department_id
+from job_history
+order by employee_id;
+
+select employee_id, job_id, department_id
+from employees
+union
+select employee_id, job_id, department_id
+from job_history
+order by employee_id;
+==================================================================
+Using the Intersect Operator:
+select employee_id, job_id
+from employees
+intersect
+select employee_id, job_id
+from job_history
+order by employee_id;
+
+select employee_id, job_id, department_id
+from employees
+intersect
+select employee_id, job_id, department_id
+from job_history
+order by employee_id;
+=================================================================
+Minus Operator:
+select employee_id
+from employees
+minus
+select employee_id
+from job_history;
+==================================================================
+Set Operator Guidelines:
+select employee_id, department_id
+from employees
+where (employee_id, department_id)
+      in (select employee_id, department_id
+          from employees
+          union
+          select employee_id, department_id
+          from job_history);
+===================================================================
+Matching the select Statement:
+select employee_id, job_id, salary
+from employees
+union
+select employee_id, job_id, 0
+from job_history;
+
+select employee_id, job_id, salary, last_name
+from employees
+union
+select employee_id, job_id, 0, ''
+from job_history;
+===================================================================
+Controlling the Order of Rows:
+column a_dummy noprint
+select 'sing' as "My dream", 3 a_dummy
+from dual
+union
+select 'I''d like to teach', 1 a_dummy
+from dual
+union
+select 'the world to', 2 a_dummy
+from dual
+order by a_dummy;
+===================================================================
+Inserting new Rows:
+insert into departments (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) 
+values (290, 'CCSL', null, 1900);
+==================================================================
+Inserting Rows with Null Values:
+insert into departments (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) 
+values (300, 'CCSL JAVA', null, null);
+==================================================================
+Inserting Special Values:
+insert into employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id)
+values                (207, 'Abu Safayat', 'Arefin', 'safayatarefin', '+8801788857672', sysdate, 'AC_ACCOUNT', 15000, null, null, null);
+
+select *
+from employees
+where employee_id = 207;
+=================================================================
+Creating a Script:
+insert into departments (department_id, department_name, location_id)
+values                  (&department_id, '&department_name', &location);
+=========================================================================
+Creating a table:
+create table sales_rep(
+id number(11) primary key not null, name varchar2(255) not null
+);
+=========================================================================
+Copying Rows from Another Table:
+insert into sales_rep(id, name)
+ select employee_id, last_name
+ from employees
+ where job_id like '%REP%';
+=========================================================================
+Updating Rows in a Table:
+update sales_rep
+set name = 'Tukar'
+where id = 150;
+=========================================================================
+Deleting Rows from a Table:
+delete from sales_rep
+where id = 154;
+========================================================================
