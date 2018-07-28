@@ -1,0 +1,39 @@
+Trunccate Statement:
+truncate table employees;
+====================================================
+Rollback, Savepoint and Commit:
+insert into sales_rep(id,Name) 
+values(1,'Arefin');
+
+savepoint hello;
+
+insert into sales_rep(id,Name) 
+values(2,'Ariful');
+
+rollback to hello;
+
+insert into sales_rep(id,Name) 
+values(2,'Ariful');
+
+savepoint yo;
+
+insert into sales_rep(id,name) 
+values(3,'Zakir');
+
+commit;
+=====================================================
+Committing Data:
+delete from sales_rep
+where id = 1;
+
+row deleted.
+ 
+insert into sales_rep
+values(1,'Jubaiyer');
+	
+1 row created.
+
+commit;
+
+Commit complete.
+======================================================
