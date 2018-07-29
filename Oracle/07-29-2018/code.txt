@@ -1,0 +1,14 @@
+create table test_10(
+id number(5) primary key,
+name varchar2(20) not null,
+contact number(15) not null unique,
+location varchar2(20) not null,
+salary number(8,2));
+
+insert into test_10(id,name,contact,location,salary) 
+values(1,'Arefin',123,'Dhanmondi',1000);
+
+drop table departments;
+
+create table employees(emp_id number(3) primary key, emp_name varchar2(10) not null, department_id number(2),
+constraint emp_dep_fk foreign key (department_id) references departments(dep_id));
