@@ -6,6 +6,13 @@ HAVING MIN(salary) >
 					(SELECT MIN(salary)
 					FROM employees
 					WHERE department_id = 50);
+					
+SELECT job_id, avg(salary)
+from employees
+group by job_id
+having avg(salary) = (select min(avg(salary))
+                      from employees
+                      group by job_id);
 ===================================================================
 Errors with Subqueries:
 SELECT employee_id, last_name

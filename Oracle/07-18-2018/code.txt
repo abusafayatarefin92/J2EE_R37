@@ -1,23 +1,26 @@
-Using Subquery
+Using Subquery:
 select * 
 from employees 
 where salary > 
 			  (select salary 
 			   from employees 
 			   where last_name = 'Abel');
+			   
 select last_name, salary 
 from employees 
 where salary > 
 			  (select salary 
 			   from employees 
 			   where last_name = 'Abel');
-Single-Row Subqueries
+=============================================================
+Single-Row Subqueries:
 select last_name, job_id
 from employees where job_id =
 							(select job_id
 							 from employees
 							 where employee_id = 141);
-Executing Single-Row Subqueries
+============================================================
+Executing Single-Row Subqueries:
 select last_name, job_id, salary 
 from employees
 where job_id =
@@ -27,15 +30,18 @@ where job_id =
 and salary > (select salary 
               from employees
               where employee_id = 143);
-Using Group Functions in a Subquery
+============================================================
+Using Group Functions in a Subquery:
 select last_name, job_id, salary 
 from employees
 where salary =
               (select min(salary)
                from employees);
+			   
 select * 
 from employees 
 where department_id =
                      (select department_id 
                       from employees 
                       where employee_id = 120);
+==============================================================
