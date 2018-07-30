@@ -1,0 +1,60 @@
+create table departments1(dep_id number(2) primary key, dep_name varchar2(20) unique);
+
+create table students(stu_id number(2) primary key, stu_name varchar2(20) unique, stu_location varchar2(20)not null, department_id number(2), 
+constraints stu_dep_fk foreign key(department_id) references departments1(dep_id));
+================================================================================================================================================
+Creating a View:
+create view emp_view as select employee_id, last_name, salary
+from employees
+where department_id = 80;
+=================================================================================
+Mdifying a View:
+create or replace view emp_view as select employee_id, last_name, salary
+from employees
+where department_id = 50;
+=================================================================================
+Creating a Complex View:
+create view dept_sum_vu (name, minsal, maxsal, avgsal)
+as select d.department_name, min(e.salary), max(e.salary), avg(e.salary)
+from employees e join departments d
+on (e.department_id = d.department_id)
+group by d.department_name;
+==================================================================================
+create user usa identified by usa;
+
+grant dba to usa;
+
+create table teacher(t_id number(2) primary key, t_name varchar2(25) not null, salary number(7,2) check(salary > 5000), mobile number(11) unique, joining_date date default sysdate);
+
+create table student(id number(3) primary key, name varchar2(25) not null, education_q varchar2(25) not null, district varchar2(20) not null, teacher_id number(2), 
+constraint stu_teach_fk foreign key(teacher_id) references teacher(t_id));
+
+insert into teacher(t_id,t_name,salary,mobile,joining_date)
+values(10,'Rahim',20000,12345678910,'01-JAN-18');
+
+insert into teacher(t_id,t_name,salary,mobile,joining_date)
+values(11,'Taslima',25000,12345678911,'01-JAN-18');
+
+insert into student(id,name,education_q,district,teacher_id)
+values(101,'Arefin','BBA','Feni',10);
+
+insert into student(id,name,education_q,district,teacher_id)
+values(102,'Zakir','MBA','Comilla',10);
+
+insert into student(id,name,education_q,district,teacher_id)
+values(103,'Jubayer','Masters','Magura',11);
+
+insert into student(id,name,education_q,district,teacher_id)
+values(104,'Ariful','Hons','Rangpur',11);
+
+create view teacherview
+as select * from student
+where teacher_id = 10;
+
+create view teacherview2
+as select * from student
+where teacher_id = 11;
+
+create view teacherview3
+as select t.t_id, s.name from student s join teacher t
+on (t.t_id = s.teacher_id);
