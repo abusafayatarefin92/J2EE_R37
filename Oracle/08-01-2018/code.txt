@@ -1,0 +1,126 @@
+Using a Sequence:
+create sequence abc_empid_seq 
+increment by 10 
+start with 120 
+maxvalue 9999
+nocache 
+nocycle;
+
+create table abc(id number(3) primary key, name varchar2(25) not null);
+
+insert into abc(id,name) values(abc_empid_seq.nextval, 'Arefin');
+
+insert into abc(id,name) values(abc_empid_seq.nextval, 'Jubaiyer');
+
+insert into abc(id,name) values(abc_empid_seq.nextval, 'Zakir');
+............................................................................
+select * from abc;
+
+        ID NAME
+---------- -------------------------
+       120 Arefin
+       130 Jubaiyer
+       140 Zakir
+       150 Ariful
+       160 Masud
+       170 Shohidul
+       180 Yeasin
+       190 Mehedi
+====================================================================================	   
+To find out Tables:
+select table_name from user_tables;
+
+To find out views:
+select view_name from user_views;
+
+To find out sequences:
+select sequence_name from user_sequences;
+=====================================================================================
+create table depertments(dep_id number(3) primary key, dep_name varchar2(25));
+
+create sequence dep_seq
+start with 50
+increment by 10
+maxvalue 100
+nocache
+nocycle;
+
+insert into depertments(dep_id,dep_name) values(dep_seq.nextval, 'JAVA');
+.....................................................................................
+select * from depertments;
+
+    DEP_ID DEP_NAME
+---------- -------------------------
+        50 JAVA
+        60 Database
+        70 WPSI
+		
+create table employees(emp_id number(3) primary key, emp_name varchar2(25) not null, salary number(7,2) check(salary < 50000), mobile number(11) unique, department_id number(3), 
+constraint emp_dep_fk foreign key(department_id) references depertments(dep_id));
+
+create sequence emp_seq
+start with 1
+increment by 5
+maxvalue 200
+nocache
+nocycle;
+
+insert into employees(emp_id,emp_name,salary,mobile,department_id) values(emp_seq.nextval, 'Arefin', 30000, 0123456789, 50);
+.............................................................................................................................
+select * from employees;
+
+    EMP_ID EMP_NAME                      SALARY     MOBILE DEPARTMENT_ID
+---------- ------------------------- ---------- ---------- -------------
+         1 Arefin                         30000  123456789            50
+         6 Jubaiyer                       35000  123456788            50
+        11 Zakir                          40000  123456787            50
+        31 Ariful                         35000  123456786            60
+        36 Sharmin                        40000  123456785            60
+        41 Mehedi                         45000  123456784            70
+        46 Yeasin                         35000  123456783            70
+		
+create view epm_dep_view
+as select e.emp_id, e.emp_name, d.dep_name
+from employees e join depertments d
+on(e.department_id=d.dep_id);
+
+select * from epm_dep_view;
+
+    EMP_ID EMP_NAME                  DEP_NAME
+---------- ------------------------- -------------------------
+         1 Arefin                    JAVA
+         6 Jubaiyer                  JAVA
+        11 Zakir                     JAVA
+        31 Ariful                    Database
+        36 Sharmin                   Database
+        41 Mehedi                    WPSI
+        46 Yeasin                    WPSI
+=============================================================================================		
+update depertments
+set dep_name = 'Football'
+where dep_id = 50;
+
+select * from depertments;
+
+    DEP_ID DEP_NAME
+---------- -------------------------
+        50 Football
+        60 Database
+        70 WPSI
+		
+update employees
+set emp_name = 'Russia'
+where emp_id = 46;
+
+select * from employees;
+
+    EMP_ID EMP_NAME                      SALARY     MOBILE DEPARTMENT_ID
+---------- ------------------------- ---------- ---------- -------------
+         1 Arefin                         30000  123456789            50
+         6 Jubaiyer                       35000  123456788            50
+        11 Zakir                          40000  123456787            50
+        31 Ariful                         35000  123456786            60
+        36 Sharmin                        40000  123456785            60
+        41 Mehedi                         45000  123456784            70
+        46 Russia                         35000  123456783            70
+==================================================================================================
