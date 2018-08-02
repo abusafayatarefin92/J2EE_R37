@@ -1,0 +1,1 @@
+SQL> spool E:\git\PPT\Oracle\08-02-2018\mysqlcode.txt

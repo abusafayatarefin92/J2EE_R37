@@ -1,0 +1,21 @@
+Creating an Index:
+create index emp_last_name_index
+on employees(last_name);
+
+select index_name from user_indexes;
+
+drop index emp_last_name_index;
+===============================================
+Creating and Removing Synonyms:
+create synonym emp
+for employees;
+  
+create synonym dep
+for departments;
+
+drop synonym emp;
+
+drop synonym dep;
+================================================
+Automatic code save:
+spool E:\git\PPT\Oracle\08-02-2018\mysqlcode.txt

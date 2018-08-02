@@ -1,0 +1,400 @@
+Answer to the question No. 1:
+
+connect
+Enter user-name: system
+Enter password: sys
+Connected.
+
+grant dba to eid;
+
+Grant succeeded.
+
+connect
+Enter user-name: eid
+Enter password: eid
+Connected.
+
+set autocommit on;
+=============================================================================================================================================================
+Answer to the question No. 2 A:
+
+create table department(dep_id number(2) primary key, department_name varchar2(20) not null);
+
+Table created.
+==============================================================================================================================================================
+Answer to the question No. 2 B:
+
+create table employee(emp_id number(3) primary key, emp_name varchar2(25) not null, mobile number(11) unique, salary number(7,2) check(salary > 10000), joining_date date default sysdate, country varchar2(20) default 'BD', dep_id number(2), 
+constraint emp_dep_fk foreign key(dep_id) references  department(dep_id));
+
+Table created.
+==============================================================================================================================================================
+Answer to the question No. 2 C:
+
+describe department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL NUMBER(2)
+ DEPARTMENT_NAME                           NOT NULL VARCHAR2(20)
+ 
+describe employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(3)
+ EMP_NAME                                  NOT NULL VARCHAR2(25)
+ MOBILE                                             NUMBER(11)
+ SALARY                                             NUMBER(7,2)
+ JOINING_DATE                                       DATE
+ COUNTRY                                            VARCHAR2(20)
+ DEP_ID                                             NUMBER(2)
+===============================================================================================================================================================
+Answer to the question No. 3 A:
+
+create sequence dep_seq start with 10 increment by 10 maxvalue 200 nocache nocycle;
+
+Sequence created.
+================================================================================================================================================================
+Answer to the question No. 3 B:
+
+create sequence emp_seq start with 101 increment by 5 maxvalue 200 nocache nocycle;
+
+Sequence created.
+================================================================================================================================================================
+Answer to the question No. 3 C:
+
+select sequence_name from user_sequences;
+
+SEQUENCE_NAME
+------------------------------
+DEP_SEQ
+EMP_SEQ
+================================================================================================================================================================
+Answer to the question No. 4 A:
+
+select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+SYS_C007087
+SYS_C007088
+SYS_C007084
+================================================================================================================================================================
+Answer to the question No. 4 B:
+
+create index dep_name_index
+on department(department_name);
+
+Index created.
+================================================================================================================================================================
+Answer to the question No. 4 C:
+
+select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+SYS_C007087
+SYS_C007088
+SYS_C007084
+DEP_NAME_INDEX
+================================================================================================================================================================
+Answer to the question No. 4 D:
+
+insert into department(dep_id,department_name) values(dep_seq.nextval, 'ADMIN');
+
+1 row created.
+
+insert into department(dep_id,department_name) values(dep_seq.nextval, 'SOFTWARE');
+
+1 row created.
+
+insert into department(dep_id,department_name) values(dep_seq.nextval, 'MARKETING');
+
+1 row created.
+================================================================================================================================================================
+Answer to the question No. 4 E:
+
+create view dep_view_admin as select * from department where department_name = 'ADMIN';
+
+View created.
+
+create view dep_view_software as select * from department where department_name = 'SOFTWARE';
+
+View created.
+
+create view dep_view_marketing as select * from department where department_name = 'MARKETING';
+
+View created.
+================================================================================================================================================================
+Answer to the question No. 4 F:
+
+select view_name from user_views;
+
+VIEW_NAME
+------------------------------
+DEP_VIEW_ADMIN
+DEP_VIEW_MARKETING
+DEP_VIEW_SOFTWARE
+================================================================================================================================================================
+Answer to the question No. 4 G:
+
+create synonym dep for department;
+
+Synonym created.
+
+create synonym dep_admin for DEP_VIEW_ADMIN;
+
+Synonym created.
+
+create synonym dep_mkt for DEP_VIEW_MARKETING;
+
+Synonym created.
+
+create synonym dep_soft for DEP_VIEW_SOFTWARE;
+
+Synonym created.
+================================================================================================================================================================
+Answer to the question No. 4 H:
+
+select * from department;
+
+    DEP_ID DEPARTMENT_NAME
+---------- --------------------
+        10 ADMIN
+        20 SOFTWARE
+        30 MARKETING
+		
+select * from DEP_VIEW_ADMIN;
+
+    DEP_ID DEPARTMENT_NAME
+---------- --------------------
+        10 ADMIN
+		
+select * from DEP_VIEW_MARKETING;
+
+    DEP_ID DEPARTMENT_NAME
+---------- --------------------
+        30 MARKETING
+		
+select * from DEP_VIEW_SOFTWARE;
+
+    DEP_ID DEPARTMENT_NAME
+---------- --------------------
+        20 SOFTWARE
+		
+select * from dep;
+
+    DEP_ID DEPARTMENT_NAME
+---------- --------------------
+        10 ADMIN
+        20 SOFTWARE
+        30 MARKETING
+		
+select * from dep_admin;
+
+    DEP_ID DEPARTMENT_NAME
+---------- --------------------
+        10 ADMIN
+		
+select * from dep_mkt;
+
+    DEP_ID DEPARTMENT_NAME
+---------- --------------------
+        30 MARKETING
+		
+select * from dep_soft;
+
+    DEP_ID DEPARTMENT_NAME
+---------- --------------------
+        20 SOFTWARE
+================================================================================================================================================================
+Answer to the question No. 5 A:
+
+select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+SYS_C007087
+SYS_C007088
+SYS_C007084
+DEP_NAME_INDEX
+================================================================================================================================================================
+Answer to the question No. 5 B:
+
+create index emp_name_index
+on employee(emp_name);
+
+Index created.
+================================================================================================================================================================
+Answer to the question No. 5 C:
+
+select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+SYS_C007087
+SYS_C007088
+EMP_NAME_INDEX
+SYS_C007084
+DEP_NAME_INDEX
+================================================================================================================================================================
+Answer to the question No. 5 D:
+
+insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(emp_seq.nextval, 'Arefin', 0123456789, 20000, 10);
+
+1 row created.
+
+insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(emp_seq.nextval, 'Jubaiyer', 0123456788, 25000, 10);
+
+1 row created.
+
+insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(emp_seq.nextval, 'Zakir', 0123456787, 30000, 20);
+
+1 row created.
+
+insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(emp_seq.nextval, 'Ariful', 0123456786, 35000, 20);
+
+1 row created.
+
+insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(emp_seq.nextval, 'Mehedi', 0123456785, 30000, 30);
+
+1 row created.
+================================================================================================================================================================
+Answer to the question No. 5 E:
+
+create view emp_view_1 as select * from employee where emp_name = 'Arefin';
+
+View created.
+
+create view emp_view_2 as select * from employee where emp_name = 'Zakir';
+
+View created.
+================================================================================================================================================================
+Answer to the question No. 5 F:
+
+select view_name from user_views;
+
+VIEW_NAME
+------------------------------
+DEP_VIEW_ADMIN
+DEP_VIEW_MARKETING
+DEP_VIEW_SOFTWARE
+EMP_VIEW_1
+EMP_VIEW_2
+================================================================================================================================================================
+Answer to the question No. 5 G:
+
+create synonym emp for employee;
+
+Synonym created.
+
+create synonym emp_1 for EMP_VIEW_1;
+
+Synonym created.
+
+create synonym emp_2 for EMP_VIEW_2;
+
+Synonym created.
+================================================================================================================================================================
+Answer to the question No. 5 H:
+
+select * from emp_view_1;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D
+---------- ------------------------- ---------- ---------- ---------
+COUNTRY                  DEP_ID
+-------------------- ----------
+       101 Arefin                     123456789      20000 02-AUG-18
+BD                           10
+
+
+select * from emp_view_2;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D
+---------- ------------------------- ---------- ---------- ---------
+COUNTRY                  DEP_ID
+-------------------- ----------
+       116 Zakir                      123456787      30000 02-AUG-18
+BD                           20
+
+select * from employee;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D
+---------- ------------------------- ---------- ---------- ---------
+COUNTRY                  DEP_ID
+-------------------- ----------
+       101 Arefin                     123456789      20000 02-AUG-18
+BD                           10
+
+       111 Jubaiyer                   123456788      25000 02-AUG-18
+BD                           10
+
+       116 Zakir                      123456787      30000 02-AUG-18
+BD                           20
+
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D
+---------- ------------------------- ---------- ---------- ---------
+COUNTRY                  DEP_ID
+-------------------- ----------
+       121 Ariful                     123456786      35000 02-AUG-18
+BD                           20
+
+       126 Mehedi                     123456785      30000 02-AUG-18
+BD                           30
+							 
+select * from emp;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D
+---------- ------------------------- ---------- ---------- ---------
+COUNTRY                  DEP_ID
+-------------------- ----------
+       101 Arefin                     123456789      20000 02-AUG-18
+BD                           10
+
+       111 Jubaiyer                   123456788      25000 02-AUG-18
+BD                           10
+
+       116 Zakir                      123456787      30000 02-AUG-18
+BD                           20
+
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D
+---------- ------------------------- ---------- ---------- ---------
+COUNTRY                  DEP_ID
+-------------------- ----------
+       121 Ariful                     123456786      35000 02-AUG-18
+BD                           20
+
+       126 Mehedi                     123456785      30000 02-AUG-18
+BD                           30
+
+select * from emp_1;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D
+---------- ------------------------- ---------- ---------- ---------
+COUNTRY                  DEP_ID
+-------------------- ----------
+       101 Arefin                     123456789      20000 02-AUG-18
+BD                           10
+
+select * from emp_2;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D
+---------- ------------------------- ---------- ---------- ---------
+COUNTRY                  DEP_ID
+-------------------- ----------
+       116 Zakir                      123456787      30000 02-AUG-18
+BD                           20
+================================================================================================================================================================
+Answer to the Question No. 6 A:
+
+update department set DEPARTMENT_NAME = 'SALES' where DEP_ID = 30;
+
+1 row updated.
+================================================================================================================================================================
+Answer to the Question No. 6 B:
+
+update employee set dep_id = 30 where emp_id = 101;
+
+1 row updated.
+================================================================================================================================================================

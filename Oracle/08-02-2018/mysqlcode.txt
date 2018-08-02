@@ -1,0 +1,39 @@
+SQL> connect
+Enter user-name: eid
+Connected.
+SQL> select * from department;
+
+    DEP_ID DEPARTMENT_NAME                                                      
+---------- --------------------                                                 
+        10 ADMIN                                                                
+        20 SOFTWARE                                                             
+        30 SALES                                                                
+
+SQL> select * from employee;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID EMAIL                                           
+-------------------- ---------- --------------------                            
+       101 Arefin                     123456789      20000 02-AUG-18            
+BD                           30                                                 
+                                                                                
+       111 Jubaiyer                   123456788      25000 02-AUG-18            
+BD                           10                                                 
+                                                                                
+       116 Zakir                      123456787      30000 02-AUG-18            
+BD                           20                                                 
+                                                                                
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID EMAIL                                           
+-------------------- ---------- --------------------                            
+       121 Ariful                     123456786      35000 02-AUG-18            
+BD                           20                                                 
+                                                                                
+       126 Mehedi                     123456785      30000 02-AUG-18            
+BD                           30                                                 
+                                                                                
+
+SQL> spool off;
