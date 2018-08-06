@@ -305,3 +305,207 @@ Dilly                                50
 Everett                              50
 Fay                                  20
 ===========================================================================================
+6.
+SELECT last_name "Employee", salary "Monthly Salary"
+FROM employees
+WHERE salary BETWEEN 5000 AND 12000
+AND department_id IN (20, 50);
+
+Employee                  Monthly Salary
+------------------------- --------------
+Weiss                               8000
+Fripp                               8200
+Kaufling                            7900
+Vollman                             6500
+Mourgos                             5800
+Fay                                 6000
+=============================================================================================
+7.
+SELECT last_name, hire_date
+FROM employees
+WHERE hire_date LIKE '%02';
+
+LAST_NAME                 HIRE_DATE
+------------------------- ------------------
+Greenberg                 17-AUG-02
+Faviet                    16-AUG-02
+Raphaely                  07-DEC-02
+Mavris                    07-JUN-02
+Baer                      07-JUN-02
+Higgins                   07-JUN-02
+Gietz                     07-JUN-02
+=============================================================================================
+8.
+SELECT last_name, job_id
+  2  FROM employees
+  3  WHERE manager_id IS NULL;
+
+LAST_NAME                 JOB_ID
+------------------------- ----------
+King                      AD_PRES
+=============================================================================================
+9.
+SELECT last_name, salary, commission_pct
+FROM employees
+WHERE commission_pct IS NOT NULL
+ORDER BY salary DESC, commission_pct DESC;
+
+LAST_NAME                     SALARY COMMISSION_PCT
+------------------------- ---------- --------------
+Russell                        14000             .4
+Partners                       13500             .3
+Errazuriz                      12000             .3
+Ozer                           11500            .25
+Cambrault                      11000             .3
+Abel                           11000             .3
+Vishney                        10500            .25
+Zlotkey                        10500             .2
+King                           10000            .35
+Tucker                         10000             .3
+Bloom                          10000             .2
+==============================================================================================
+10.
+SELECT last_name, salary
+  2  FROM employees
+  3  WHERE salary > &sal_amt;
+Enter value for sal_amt: 5000
+old   3: WHERE salary > &sal_amt
+new   3: WHERE salary > 5000
+
+LAST_NAME                     SALARY
+------------------------- ----------
+King                           24000
+Kochhar                        17000
+De Haan                        17000
+Hunold                          9000
+Ernst                           6000
+Greenberg                      12008
+Faviet                          9000
+Chen                            8200
+Sciarra                         7700
+Urman                           7800
+Popp                            6900
+==============================================================================================
+11.
+SELECT employee_id, last_name, salary, department_id
+  2  FROM employees
+  3  WHERE manager_id = &mgr_num
+  4  ORDER BY &order_col;
+Enter value for mgr_num: 103
+old   3: WHERE manager_id = &mgr_num
+new   3: WHERE manager_id = 103
+Enter value for order_col: last_name
+old   4: ORDER BY &order_col
+new   4: ORDER BY last_name
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID
+----------- ------------------------- ---------- -------------
+        105 Austin                          4800            60
+        104 Ernst                           6000            60
+        107 Lorentz                         4200            60
+        106 Pataballa                       4800            60
+
+SELECT employee_id, last_name, salary, department_id
+  2  FROM employees
+  3  WHERE manager_id = &mgr_num
+  4  ORDER BY &order_col;
+Enter value for mgr_num: 201
+old   3: WHERE manager_id = &mgr_num
+new   3: WHERE manager_id = 201
+Enter value for order_col: salary
+old   4: ORDER BY &order_col
+new   4: ORDER BY salary
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID
+----------- ------------------------- ---------- -------------
+        202 Fay                             6000            20
+
+SELECT employee_id, last_name, salary, department_id
+  2  FROM employees
+  3  WHERE manager_id = &mgr_num
+  4  ORDER BY &order_col;
+Enter value for mgr_num: 124
+old   3: WHERE manager_id = &mgr_num
+new   3: WHERE manager_id = 124
+Enter value for order_col: employee_id
+old   4: ORDER BY &order_col
+new   4: ORDER BY employee_id
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID
+----------- ------------------------- ---------- -------------
+        141 Rajs                            3500            50
+        142 Davies                          3100            50
+        143 Matos                           2600            50
+        144 Vargas                          2500            50
+        196 Walsh                           3100            50
+        197 Feeney                          3000            50
+        198 OConnell                        2600            50
+        199 Grant                           2600            50
+==============================================================================================
+12.
+SELECT last_name
+  2  FROM employees
+  3  WHERE last_name LIKE '__a%';
+
+LAST_NAME
+-------------------------
+Grant
+Grant
+Whalen
+==============================================================================================
+13.
+SELECT last_name
+  2  FROM employees
+  3  WHERE last_name LIKE '%a%'
+  4  AND last_name LIKE '%e%';
+
+LAST_NAME
+-------------------------
+Baer
+Bates
+Colmenares
+Davies
+De Haan
+Faviet
+Fleaur
+Gates
+Hartstein
+Markle
+Nayer
+=============================================================================================
+14.
+SELECT last_name, job_id, salary
+  2  FROM employees
+  3  WHERE job_id IN ('SA_REP', 'ST_CLERK')
+  4  AND salary NOT IN (2500, 3500, 7000);
+
+LAST_NAME                 JOB_ID         SALARY
+------------------------- ---------- ----------
+Nayer                     ST_CLERK         3200
+Mikkilineni               ST_CLERK         2700
+Landry                    ST_CLERK         2400
+Markle                    ST_CLERK         2200
+Bissot                    ST_CLERK         3300
+Atkinson                  ST_CLERK         2800
+Olson                     ST_CLERK         2100
+Mallin                    ST_CLERK         3300
+Rogers                    ST_CLERK         2900
+Gee                       ST_CLERK         2400
+Philtanker                ST_CLERK         2200
+=============================================================================================
+15.
+SELECT last_name "Employee", salary "Monthly Salary",
+  2  commission_pct
+  3  FROM employees
+  4  WHERE commission_pct = .20;
+
+Employee                  Monthly Salary COMMISSION_PCT
+------------------------- -------------- --------------
+Zlotkey                            10500             .2
+Olsen                               8000             .2
+Cambrault                           7500             .2
+Bloom                              10000             .2
+Fox                                 9600             .2
+Taylor                              8600             .2
+Livingston                          8400             .2
+=============================================================================================

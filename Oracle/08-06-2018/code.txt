@@ -1,0 +1,318 @@
+Practice 3:
+
+1.
+SELECT sysdate "Date"
+FROM dual;
+
+Date
+------------------
+06-AUG-18
+=============================================================================================
+2.
+SELECT employee_id, last_name, salary,
+ROUND(salary * 1.155, 0) "New Salary"
+FROM employees;
+
+EMPLOYEE_ID LAST_NAME                     SALARY New Salary
+----------- ------------------------- ---------- ----------
+        100 King                           24000      27720
+        101 Kochhar                        17000      19635
+        102 De Haan                        17000      19635
+        103 Hunold                          9000      10395
+        104 Ernst                           6000       6930
+        105 Austin                          4800       5544
+        106 Pataballa                       4800       5544
+        107 Lorentz                         4200       4851
+        108 Greenberg                      12008      13869
+        109 Faviet                          9000      10395
+        110 Chen                            8200       9471
+===============================================================================================
+4.
+SELECT employee_id, last_name, salary,
+ROUND(salary * 1.155, 0) "New Salary",
+ROUND(salary * 1.155, 0) - salary "Increase"
+FROM employees;
+
+EMPLOYEE_ID LAST_NAME                     SALARY New Salary   Increase
+----------- ------------------------- ---------- ---------- ----------
+        100 King                           24000      27720       3720
+        101 Kochhar                        17000      19635       2635
+        102 De Haan                        17000      19635       2635
+        103 Hunold                          9000      10395       1395
+        104 Ernst                           6000       6930        930
+        105 Austin                          4800       5544        744
+        106 Pataballa                       4800       5544        744
+        107 Lorentz                         4200       4851        651
+        108 Greenberg                      12008      13869       1861
+        109 Faviet                          9000      10395       1395
+        110 Chen                            8200       9471       1271
+================================================================================================
+5.
+SELECT INITCAP(last_name) "Name",
+LENGTH(last_name) "Length"
+FROM employees
+WHERE last_name LIKE 'J%'
+OR last_name LIKE 'M%'
+OR last_name LIKE 'A%'
+ORDER BY last_name ;
+
+Name                          Length
+------------------------- ----------
+Abel                               4
+Ande                               4
+Atkinson                           8
+Austin                             6
+Johnson                            7
+Jones                              5
+Mallin                             6
+Markle                             6
+Marlow                             6
+Marvins                            7
+Matos                              5
+
+SELECT INITCAP(last_name) "Name",
+LENGTH(last_name) "Length"
+FROM employees
+WHERE last_name LIKE '&start_letter%'
+ORDER BY last_name;
+Enter value for start_letter: H
+old   4: WHERE last_name LIKE '&start_letter%'
+new   4: WHERE last_name LIKE 'H%'
+
+Name                          Length
+------------------------- ----------
+Hall                               4
+Hartstein                          9
+Higgins                            7
+Himuro                             6
+Hunold                             6
+Hutton                             6
+==================================================================================================
+6.
+SELECT last_name, ROUND(MONTHS_BETWEEN(
+SYSDATE, hire_date)) MONTHS_WORKED
+FROM employees
+ORDER BY months_worked;
+
+LAST_NAME                 MONTHS_WORKED
+------------------------- -------------
+Ande                                124
+Banda                               124
+Kumar                               124
+Markle                              125
+Lee                                 125
+Philtanker                          126
+Zlotkey                             126
+Marvins                             126
+Geoni                               126
+Johnson                             127
+Grant                               127
+==================================================================================================
+7.
+SELECT last_name || ' earns '
+|| TO_CHAR(salary, 'fm$99,999.00')
+|| ' monthly but wants '
+|| TO_CHAR(salary * 3, 'fm$99,999.00')
+|| '.' "Dream Salaries"
+FROM employees;
+
+Dream Salaries
+--------------------------------------------------------------------------
+King earns $24,000.00 monthly but wants $72,000.00.
+Kochhar earns $17,000.00 monthly but wants $51,000.00.
+De Haan earns $17,000.00 monthly but wants $51,000.00.
+Hunold earns $9,000.00 monthly but wants $27,000.00.
+Ernst earns $6,000.00 monthly but wants $18,000.00.
+Austin earns $4,800.00 monthly but wants $14,400.00.
+Pataballa earns $4,800.00 monthly but wants $14,400.00.
+Lorentz earns $4,200.00 monthly but wants $12,600.00.
+Greenberg earns $12,008.00 monthly but wants $36,024.00.
+Faviet earns $9,000.00 monthly but wants $27,000.00.
+Chen earns $8,200.00 monthly but wants $24,600.00.
+==================================================================================================
+8.
+SELECT last_name,
+LPAD(salary, 15, '$') SALARY
+FROM employees;
+
+LAST_NAME
+-------------------------
+SALARY
+------------------------------------------------------------
+King
+$$$$$$$$$$24000
+
+Kochhar
+$$$$$$$$$$17000
+
+De Haan
+$$$$$$$$$$17000
+==================================================================================================
+9.
+SELECT last_name, hire_date,
+TO_CHAR(NEXT_DAY(ADD_MONTHS(hire_date, 6),'MONDAY'),
+'fmDay, "the" Ddspth "of" Month, YYYY') REVIEW
+FROM employees;
+
+LAST_NAME                 HIRE_DATE
+------------------------- ------------------
+REVIEW
+--------------------------------------------------------------------------------
+King                      17-JUN-03
+Monday, the Twenty-Second of December, 2003
+
+Kochhar                   21-SEP-05
+Monday, the Twenty-Seventh of March, 2006
+
+De Haan                   13-JAN-01
+Monday, the Sixteenth of July, 2001
+===================================================================================================
+10.
+SELECT last_name, hire_date,
+TO_CHAR(hire_date, 'DAY') DAY
+FROM employees
+ORDER BY TO_CHAR(hire_date - 1, 'd');
+
+LAST_NAME                 HIRE_DATE
+------------------------- ------------------
+DAY
+------------------------------------
+Ladwig                    14-JUL-03
+MONDAY
+
+Cambrault                 15-OCT-07
+MONDAY
+
+Mallin                    14-JUN-04
+MONDAY
+====================================================================================================
+11.
+SELECT last_name,
+NVL(TO_CHAR(commission_pct), 'No Commission') COMM
+FROM employees;
+
+LAST_NAME                 COMM
+------------------------- ----------------------------------------
+Ande                      .1
+Banda                     .1
+Ozer                      .25
+Bloom                     .2
+Fox                       .2
+Smith                     .15
+Bates                     .15
+Kumar                     .1
+Abel                      .3
+Hutton                    .25
+Taylor                    .2
+
+LAST_NAME                 COMM
+------------------------- ----------------------------------------
+Livingston                .2
+Grant                     .15
+Johnson                   .1
+Taylor                    No Commission
+Fleaur                    No Commission
+Sullivan                  No Commission
+Geoni                     No Commission
+Sarchand                  No Commission
+Bull                      No Commission
+Dellinger                 No Commission
+Cabrio                    No Commission
+=====================================================================================================
+12.
+SELECT rpad(last_name, 8)||' '||
+rpad(' ', salary/1000+1, '*')
+EMPLOYEES_AND_THEIR_SALARIES
+FROM employees
+ORDER BY salary DESC;
+
+EMPLOYEES_AND_THEIR_SALARIES
+--------------------------------------------------------------------------------
+King      ************************
+Kochhar   *****************
+De Haan   *****************
+Russell   **************
+Partners  *************
+Hartstei  *************
+Greenber  ************
+Higgins   ************
+Errazuri  ************
+Ozer      ***********
+Raphaely  ***********
+=====================================================================================================
+13.
+SELECT job_id, decode (job_id,
+'ST_CLERK', 'E',
+'SA_REP', 'D',
+'IT_PROG', 'C',
+'ST_MAN', 'B',
+'AD_PRES', 'A',
+'0')GRADE
+FROM employees;
+
+JOB_ID     G
+---------- -
+AC_ACCOUNT 0
+AC_MGR     0
+AD_ASST    0
+AD_PRES    A
+AD_VP      0
+AD_VP      0
+FI_ACCOUNT 0
+FI_ACCOUNT 0
+FI_ACCOUNT 0
+FI_ACCOUNT 0
+FI_ACCOUNT 0
+
+JOB_ID     G
+---------- -
+FI_MGR     0
+HR_REP     0
+IT_PROG    C
+IT_PROG    C
+IT_PROG    C
+IT_PROG    C
+IT_PROG    C
+MK_MAN     0
+MK_REP     0
+PR_REP     0
+PU_CLERK   0
+==============================================================================================
+14.
+SELECT job_id, CASE job_id
+WHEN 'ST_CLERK' THEN 'E'
+WHEN 'SA_REP' THEN 'D'
+WHEN 'IT_PROG' THEN 'C'
+WHEN 'ST_MAN' THEN 'B'
+WHEN 'AD_PRES' THEN 'A'
+ELSE '0' END GRADE
+FROM employees;
+
+JOB_ID     G
+---------- -
+AC_ACCOUNT 0
+AC_MGR     0
+AD_ASST    0
+AD_PRES    A
+AD_VP      0
+AD_VP      0
+FI_ACCOUNT 0
+FI_ACCOUNT 0
+FI_ACCOUNT 0
+FI_ACCOUNT 0
+FI_ACCOUNT 0
+
+JOB_ID     G
+---------- -
+FI_MGR     0
+HR_REP     0
+IT_PROG    C
+IT_PROG    C
+IT_PROG    C
+IT_PROG    C
+IT_PROG    C
+MK_MAN     0
+MK_REP     0
+PR_REP     0
+PU_CLERK   0
+===========================================================================================
