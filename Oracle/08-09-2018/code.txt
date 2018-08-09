@@ -1,0 +1,235 @@
+SQL> connect
+Enter user-name: arefin
+Connected.
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+TEST_10                                                                         
+DEPARTMENTS                                                                     
+EMPLOYEES                                                                       
+CUSTOMERS                                                                       
+COUNTRY                                                                         
+DIVISION                                                                        
+DISTRICT                                                                        
+THANA                                                                           
+UNION1                                                                          
+VILLAGE                                                                         
+DEPARTMENTS1                                                                    
+
+TABLE_NAME                                                                      
+------------------------------                                                  
+STUDENTS                                                                        
+DEPARTMENT                                                                      
+ABC                                                                             
+TEST                                                                            
+
+15 rows selected.
+
+SQL> create table sample(id number(3) primary key, name varchar2(20) not null);
+
+Table created.
+
+SQL> describe sample;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                      NOT NULL VARCHAR2(20)
+
+SQL> alter table sample add(email varchar2(30) not null, phone number(11) not null);
+
+Table altered.
+
+SQL> describe sample;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                      NOT NULL VARCHAR2(20)
+ EMAIL                                     NOT NULL VARCHAR2(30)
+ PHONE                                     NOT NULL NUMBER(11)
+
+SQL> alter table sample modify(phone number(11) unique);
+
+Table altered.
+
+SQL> describe sample;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                      NOT NULL VARCHAR2(20)
+ EMAIL                                     NOT NULL VARCHAR2(30)
+ PHONE                                     NOT NULL NUMBER(11)
+
+SQL> alter table sample drop column email;
+
+Table altered.
+
+SQL> describe sample;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                      NOT NULL VARCHAR2(20)
+ PHONE                                     NOT NULL NUMBER(11)
+
+SQL> commit;
+
+Commit complete.
+
+SQL> set autocommit on;
+SQL> insert into sample(id,name,phone) values(10, 'A', 0123);
+
+1 row created.
+
+Commit complete.
+
+SQL> insert into sample(id,name,phone) values(20, 'B', 0134);
+
+1 row created.
+
+Commit complete.
+
+SQL> alter table sample add (email varchar2(30));
+
+Table altered.
+
+SQL> alter table sample add (age number(2));
+
+Table altered.
+
+SQL> select * from sample;
+
+        ID NAME                      PHONE EMAIL                                
+---------- -------------------- ---------- ------------------------------       
+       AGE                                                                      
+----------                                                                      
+        10 A                           123                                      
+                                                                                
+                                                                                
+        20 B                           134                                      
+                                                                                
+                                                                                
+
+SQL> update sample set email = 'a' where id = 10;
+
+1 row updated.
+
+Commit complete.
+SQL> update sample set email = 'b' where id = 20;
+
+1 row updated.
+
+Commit complete.
+
+SQL> alter table sample set unused column age;
+
+Table altered.
+
+SQL> describe sample;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                      NOT NULL VARCHAR2(20)
+ PHONE                                     NOT NULL NUMBER(11)
+ EMAIL                                              VARCHAR2(30)
+
+SQL> alter table sample drop unused columns;
+
+Table altered.
+
+SQL> alter table sample add (address varchar2(20));
+
+Table altered.
+
+SQL> update sample set address = 'Dhanmondi' where id = 10;
+
+1 row updated.
+
+Commit complete.
+SQL> update sample set address = 'Mirpur' where id = 20;
+
+1 row updated.
+
+Commit complete.
+SQL> select * from sample;
+
+        ID NAME                      PHONE EMAIL                                
+---------- -------------------- ---------- ------------------------------       
+ADDRESS                                                                         
+--------------------                                                            
+        10 A                           123 a                                    
+Dhanmondi                                                                       
+                                                                                
+        20 B                           134 b                                    
+Mirpur                                                                          
+                                                                                
+
+SQL> alter table sample add constraint address_constraint unique(address);
+
+Table altered.
+
+SQL> describe sample;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(3)
+ NAME                                      NOT NULL VARCHAR2(20)
+ PHONE                                     NOT NULL NUMBER(11)
+ EMAIL                                              VARCHAR2(30)
+ ADDRESS                                            VARCHAR2(20)
+
+SQL> create table
+  2  sample_data(id number(3) primary key, samp_id number(3));
+
+Table created.
+
+SQL> alter table sample_data add constraint samp_data_fk foreign key(samp_id) references sample on delete cascade;
+
+Table altered.
+
+SQL> insert into sample_data(id,samp_id) values(101,10);
+
+1 row created.
+
+Commit complete.
+
+SQL> insert into sample(id,name,phone,email,address) values(30,'C', 0125,'c', 'Mohammadpur');
+
+1 row created.
+
+Commit complete.
+SQL> insert into sample_data(id,samp_id) values(102,20);
+
+1 row created.
+
+Commit complete.
+SQL> insert into sample_data(id,samp_id) values(103,30);
+
+1 row created.
+
+Commit complete.
+
+SQL> delete from sample where id =30;
+
+1 row deleted.
+
+Commit complete.
+SQL> select * from sample;
+
+        ID NAME                      PHONE EMAIL                                
+---------- -------------------- ---------- ------------------------------       
+ADDRESS                                                                         
+--------------------                                                            
+        10 A                           123 a                                    
+Dhanmondi                                                                       
+                                                                                
+        20 B                           134 b                                    
+Mirpur                                                                          
+                                                                                
+
+SQL> select * from sample_data;
+
+        ID    SAMP_ID                                                           
+---------- ----------                                                           
+       101         10                                                           
+       102         20                                                           
+
+

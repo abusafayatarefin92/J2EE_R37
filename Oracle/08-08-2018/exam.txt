@@ -1,0 +1,141 @@
+SQL> connect sys as sysdba
+Enter password:
+Connected.
+
+SQL> create user user2 identified by user2;
+
+User created.
+
+SQL> create user user3 identified by user3;
+
+User created.
+
+SQL> create role sample;
+
+Role created.
+
+SQL> grant create session, create table to sample;
+
+Grant succeeded.
+
+SQL> grant sample to user2, user3;
+
+Grant succeeded.
+
+SQL> alter user user2 quota 500m on system;
+
+User altered.
+
+SQL> alter user user3 quota 500m on system;
+
+User altered.
+
+SQL> connect
+Enter user-name: user2
+Enter password:
+Connected.
+SQL> create table teacher(id number(5) primary key, name varchar2(15));
+
+Table created.
+
+SQL> insert into teacher(id,name) values(1,'A');
+
+1 row created.
+
+SQL> insert into teacher(id,name) values(2,'B');
+
+1 row created.
+
+SQL> select * from teacher;
+
+        ID NAME
+---------- ---------------
+         1 A
+         2 B
+
+SQL> connect user3
+Enter password:
+Connected.
+SQL> create table student(id number(5) primary key, name varchar2(15));
+
+Table created.
+
+SQL> insert into student(id,name) values(10,'Arefin');
+
+1 row created.
+
+SQL> insert into student(id,name) values(20,'Jubaiyer');
+
+1 row created.
+
+SQL> connect sys as sysdba
+Enter password:
+Connected.
+SQL> grant select, insert on user3.student to user2 with grant option;
+
+Grant succeeded.
+
+SQL> connect
+Enter user-name: user2
+Enter password:
+Connected.
+SQL> select * from user3.student;
+
+        ID NAME
+---------- ---------------
+        10 Arefin
+        20 Jubaiyer
+
+SQL> insert into user3.student(id,name) values(30,'Zakir');
+
+1 row created.
+
+SQL> insert into user3.student(id,name) values(40,'Ariful');
+
+1 row created.
+
+SQL> select * from user3.student;
+
+        ID NAME
+---------- ---------------
+        10 Arefin
+        20 Jubaiyer
+        30 Zakir
+        40 Ariful
+
+SQL> connect
+Enter user-name: user3
+Enter password:
+Connected.
+SQL> select * from user2.teacher;
+select * from user2.teacher
+                    *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+SQL> connect sys as sysdba
+Enter password:
+Connected.
+SQL> revoke insert on user3.student from user2;
+
+Revoke succeeded.
+
+SQL> connect
+Enter user-name: user2
+Enter password:
+Connected.
+SQL> select * from user3.student;
+
+        ID NAME
+---------- ---------------
+        10 Arefin
+        20 Jubaiyer
+        30 Zakir
+        40 Ariful
+
+SQL> insert into user3.student(id,name) values(50,'Mehedi');
+insert into user3.student(id,name) values(50,'Mehedi')
+                  *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+

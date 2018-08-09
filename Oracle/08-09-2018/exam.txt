@@ -1,0 +1,335 @@
+SQL> create user hello identified by hello;
+
+User created.
+
+SQL> grant dba to hello;
+
+Grant succeeded.
+
+SQL> connect
+Enter user-name: hello
+Connected.
+SQL> create table department(dep_id number(2) primary key, department_name varchar2(20));
+
+Table created.
+
+SQL> create table employee(emp_id number(3) primary key, emp_name varchar2(25), mobile number(11) unique, salary number(7,2) check(salary > 10000), joining_date date default sysdate, country varchar2(20) default 'BD', dep_id number(2), constraint emp_dep_fk foreign key(dep_id) references department(dep_id));
+
+Table created.
+
+SQL> describe department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL NUMBER(2)
+ DEPARTMENT_NAME                                    VARCHAR2(20)
+
+SQL> describe department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL NUMBER(2)
+ DEPARTMENT_NAME                                    VARCHAR2(20)
+
+SQL> describe employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(3)
+ EMP_NAME                                           VARCHAR2(25)
+ MOBILE                                             NUMBER(11)
+ SALARY                                             NUMBER(7,2)
+ JOINING_DATE                                       DATE
+ COUNTRY                                            VARCHAR2(20)
+ DEP_ID                                             NUMBER(2)
+
+SQL> create sequence dep_seq
+  2  start with 10
+  3  increment by 10
+  4  maxvalue 100
+  5  nocache
+  6  nocycle;
+
+Sequence created.
+
+SQL> create sequence emp_seq
+  2  start with 101
+  3  increment by 5
+  4  maxvalue 200
+  5  nocache
+  6  nocycle;
+
+Sequence created.
+
+SQL> select sequence_name from user_sequences;
+
+SEQUENCE_NAME                                                                   
+------------------------------                                                  
+DEP_SEQ                                                                         
+EMP_SEQ                                                                         
+
+SQL> select index_name from user_indexes;
+
+INDEX_NAME                                                                      
+------------------------------                                                  
+SYS_C007119                                                                     
+SYS_C007120                                                                     
+SYS_C007117                                                                     
+
+SQL> create index dep_index on department(department_name);
+
+Index created.
+
+SQL> select index_name from user_indexes;
+
+INDEX_NAME                                                                      
+------------------------------                                                  
+SYS_C007119                                                                     
+SYS_C007120                                                                     
+SYS_C007117                                                                     
+DEP_INDEX                                                                       
+
+SQL> insert into department(dep_id,department_name) values(DEP_SEQ.nextval, 'Admin');
+
+1 row created.
+
+Commit complete.
+SQL> insert into department(dep_id,department_name) values(DEP_SEQ.nextval, 'Marketing');
+
+1 row created.
+
+Commit complete.
+SQL> insert into department(dep_id,department_name) values(DEP_SEQ.nextval, 'Software');
+
+1 row created.
+
+Commit complete.
+SQL> create view dep_view as select * from department;
+
+View created.
+
+SQL> select view_name from user_views;
+
+VIEW_NAME                                                                       
+------------------------------                                                  
+DEP_VIEW                                                                        
+
+SQL> create synonym dep for department;
+
+Synonym created.
+
+SQL> create synonym dep2 for dep_view;
+
+Synonym created.
+
+SQL> select * from dep_view;
+
+    DEP_ID DEPARTMENT_NAME                                                      
+---------- --------------------                                                 
+        10 Admin                                                                
+        20 Marketing                                                            
+        30 Software                                                             
+
+SQL> select * from dep;
+
+    DEP_ID DEPARTMENT_NAME                                                      
+---------- --------------------                                                 
+        10 Admin                                                                
+        20 Marketing                                                            
+        30 Software                                                             
+
+SQL> select * from dep2;
+
+    DEP_ID DEPARTMENT_NAME                                                      
+---------- --------------------                                                 
+        10 Admin                                                                
+        20 Marketing                                                            
+        30 Software                                                             
+
+SQL> select index_name from user_indexes;
+
+INDEX_NAME                                                                      
+------------------------------                                                  
+SYS_C007119                                                                     
+SYS_C007120                                                                     
+SYS_C007117                                                                     
+DEP_INDEX                                                                       
+
+SQL> create index emp_index on employee(emp_name);
+
+Index created.
+
+SQL> select index_name from user_indexes;
+
+INDEX_NAME                                                                      
+------------------------------                                                  
+SYS_C007119                                                                     
+SYS_C007120                                                                     
+EMP_INDEX                                                                       
+SYS_C007117                                                                     
+DEP_INDEX                                                                       
+
+SQL> insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(EMP_SEQ.nextval, 'A', 0123, 20000, 10);
+
+1 row created.
+
+Commit complete.
+
+SQL> insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(EMP_SEQ.nextval, 'B', 0124, 25000, 10);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(EMP_SEQ.nextval, 'C', 0125, 30000, 20);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(EMP_SEQ.nextval, 'D', 0126, 35000, 20);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee(emp_id,emp_name,mobile,salary,dep_id) values(EMP_SEQ.nextval, 'E', 0127, 30000, 30);
+
+1 row created.
+
+Commit complete.
+SQL> create view emp_view as select * from employee;
+
+View created.
+
+SQL> select view_name from user_views;
+
+VIEW_NAME                                                                       
+------------------------------                                                  
+DEP_VIEW                                                                        
+EMP_VIEW                                                                        
+
+SQL> create synonym emp for employee;
+
+Synonym created.
+
+SQL> create synonym emp2 for EMP_VIEW;
+
+Synonym created.
+
+SQL> select * from emp_view;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID                                                 
+-------------------- ----------                                                 
+       101 A                                123      20000 09-AUG-18            
+BD                           10                                                 
+                                                                                
+       111 B                                124      25000 09-AUG-18            
+BD                           10                                                 
+                                                                                
+       116 C                                125      30000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID                                                 
+-------------------- ----------                                                 
+       121 D                                126      35000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+       126 E                                127      30000 09-AUG-18            
+BD                           30                                                 
+                                                                                
+
+SQL> select * from emp;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID                                                 
+-------------------- ----------                                                 
+       101 A                                123      20000 09-AUG-18            
+BD                           10                                                 
+                                                                                
+       111 B                                124      25000 09-AUG-18            
+BD                           10                                                 
+                                                                                
+       116 C                                125      30000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID                                                 
+-------------------- ----------                                                 
+       121 D                                126      35000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+       126 E                                127      30000 09-AUG-18            
+BD                           30                                                 
+                                                                                
+
+SQL> select * from emp2;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID                                                 
+-------------------- ----------                                                 
+       101 A                                123      20000 09-AUG-18            
+BD                           10                                                 
+                                                                                
+       111 B                                124      25000 09-AUG-18            
+BD                           10                                                 
+                                                                                
+       116 C                                125      30000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID                                                 
+-------------------- ----------                                                 
+       121 D                                126      35000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+       126 E                                127      30000 09-AUG-18            
+BD                           30                                                 
+                                                                                
+
+SQL> update department set department_name = 'Sales' where dep_id = 20;
+
+1 row updated.
+
+Commit complete.
+SQL> alter table employee add (email varchar2(30) unique);
+
+Table altered.
+
+SQL> update employee set dep_id = 20 where emp_id = 101;
+
+1 row updated.
+
+Commit complete.
+SQL> select * from employee;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID EMAIL                                           
+-------------------- ---------- ------------------------------                  
+       101 A                                123      20000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+       111 B                                124      25000 09-AUG-18            
+BD                           10                                                 
+                                                                                
+       116 C                                125      30000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D            
+---------- ------------------------- ---------- ---------- ---------            
+COUNTRY                  DEP_ID EMAIL                                           
+-------------------- ---------- ------------------------------                  
+       121 D                                126      35000 09-AUG-18            
+BD                           20                                                 
+                                                                                
+       126 E                                127      30000 09-AUG-18            
+BD                           30                                                 
+                                                                                
+
