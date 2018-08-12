@@ -1,0 +1,39 @@
+Creating a trigger:
+
+create table trigger1(id number(2) primary key, name varchar2(20));
+
+create table trigger1_backup as select * from trigger1;
+
+
+create or replace trigger trigger1_after_insert after insert on trigger1
+for each row
+
+declare
+begin
+     insert into trigger1_backup values(:new.id, :new.name);
+
+     dbms_output.put_line('Record successfully inserted into trigger1_backup table');
+end;
+
+
+insert into trigger1(id,name) values(10, ''A);
+
+select * from trigger1;
+
+select * from trigger1_backup;
+
+drop trigger trigger1_after_insert;
+
+create or replace trigger trigger1_after_update after update on trigger1
+for each row
+declare
+begin
+update trigger1_backup
+set name = :new.name
+where id = :old.id;
+dbms_output.put_line('Record successfully updated into trigger1_backup table');
+end;
+
+update trigger1 set name = 'D' where id = 30;
+
+select * from trigger1 where id = 30;
