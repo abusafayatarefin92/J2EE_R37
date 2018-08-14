@@ -1,0 +1,240 @@
+PI CONSTANT NUMBER := 3.141592654;
+DECLARE
+-- constant declaration
+pi constant number := 3.141592654;
+-- other declarations
+radius number(5,2);
+dia number(5,2);
+circumference number(7, 2);
+area number (10, 2);
+BEGIN
+-- processing
+radius := 9.5;
+dia := radius * 2;
+circumference := 2.0 * pi * radius;
+area := pi * radius * radius;
+-- output
+dbms_output.put_line('Radius: ' || radius);
+dbms_output.put_line('Diameter: ' || dia);
+dbms_output.put_line('Circumference: ' || circumference);
+dbms_output.put_line('Area: ' || area);
+END;
+
+DECLARE
+message varchar2(30):= 'That''s tutorialspoint.com!';
+BEGIN
+dbms_output.put_line(message);
+END;
+
+BEGIN
+dbms_output.put_line( 10 + 5);
+dbms_output.put_line( 10 - 5);
+dbms_output.put_line( 10 * 5);
+dbms_output.put_line( 10 / 5);
+dbms_output.put_line( 10 ** 5);
+END;
+
+DECLARE
+PROCEDURE compare (value varchar2, pattern varchar2 ) is
+BEGIN
+IF value LIKE pattern THEN
+dbms_output.put_line ('True');
+ELSE
+dbms_output.put_line ('False');
+END IF;
+END;
+BEGIN
+compare('Zara Ali', 'Z%A_i');
+compare('Nuha Ali', 'Z%A_i');
+END;
+
+DECLARE
+x number(2) := 10;
+BEGIN
+IF (x between 5 and 20) THEN
+dbms_output.put_line('True');
+ELSE
+dbms_output.put_line('False');
+END IF;
+IF (x BETWEEN 5 AND 10) THEN
+dbms_output.put_line('True');
+ELSE
+dbms_output.put_line('False');
+END IF;
+IF (x BETWEEN 11 AND 20) THEN
+dbms_output.put_line('True');
+ELSE
+dbms_output.put_line('False');
+END IF;
+END;
+
+DECLARE
+letter varchar2(1) := 'm';
+BEGIN
+IF (letter in ('a', 'b', 'c')) THEN
+dbms_output.put_line('True');
+ELSE
+dbms_output.put_line('False');
+END IF;
+IF (letter in ('m', 'n', 'o')) THEN
+dbms_output.put_line('True');
+ELSE
+dbms_output.put_line('False');
+END IF;
+IF (letter is null) THEN
+dbms_output.put_line('True');
+ELSE
+dbms_output.put_line('False');
+END IF;
+END;
+
+DECLARE
+a boolean := true;
+b boolean := false;
+BEGIN
+IF (a AND b) THEN
+dbms_output.put_line('Line 1 - Condition is true');
+END IF;
+IF (a OR b) THEN
+dbms_output.put_line('Line 2 - Condition is true');
+END IF;
+IF (NOT a) THEN
+dbms_output.put_line('Line 3 - a is not true');
+ELSE
+dbms_output.put_line('Line 3 - a is true');
+END IF;
+IF (NOT b) THEN
+dbms_output.put_line('Line 4 - b is not true');
+ELSE
+dbms_output.put_line('Line 4 - b is true');
+END IF;
+end;
+
+DECLARE
+a number(2) := 20;
+b number(2) := 10;
+c number(2) := 15;
+d number(2) := 5;
+e number(2) ;
+BEGIN
+e := (a + b) * c / d; -- ( 30 * 15 ) / 5
+dbms_output.put_line('Value of (a + b) * c / d is : '|| e );
+e := ((a + b) * c) / d; -- (30 * 15 ) / 5
+dbms_output.put_line('Value of ((a + b) * c) / d is : ' || e );
+e := (a + b) * (c / d); -- (30) * (15/5)
+dbms_output.put_line('Value of (a + b) * (c / d) is : '|| e );
+e := a + (b * c) / d; -- 20 + (150/5)
+dbms_output.put_line('Value of a + (b * c) / d is : ' || e );
+END;
+
+DECLARE
+a number(2) := 10;
+BEGIN
+a:= 10;
+-- check the boolean condition using if statement
+IF( a < 20 ) THEN
+-- if condition is true then print the following
+dbms_output.put_line('a is less than 20 ' );
+END IF;
+dbms_output.put_line('value of a is : ' || a);
+END;
+
+DECLARE
+c_id customers.id%type := 1;
+c_sal customers.salary%type;
+BEGIN
+SELECT salary
+INTO c_sal
+FROM customers
+WHERE id = c_id;
+IF (c_sal <= 2000) THEN
+UPDATE customers
+SET salary = salary + 1000
+WHERE id = c_id;
+dbms_output.put_line ('Salary updated');
+END IF;
+END;
+
+DECLARE
+a number(3) := 100;
+BEGIN
+-- check the boolean condition using if statement
+IF( a < 20 ) THEN
+-- if condition is true then print the following
+dbms_output.put_line('a is less than 20 ' );
+ELSE
+dbms_output.put_line('a is not less than 20 ' );
+END IF;
+dbms_output.put_line('value of a is : ' || a);
+END;
+
+DECLARE
+a number(3) := 100;
+BEGIN
+IF ( a = 10 ) THEN
+dbms_output.put_line('Value of a is 10' );
+ELSIF ( a = 20 ) THEN
+dbms_output.put_line('Value of a is 20' );
+ELSIF ( a = 30 ) THEN
+dbms_output.put_line('Value of a is 30' );
+ELSE
+dbms_output.put_line('None of the values is matching');
+END IF;
+dbms_output.put_line('Exact value of a is: '|| a );
+END;
+
+DECLARE
+grade char(1) := 'A';
+BEGIN
+CASE grade
+when 'A' then dbms_output.put_line('Excellent');
+when 'B' then dbms_output.put_line('Very good');
+when 'C' then dbms_output.put_line('Well done');
+when 'D' then dbms_output.put_line('You passed');
+when 'F' then dbms_output.put_line('Better try again');
+else dbms_output.put_line('No such grade');
+END CASE;
+END;
+
+DECLARE
+a number(3) := 100;
+b number(3) := 200;
+BEGIN
+-- check the boolean condition
+IF( a = 100 ) THEN
+-- if condition is true then check the following
+IF( b = 200 ) THEN
+-- if condition is true then print the following
+dbms_output.put_line('Value of a is 100 and b is 200' );
+END IF;
+END IF;
+dbms_output.put_line('Exact value of a is : ' || a );
+dbms_output.put_line('Exact value of b is : ' || b );
+END;
+
+DECLARE
+x number := 10;
+BEGIN
+LOOP
+dbms_output.put_line(x);
+x := x + 10;
+IF x > 50 THEN
+exit;
+END IF;
+END LOOP;
+-- after exit, control resumes here
+dbms_output.put_line('After Exit x is: ' || x);
+END;
+
+DECLARE
+x number := 10;
+BEGIN
+LOOP
+dbms_output.put_line(x);
+x := x + 10;
+exit WHEN x > 50;
+END LOOP;
+-- after exit, control resumes here
+dbms_output.put_line('After Exit x is: ' || x);
+END;
+
