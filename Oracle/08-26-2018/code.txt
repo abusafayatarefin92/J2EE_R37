@@ -1,0 +1,212 @@
+DECLARE
+a number(2) := 10;
+BEGIN
+<<loopstart>>
+-- while loop execution
+WHILE a < 20 LOOP
+dbms_output.put_line ('value of a: ' || a);
+a := a + 1;
+IF a = 15 THEN
+a := a + 1;
+GOTO loopstart;
+END IF;
+END LOOP;
+END;
+
+DECLARE
+name varchar2(20);
+company varchar2(30);
+introduction clob;
+choice char(1);
+BEGIN
+name := 'John Smith';
+company := 'Infotech';
+introduction := 'Hello! I''m John Smith from Infotech.';
+choice := 'y';
+IF choice = 'y' THEN
+dbms_output.put_line(name);
+dbms_output.put_line(company);
+dbms_output.put_line(introduction);
+END IF;
+END;
+
+DECLARE
+greetings varchar2(11) := 'hello world';
+BEGIN
+dbms_output.put_line(UPPER(greetings));
+dbms_output.put_line(LOWER(greetings));
+dbms_output.put_line(INITCAP(greetings));
+/* retrieve the first character in the string */
+dbms_output.put_line ( SUBSTR (greetings, 1, 1));
+/* retrieve the last character in the string */
+dbms_output.put_line ( SUBSTR (greetings, -1, 1));
+/* retrieve five characters,
+starting from the seventh position. */
+dbms_output.put_line ( SUBSTR (greetings, 7, 5));
+/* retrieve the remainder of the string,
+starting from the second position. */
+dbms_output.put_line ( SUBSTR (greetings, 2));
+/* find the location of the first "e" */
+dbms_output.put_line ( INSTR (greetings, 'e'));
+END;
+
+DECLARE
+type namesarray IS VARRAY(5) OF VARCHAR2(10);
+type grades IS VARRAY(5) OF INTEGER;
+names namesarray;
+marks grades;
+total integer;
+BEGIN
+names := namesarray('Kavita', 'Pritam', 'Ayan', 'Rishav', 'Aziz');
+marks:= grades(98, 97, 78, 87, 92);
+total := names.count;
+dbms_output.put_line('Total '|| total || ' Students');
+FOR i in 1 .. total LOOP
+dbms_output.put_line('Student: ' || names(i) || '
+Marks: ' || marks(i));
+END LOOP;
+END;
+
+DECLARE
+a number;
+b number;
+c number;
+PROCEDURE findMin(x IN number, y IN number, z OUT number) IS
+BEGIN
+IF x < y THEN
+z:= x;
+ELSE
+z:= y;
+END IF;
+END;
+BEGIN
+a:= 23;
+b:= 45;
+findMin(a, b, c);
+dbms_output.put_line('Minimum of (23, 45) : ' || c);
+END;
+
+DECLARE
+a number;
+PROCEDURE squareNum(x IN OUT number) IS
+BEGIN
+x := x * x;
+END;
+BEGIN
+a:= 23;
+squareNum(a);
+dbms_output.put_line('Square of (23): ' || a);
+END;
+
+CREATE OR REPLACE FUNCTION totalCustomers
+RETURN number IS
+total number(2) := 0;
+BEGIN
+SELECT count(*) into total
+FROM customers;
+RETURN total;
+END;
+
+DECLARE
+a number;
+b number;
+c number;
+FUNCTION findMax(x IN number, y IN number)
+RETURN number
+IS
+z number;
+BEGIN
+IF x > y THEN
+z:= x;
+ELSE
+Z:= y;
+END IF;
+RETURN z;
+END;
+BEGIN
+a:= 23;
+b:= 45;
+c := findMax(a, b);
+dbms_output.put_line('Maximum of (23,45): ' || c);
+END;
+
+DECLARE
+num number;
+factorial number;
+FUNCTION fact(x number)
+RETURN number
+IS
+f number;
+BEGIN
+IF x=0 THEN
+f := 1;
+ELSE
+f := x * fact(x-1);
+END IF;
+RETURN f;
+END;
+BEGIN
+num:= 6;
+factorial := fact(num);
+dbms_output.put_line('Factorial '|| num || ' is ' || factorial);
+END;
+
+DECLARE
+total_rows number(2);
+BEGIN
+UPDATE customers
+SET salary = salary + 500;
+IF sql%notfound THEN
+dbms_output.put_line('no customers selected');
+ELSIF sql%found THEN
+total_rows := sql%rowcount;
+dbms_output.put_line( total_rows || ' customers selected ');
+END IF;
+END;
+
+DECLARE
+c_id customers.id%type;
+c_name customers.name%type;
+c_addr customers.address%type;
+CURSOR c_customers is
+SELECT id, name, address FROM customers;
+BEGIN
+OPEN c_customers;
+LOOP
+FETCH c_customers into c_id, c_name, c_addr;
+EXIT WHEN c_customers%notfound;
+dbms_output.put_line(c_id || ' ' || c_name || ' ' || c_addr);
+END LOOP;
+CLOSE c_customers;
+END;
+
+DECLARE
+c_id customers.id%type := 8;
+c_name customers.name%type;
+c_addr customers.address%type;
+BEGIN
+SELECT name, address INTO c_name, c_addr
+FROM customers
+WHERE id = c_id;
+DBMS_OUTPUT.PUT_LINE ('Name: '|| c_name);
+DBMS_OUTPUT.PUT_LINE ('Address: ' || c_addr);
+EXCEPTION
+WHEN no_data_found THEN
+dbms_output.put_line('No such customer!');
+WHEN others THEN
+dbms_output.put_line('Error!');
+END;
+
+CREATE OR REPLACE TRIGGER display_salary_changes
+BEFORE DELETE OR INSERT OR UPDATE ON customers
+FOR EACH ROW
+WHEN (NEW.ID > 0)
+DECLARE
+sal_diff number;
+BEGIN
+sal_diff := :NEW.salary - :OLD.salary;
+dbms_output.put_line('Old salary: ' || :OLD.salary);
+dbms_output.put_line('New salary: ' || :NEW.salary);
+dbms_output.put_line('Salary difference: ' || sal_diff);
+END;
+
