@@ -16,7 +16,7 @@ begin
 end;
 
 
-insert into trigger1(id,name) values(10, ''A);
+insert into trigger1(id,name) values(10, 'A');
 
 select * from trigger1;
 
