@@ -1,0 +1,114 @@
+SQL> connect sys as sysdba;
+Enter password:
+Connected.
+SQL> create user abcd identified by abcd;
+
+User created.
+
+SQL> grant dba to abcd;
+
+Grant succeeded.
+
+SQL> connect
+Enter user-name: abcd
+Enter password:
+Connected.
+SQL> create table customer(id number(3) primary key, name varchar2(20) not null, mobile number(11) unique, country varchar2(20) default 'BD');
+
+Table created.
+
+SQL> create table customer_backup as select * from customer;
+
+Table created.
+
+SQL> create sequence customer_sequence start with 101 increase by 10 maxvalue 301 nocache nocycle;
+create sequence customer_sequence start with 101 increase by 10 maxvalue 301 nocache nocycle
+                                                 *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> create sequence customer_sequence start with 101 increment by 10 maxvalue 301 nocache nocycle;
+
+Sequence created.
+
+create or replace trigger cus_after_insert after insert on customer for each row
+declare
+begin
+insert into customer_backup values(:new.id, :new.name, :new.mobile, :new.country);
+dbms_output.put_line('Record successfully insertrd into customer_backup table');
+end;  
+
+create or replace trigger cus_after_update after update on customer for each row
+declare
+begin
+update customer_backup
+set name = :new.name
+where id = :old.id;
+dbms_output.put_line('Record successfully updated into customer_backup table');
+end;
+
+create or replace trigger cus_after_delete after delete on customer for each row
+declare
+begin
+delete customer_backup
+where id = :old.id;
+dbms_output.put_line('Record successfully deleted into customer_backup table');
+end;
+
+SQL> insert into customer(id,name,mobile) values(customer_sequence.nextval, 'A', 1234);
+
+1 row created.
+
+SQL> insert into customer(id,name,mobile) values(customer_sequence.nextval, 'B', 1235);
+
+1 row created.
+
+SQL> insert into customer(id,name,mobile) values(customer_sequence.nextval, 'C', 1236);
+
+1 row created.
+
+SQL> select * from customer;
+
+        ID NAME                     MOBILE COUNTRY
+---------- -------------------- ---------- --------------------
+       101 A                          1234 BD
+       111 B                          1235 BD
+       121 C                          1236 BD
+
+SQL> select * from customer_backup;
+
+        ID NAME                     MOBILE COUNTRY
+---------- -------------------- ---------- --------------------
+       101 A                          1234 BD
+       111 B                          1235 BD
+       121 C                          1236 BD
+
+SQL> insert into customer(id,name,mobile) values(customer_sequence.nextval, 'D', 1237);
+
+1 row created.
+
+SQL> update customer set name = 'E' where id = 131;
+
+1 row updated.
+
+SQL> select * from customer_backup;
+
+        ID NAME                     MOBILE COUNTRY
+---------- -------------------- ---------- --------------------
+       101 A                          1234 BD
+       111 B                          1235 BD
+       121 C                          1236 BD
+       131 E                          1237 BD
+
+SQL> delete customer where id = 131;
+
+1 row deleted.
+
+SQL> select * from customer_backup;
+
+        ID NAME                     MOBILE COUNTRY
+---------- -------------------- ---------- --------------------
+       101 A                          1234 BD
+       111 B                          1235 BD
+       121 C                          1236 BD
