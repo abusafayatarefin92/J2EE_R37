@@ -1,0 +1,69 @@
+Inserting data by procedure:
+
+SQL> connect
+Enter user-name: abcd
+Enter password:
+Connected.
+SQL> create or replace procedure insertCustomer(
+    p_id in customer.id%type,
+    p_name in customer.name%type,
+    p_mobile in customer.mobile%type,
+    p_country in customer.country%type)
+    is
+    begin
+    insert into customer(id,name,mobile,country) values(p_id,p_name,p_mobile,p_country);
+    end;
+   /
+
+Procedure created.
+
+SQL> begin
+  2  insertCustomer(customer_sequence.nextval, 'D', 1237, 'Japan');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from customer;
+
+        ID NAME                     MOBILE COUNTRY
+---------- -------------------- ---------- --------------------
+       141 D                          1237 Japan
+
+SQL> select * from customer_backup;
+
+        ID NAME                     MOBILE COUNTRY
+---------- -------------------- ---------- --------------------
+       141 D                          1237 Japan
+	   
+SQL> create or replace procedure updateCustomer(
+    p_id in customer.id%type,
+    p_name in customer.name%type,
+    p_mobile in customer.mobile%type,
+    p_country in customer.country%type)
+    is
+    begin
+    update customer set name = p_name, mobile = p_mobile, country = p_country where id = p_id;
+    end;
+  /
+  
+ SQL> begin
+  2  updateCustomer(141,'E', 1238, 'Canada');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from customer;
+
+        ID NAME                     MOBILE COUNTRY
+---------- -------------------- ---------- --------------------
+       141 E                          1238 Canada
+	   
+create or replace procedure deleteCustomer(
+    p_id in customer.id%type)
+    as
+    begin
+    delete from customer where id = p_id;
+    end;
+  /
