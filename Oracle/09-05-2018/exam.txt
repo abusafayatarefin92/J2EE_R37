@@ -1,0 +1,108 @@
+SQL> connect sys as sysdba;
+Enter password:
+Connected.
+SQL> create user abcde identified by abcde;
+
+User created.
+
+SQL> grant dba to abcde;
+
+Grant succeeded.
+
+SQL> connect
+Enter user-name: abcde
+Enter password:
+Connected.
+SQL> create table customers(id number(3) primary key, name varchar2(20) not null);
+
+Table created.
+
+SQL> create table customers_backup as select * from customers;
+
+Table created.
+
+SQL> create or replace trigger trigger_after_insert after insert on customers for each row
+  2  declare
+  3  begin
+  4  insert into customers_backup values(:new.id, :new.name);
+  5  dbms_output.put_line('Record Successfully inseerted into customers_backup table');
+  6  end;
+  7  /
+
+Trigger created.
+
+SQL> create or replace procedure insertCustomers(
+  2  p_id in customers.id%type,
+  3  p_name in customers.name%type)
+  4  is
+  5  begin
+  6  insert into customers(id, name) values(p_id, p_name);
+  7  end;
+  8  /
+
+Procedure created.
+
+SQL> begin
+  2  insertCustomers(10, 'A');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> begin
+  2  insertCustomers(20, 'B');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> begin
+  2  insertCustomers(30, 'C');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> begin
+  2  insertCustomers(40, 'D');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from customers;
+
+        ID NAME
+---------- --------------------
+        10 A
+        20 B
+        30 C
+        40 D
+
+SQL> select * from customers_backup;
+
+        ID NAME
+---------- --------------------
+        10 A
+        20 B
+        30 C
+        40 D
+
+create or replace trigger trigger_after_update after update on customers for each row
+declare
+begin
+update customers_backup
+set name = :new.name
+where id = :old.id;
+dbms_output.put_line('Record successfully updated in customers_backup table');
+end;
+
+create or replace procedure updateCustomers(
+p_id in customers.id%type,
+p_name in customers.name%type)
+is
+begin
+update customers 
+set name = p_name
+where id = p_id;
+end;
