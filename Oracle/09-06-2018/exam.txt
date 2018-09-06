@@ -1,0 +1,202 @@
+SQL> connect sys as sysdba;
+Connected.
+SQL> create user haha identified by haha;
+
+User created.
+
+SQL> create role haha;
+create role haha
+            *
+ERROR at line 1:
+ORA-01921: role name 'HAHA' conflicts with another user or role name 
+
+
+SQL> create role hihi;
+
+Role created.
+
+SQL> grant create session, select session, insert, update, delete to hihi;
+grant create session, select session, insert, update, delete to hihi
+                      *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege 
+
+
+SQL> grant create session, insert, update, delete to hihi;
+grant create session, insert, update, delete to hihi
+                                      *
+ERROR at line 1:
+ORA-01919: role 'DELETE' does not exist 
+
+
+SQL> grant create session, insert, update to hihi;
+grant create session, insert, update to hihi
+                      *
+ERROR at line 1:
+ORA-01919: role 'INSERT' does not exist 
+
+
+SQL> grant create session, create table, create view, create sequence, create index, create trigger, create procedure, create synonym to hihi;
+grant create session, create table, create view, create sequence, create index, create trigger, create procedure, create synonym to hihi
+                                                                  *
+ERROR at line 1:
+ORA-00990: missing or invalid privilege 
+
+
+SQL> grant create session, create table, create view, create sequence, create trigger, create procedure, create synonym to hihi;
+
+Grant succeeded.
+
+SQL> grant hihi to haha;
+
+Grant succeeded.
+
+SQL> set autocommit on;
+SQL> connect
+Enter user-name: haha
+Connected.
+SQL> create table employees(id number(3) primary key, name varchar2(20) not null, address varchar2(20) default 'BD', salary number(7,2) check(salary > 10000));
+create table employees(id number(3) primary key, name varchar2(20) not null, address varchar2(20) default 'BD', salary number(7,2) check(salary > 10000))
+*
+ERROR at line 1:
+ORA-01950: no privileges on tablespace 'SYSTEM' 
+
+
+SQL> connect sys as sysdba;
+Connected.
+SQL> alter user haha quota 1000m on system;
+
+User altered.
+
+SQL> connect
+Enter user-name: haha
+Connected.
+SQL> create table employees(id number(3) primary key, name varchar2(20) not null, address varchar2(20) default 'BD', salary number(7,2) check(salary > 10000));
+
+Table created.
+
+SQL> create table employees_backup as select * from employees;
+
+Table created.
+
+SQL> create table departments(dept_id number(3) primary key, dept_name varchar2(20));
+
+Table created.
+
+SQL> alter table employees add dept_id varchar2(3), constraint emp_dep_fk foreign key (dept_id) references departments(dept_id);
+alter table employees add dept_id varchar2(3), constraint emp_dep_fk foreign key (dept_id) references departments(dept_id)
+                                             *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option 
+
+
+SQL> alter table employees add dept_id varchar2(3);
+
+Table altered.
+
+SQL> drop employees;
+drop employees
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> drop table employees;
+
+Table dropped.
+
+SQL> drop table employees_backup;
+
+Table dropped.
+
+SQL> create table employees(id number(3) primary key, name varchar2(20) not null, salary number(7,2) check(salary > 10000), address varchar2(2) default 'BD', dept_id number(3), constraint emp_dept_fk foreign key(dept_id) references departments(dept_id));
+
+Table created.
+
+SQL> create table employees_backup as select * from employees;
+
+Table created.
+
+SQL> create or replace trigger trigger_after_insert after insert on employees for each row
+  2  declare
+  3  begin
+  4  insert into employees_backup values(:new.id, :new.name, :new.salary, :new.address, :new.dept_id);
+  5  dbms_output.put_line('Data successfully inserted into employees_backup table');
+  6  end;
+  7  /
+
+Trigger created.
+
+SQL> create sequence emp_seq start with 101
+  2  increment by 10
+  3  maxvalue 9999
+  4  nocache
+  5  nocycle;
+
+Sequence created.
+
+SQL> create index emp_index on employees(name);
+
+Index created.
+
+SQL> create or replace procedure insertEmployees(
+  2  p_id in employees.id%type,
+  3  p_name in employees.name%type,
+  4  p_salary in employees.salary%type,
+  5  p_dept_id in employees.dept_id%type)
+  6  is
+  7  begin
+  8  insert into employees(id, name, salary, dept_id) values(p_id, p_name, p_salary, p_dept_id);
+  9  end;
+ 10  /
+
+Procedure created.
+
+SQL> begin
+  2  ;
+  3  /
+;
+*
+ERROR at line 2:
+ORA-06550: line 2, column 1: 
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+( begin case declare exit for goto if loop mod null pragma 
+raise return select update while with <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> << 
+continue close current delete fetch lock insert open rollback 
+savepoint set sql execute commit forall merge pipe purge 
+
+
+SQL> insert into department(dept_id, dept_name) values(10, 'abc');
+insert into department(dept_id, dept_name) values(10, 'abc')
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> insert into departments(dept_id, dept_name) values(10, 'abc');
+
+1 row created.
+
+Commit complete.
+SQL> begin
+  2  insertEmployees(emp_seq.NEXTVAL, 'A', 20000, 10);
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+Commit complete.
+SQL> select * from employees;
+
+        ID NAME                     SALARY AD    DEPT_ID                        
+---------- -------------------- ---------- -- ----------                        
+       101 A                         20000 BD         10                        
+
+SQL> select * from employees_backup;
+
+        ID NAME                     SALARY AD    DEPT_ID                        
+---------- -------------------- ---------- -- ----------                        
+       101 A                         20000 BD         10                        
+
+SQL> spool off;
