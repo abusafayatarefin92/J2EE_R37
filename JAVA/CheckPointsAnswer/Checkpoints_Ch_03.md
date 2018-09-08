@@ -394,7 +394,7 @@ sorted
 
 ##3.34##
 ```Java  
-ticketPrice = ages >= 16 ? 20 : 10;  
+ticketPrice = (ages >= 16) ? 20 : 10;  
 ```  
 
 ##3.35##
