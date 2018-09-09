@@ -20,5 +20,8 @@ public class RandomNumberEx {
         int threeDigitNumber = (int) (Math.random() * 1000);
         System.out.println("Single digit number: " + threeDigitNumber);
 
+        double x = Math.rint(2.6);
+        System.out.println("Math.rint(2.6): " + x);
+
     }
 }
