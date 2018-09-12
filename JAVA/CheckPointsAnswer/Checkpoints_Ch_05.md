@@ -7,7 +7,8 @@ The condition count < 100 can be both true and false at point B.
 The condition count < 100 is always false at point C.  
 
 ## 5.2 ##
-The problem with initializing guess to zero is that the number that shall be guessed will sometimes be zero. This will cause the while to not even run one iteration and the player will never get to guess the number.  
+The problem with initializing guess to zero is that the number that shall be guessed will sometimes be zero. This will cause the while to not even run one 
+iteration and the player will never get to guess the number.  
 
 ## 5.3 ##
 **(a)**  
@@ -33,13 +34,15 @@ number 0
 ```  
 
 ## 5.5 ##
-This program will start with x equal to 80000000 and x is then increased by one again and again until it overflows after reaching 2147483647, x will be -2147483648 after the overflow. The while loop will now terminate and the output will be:  
+This program will start with x equal to 80000000 and x is then increased by one again and again until it overflows after reaching 2147483647, x will be 
+-2147483648 after the overflow. The while loop will now terminate and the output will be:  
 ```Java  
 x is -2147483648  
 ```  
 
 ## 5.6 ##
-The program in this checkpoint will take numbers as input and keep track of the biggest number in the variable called "max". The last entered number is stored in the variable called "number".  
+The program in this checkpoint will take numbers as input and keep track of the biggest number in the variable called "max". The last entered number is stored 
+in the variable called "number".  
 
 The output when running the program with the input  
 ```
@@ -77,7 +80,8 @@ for (int i = 0; i < 10; i++) {
 	sum += i;
 }
 ```  
-The above two loops will result in the same value in sum. This is so because the control variable i will have identical value, when used in the loop-continuiation-condition, regardless of ++i or i++ is used to increment i.  
+The above two loops will result in the same value in sum. This is so because the control variable i will have identical value, when used in the 
+loop-continuiation-condition, regardless of ++i or i++ is used to increment i.  
 
 ##5.9##
 The three parts usually present in a for loop control section are  
@@ -111,7 +115,8 @@ public class CheckPoint_05_10 {
 	
 }
 ```  
-The program in this checkpoint will sum integers until the control variable in the loop reaches the value five 5. This means that if the input to the program is  
+The program in this checkpoint will sum integers until the control variable in the loop reaches the value five 5. This means that if the input to the program 
+is  
 ```
 2 3 4 5 0  
 ```  
@@ -194,7 +199,8 @@ for (int i=1; sum < 1000; i++) {
 }
 ```  
 ##5.17##
-Fixed version of the code in this checkpoint follows.  Had to guess a little on some of the fixes since there was no specification and instead just a piece of semi-random nonsense code.  
+Fixed version of the code in this checkpoint follows.  Had to guess a little on some of the fixes since there was no specification and instead just a piece of 
+semi-random nonsense code.  
 ```Java  
 public class Test {
 	public static void main(String[] args) { // missing static

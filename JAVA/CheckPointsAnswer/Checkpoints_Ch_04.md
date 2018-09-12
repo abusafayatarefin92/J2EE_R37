@@ -482,7 +482,7 @@ The format specifier for outputting a character is %c.
 
 The format specifier for outputting a decimal is %d.  
 
-The format specifier for outputting a boolean is %f.  
+The format specifier for outputting a floating point number is %f.  
 
 The format specifier for outputting a string is %s.  
 
@@ -556,13 +556,14 @@ public class CheckPoint_04_24 {
 
 }
 ```
-Above program will print the following (note that it was run on computer with Swedish locale settings for displaying numbers, might differ a bit on machines in other countries).  
+Above program will print the following (note that it was run on computer with Swedish locale settings for displaying numbers, might differ a bit on machines in 
+other countries).  
 ```Java  
 (a)
-amount is 32,320000 3,232000e+01
+amount is 32.320000 3.232000e+01
 
 (b)
-amount is 32,33% 3,2320e+01
+amount is 32.33% 3.2320e+01
 
 (c)
  false
