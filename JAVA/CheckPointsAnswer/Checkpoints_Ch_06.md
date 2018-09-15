@@ -22,9 +22,11 @@ public static int max(int num1, int num2) {
 		return num2;  
 }  
 ```  
-The keywords public and static are examples of modifiers. The following int indicates that the method will return an int after being executed. The name of the method is max and it takes two int's as data parameters.
+The keywords public and static are examples of modifiers. The following int indicates that the method will return an int after being executed. The name of the 
+method is max and it takes two int's as data parameters.
 
-The part between the braces is the body of the loop and it this part that does the actual work. In this case so will it be checked which of the parameters that is biggest and the value of this parameter is returned to the caller of the method.  
+The part between the braces is the body of the loop and this part that does the actual work. In this case so will it be checked which of the parameters that 
+is biggest and the value of this parameter is returned to the caller of the method.  
 
 A method is invoked by using the name of the method combined with the same number and type of actual parameter values as in the definition of the method.  
 
@@ -106,9 +108,11 @@ The return type for method1 is missing, it shall be void.
 
 The type of the second parameter in method1 is missing, it shall most likely be of type int.  
 
-The second method, named method2, is in method1 invoked with a double argument but the parameter of method2 is of typ int. This causes an syntax error, this can be fixed by changing the method signature of method2.  
+The second method, named method2, is in method1 invoked with a double argument but the parameter of method2 is of typ int. This causes an syntax error, this can 
+be fixed by changing the method signature of method2.  
 
-The compiler will think that it is possible for method2 to not return any value in some situations. Remove the last if to make the code compile without changing the behavior. 
+The compiler will think that it is possible for method2 to not return any value in some situations. Remove the last if to make the code compile without changing 
+the behavior. 
 
 A fully corrected code look like this:
 ```Java  
@@ -141,7 +145,8 @@ public class Test {
 }
 ```  
 ## 6.11 ##
-The arguments passed to a method must be passed in the same order as in the method signature and the types of all argument must be compatible to the formal parameters in the method signature.  
+The arguments passed to a method must be passed in the same order as in the method signature and the types of all argument must be compatible to the formal 
+parameters in the method signature.  
 
 An argument can have the same name as a formal parameter, this is for example a valid program:  
 ```Java  
@@ -164,7 +169,8 @@ There is a mistake when calling the method. The order of the two parameters have
 
 Another mistake is in the the body of nPrintln where n is declared even though n is used as an name for one of the formal parameters.  
 ## 6.13 ##
-By definition, pass by value means you are making a copy in memory of the actual parameter's value that is passed in. All work done in the method is then done on this copy.  
+By definition, pass by value means you are making a copy in memory of the actual parameter's value that is passed in. All work done in the method is then done 
+on this copy.  
 
 **(a)**  
 Output is:    
@@ -265,7 +271,8 @@ The second method will be invoked in this case.
 The first method will be invoked in this case.  
 
 # 6.18 #
-A local variable in Java is a variable that is declared within the body of a method. This variable can be used variable only within that method. Other methods in the class are not even aware that the variable exists.  
+A local variable in Java is a variable that is declared within the body of a method. This variable can be used variable only within that method. Other methods 
+in the class are not even aware that the variable exists.  
 
 # 6.19 #
 The scope of a local variable starts from its declaration and continues to the end of the block that contains the variable.  
