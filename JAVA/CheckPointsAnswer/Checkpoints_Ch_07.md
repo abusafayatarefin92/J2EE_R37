@@ -1,14 +1,17 @@
 # Checkpoint Answers Chapter 7 #
 ## 7.1 ##
-An array reference variable is declared by the use of brackets. For example, the following code declares a variable myList that references an array of double elements.
+An array reference variable is declared by the use of brackets. For example, the following code declares a variable myList that references an array of double 
+elements.
 ```Java  
 double[] myList;
 ```  
-An array reference variable is used as a handle to access the content of the array, but just creating this variable will not allocate any space in memory for the array. Memory for the array is allocated by using the keyword new. If we need to be able to store 10 doubles so shall we write like in the following code.
+An array reference variable is used as a handle to access the content of the array, but just creating this variable will not allocate any space in memory for 
+the array. Memory for the array is allocated by using the keyword new. If we need to be able to store 10 doubles so shall we write like in the following code.
 ```Java  
 myList = new double[10];
 ```  
-If we know the values that shall go in the array before it is created so is it also possible to use a shorthand notation. This is called an array initializer that will allocate memory and create the array reference.
+If we know the values that shall go in the array before it is created so is it also possible to use a shorthand notation. This is called an array initializer 
+that will allocate memory and create the array reference.
 ```Java
 double[] myList = {1.9, 2.4, 3.4, 3.5, 1.0, 5.7, 3.1, 1.1, 8.7, 4.6};  
 ```  
@@ -132,7 +135,8 @@ public class Test {
 ```
 
 ## 7.11 ##
-The first loop will in the first iteration copy the value of `list[0]` to `list[1]`. Which means that both `list[0]` and `list[1]` will be 1. The second iteration will the copy the value of `list[1]` to `list[2]`. This continues and by the end of the first loop so will the every value in list be set to 1.  
+The first loop will in the first iteration copy the value of `list[0]` to `list[1]`. Which means that both `list[0]` and `list[1]` will be 1. The second 
+iteration will the copy the value of `list[1]` to `list[2]`. This continues and by the end of the first loop so will the every value in list be set to 1.  
 
 The second loop just prints the content of the array, the output will hence be  
 ```  
@@ -163,7 +167,8 @@ myList = new int[10];
 // Sometime later you want to assign a new array to myList
 myList = new int[20];
 ```
-What happens it that the reference is moved so that it references another part of the memory, that is big enough to hold 20 elements. This means that the 10 first elements will no longer be the same unless they are somehow copied.   
+What happens it that the reference is moved so that it references another part of the memory, that is big enough to hold 20 elements. This means that the 10 
+first elements will no longer be the same unless they are somehow copied.   
 
 ## 7.15 ##
 The problem is that the content is swapped two times so wo will end up with the same order of elements as we started with.  
@@ -180,7 +185,8 @@ for (int i = 0, j = list.length - 1; i < list.length / 2; i++, j--) {
 ```
   
 ## 7.16 ##
-Arrays are passed as references when used as arguments to methods. This reduces the amount of information that needs to be passed. Note that this means that if the method changes the content of the array so will this also affect corresponding array content existing outside of the method block.  
+Arrays are passed as references when used as arguments to methods. This reduces the amount of information that needs to be passed. Note that this means that if 
+the method changes the content of the array so will this also affect corresponding array content existing outside of the method block.  
 
 ## 7.17 ##
 **(a)**  
@@ -227,9 +233,11 @@ The program from above will output:
 ```  
 1 2 3 4 5
 ```  
-The reason that the output is not reversed is that the reference called "list" used inside the reverse method is a copy of the "list" in the main method, these two references are not the same even tough they have the same name.
+The reason that the output is not reversed is that the reference called "list" used inside the reverse method is a copy of the "list" in the main method, these 
+two references are not the same even tough they have the same name.
 
-"list" inside reverse will reference memory where the content is in deed reversed when we reach the end of method. But the other "list" in main will still reference another chunk of memory whit unaltered content.  
+"list" inside reverse will reference memory where the content is in deed reversed when we reach the end of method. But the other "list" in main will still 
+reference another chunk of memory whit unaltered content.  
 
 ## 7.18 ##
 TODO - Skipping this one because it means to much work right now.  
@@ -275,7 +283,8 @@ with
 ```
   
 ## 7.26 ##
-The java.util.Arrays.sort method is overloaded so that it can be used to sort arrays of any primitive type except boolean. This sort method will not create a new method, the elements will be sorted into the array that is given as argument to the method.  
+The java.util.Arrays.sort method is overloaded so that it can be used to sort arrays of any primitive type except boolean. This sort method will not create a 
+new method, the elements will be sorted into the array that is given as argument to the method.  
 
 ## 7.29 ##
 These are all valid ways to declare the main method  
