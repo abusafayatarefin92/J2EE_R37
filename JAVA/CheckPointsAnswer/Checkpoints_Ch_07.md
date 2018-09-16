@@ -92,7 +92,7 @@ for (int e : listE) {
 
 **(f)**  
 ```Java  
-System.out.println(listF[(int)(Math.random()listF.length)]);
+System.out.println(listF[(int)(Math.random() * listF.length)]);
 ```
 
 **(g)**  
