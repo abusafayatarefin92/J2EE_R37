@@ -171,7 +171,7 @@ What happens it that the reference is moved so that it references another part o
 first elements will no longer be the same unless they are somehow copied.   
 
 ## 7.15 ##
-The problem is that the content is swapped two times so wo will end up with the same order of elements as we started with.  
+The problem is that the content is swapped two times so we will end up with the same order of elements as we started with.  
 
 The trick to fix the problem is to stop the for loop when we have reached the midpoint of the array. A fixed version looks like this.  
 ```Java  

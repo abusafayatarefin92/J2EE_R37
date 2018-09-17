@@ -58,13 +58,15 @@ for (int i = 0; i < array.length; i++)
 	sum += array[i][0];
 System.out.println(sum);
 ```  
-The above code setups a two dimensional array with 3 rows and 2 columns. The sum of all the elements in the first column will then be calculated (1 + 3 + 5) and the result is printed. The output will hence be:  
+The above code setups a two dimensional array with 3 rows and 2 columns. The sum of all the elements in the first column will then be calculated (1 + 3 + 5) and 
+the result is printed. The output will hence be:  
 ```  
 9  
 ```  
 
 ## 8.7 ##
-The method called m1 will take a two dimensional array as input and check the number of rows and columns. The result of the check is returned in an array where the row count is placed first and then follows the column count.
+The method called m1 will take a two dimensional array as input and check the number of rows and columns. The result of the check is returned in an array where 
+the row count is placed first and then follows the column count.
 
 The method is tested with a 2 by 4 array so the output will be: 
 ``` 
@@ -110,7 +112,8 @@ int[][][] array = {{{1, 2}, {3, 4}}, {{5, 6}, {7, 8}}};
 System.out.println([0][0][0]);  
 System.out.println([1][1][1]);  
 ```  
-The above code will declare an three-dimensional array of size 2-by-2-by-2. The "first" and "last" elements in the array are then printed, so the output will be:  
+The above code will declare an three-dimensional array of size 2-by-2-by-2. The "first" and "last" elements in the array are then printed, so the output will 
+be:  
 ```  
 1
 8
