@@ -1,6 +1,7 @@
 # Checkpoint Answers Chapter 9 #
 ## 9.1 ##
-Objects of the same type are defined using a common class. A class is a template, blueprint, or contract that defines what an object’s data fields and methods will be.  
+Objects of the same type are defined using a common class. A class is a template, blueprint, or contract that defines what an object’s data fields and methods 
+will be.  
 
 An object is an instance of a class. It is possible to create many instances of a class.  
 
@@ -25,7 +26,7 @@ MyClass mc = new MyClass();
 ```  
 
 ## 9.5 ##
-Constructors are special methods that are used to create objects of an class.  
+Constructors are special methods that are used to create objects of a class.  
 
 An ordinary method will have a return type but constructors does not, not even void.  
 
@@ -36,13 +37,15 @@ A default constructor, is provided automatically only if no constructors are exp
 The member access operator, also known as the dot-operator, is used to access data fields or invoke methods on an object.  
 
 ## 9.8 ##
-An anonymous object does not have any reference variable referencing it. These type of objects have short life time and will go away immediately after doing its assigned task.  
+An anonymous object does not have any reference variable referencing it. These type of objects have short life time and will go away immediately after doing its 
+assigned task.  
 
 ## 9.9 ##
 A NullPointerException will occur when trying to use a reference that points to no location in memory (null) as though it were referencing an object.  
 
 ## 9.10 ##
-An array is an object. An array can hold elements that are themself objects. The default values of elements in an array will be the same as the data fields of ordinary objects:
+An array is an object. An array can hold elements that are themself objects. The default values of elements in an array will be the same as the data fields of 
+ordinary objects:
 - 0 for numeric primitive types  
 - false for boolean  
 - '\u0000' for char  
@@ -106,9 +109,11 @@ class C {
 This code is incorrect because the class C have no constructor that takes a double as argument.  
 
 ## 9.12 ##
-The problem with the code in this checkpoint is that an object is constructed with a default constructor that takes no arguments. But there is no such constructor for the class A.  
+The problem with the code in this checkpoint is that an object is constructed with a default constructor that takes no arguments. But there is no such 
+constructor for the class A.  
 
-There is always a default constructor, that takes no arguments, as long as we do not provide any constructor of our own. But as soon as we add one or more constructors in the code so is this default constructor removed.  
+There is always a default constructor, that takes no arguments, as long as we do not provide any constructor of our own. But as soon as we add one or more 
+constructors in the code so is this default constructor removed.  
 
 ## 9.13 ##
 Member variables of type boolean get the default value false so the code in this checkpoint will result in the output:  
@@ -152,7 +157,8 @@ The class Point2D is included in the javafx.geometry package.
 
 The class System and the class Math are included in the java.lang package.  
 
-Note that there are different versions of the above classes from different versions of Java so it is possible to find more or less similar classes with the same names in other packages.  
+Note that there are different versions of the above classes from different versions of Java so it is possible to find more or less similar classes with the same 
+names in other packages.  
 
 ## 9.17 ##
 Suppose that we have a class called F that looks like this:  
@@ -210,7 +216,8 @@ It is not possible to invoke an instance method or reference an instance variabl
 
 It is possible to invoke a static method or reference a static variable from an instance method.  
 
-There are two problems with the code from this checkpoint. First problem is that method1 cannot be invoked inside main becaus main is static and method1 is not defined as static. Second problem is that c is not accessible from method2 because c is not static. 
+There are two problems with the code from this checkpoint. First problem is that method1 cannot be invoked inside main becaus main is static and method1 is not 
+defined as static. Second problem is that c is not accessible from method2 because c is not static. 
 
 (There is a third problem regarding that the class Circle is not defined or imported but we ignore this.)  
   
@@ -227,22 +234,27 @@ The naming convention for mutator method is setDataFieldName.
 Benefits of encapsulation:  
 - The fields of a class can be made read-only or write-only.  
 - A class can have total control over what is stored in its fields.  
-- The users of a class do not know how the class stores its data. A class can change the data type of a field and users of the class do not need to change any of their code.  
+- The users of a class do not know how the class stores its data. A class can change the data type of a field and users of the class do not need to change any 
+of their code.  
 
 ## 9.22 ##
 There is no problem with the code from this checkpoint. It is possible to access the private variable because it is done from within the class.  
 
 ## 9.23 ##
-Primitive types are copied when passed as a parameter to a method. This means that the method that takes the value will work with a copy and there can be an original value that is guaranteed to be unaltered no matter what the method does with the parameter.  
+Primitive types are copied when passed as a parameter to a method. This means that the method that takes the value will work with a copy and there can be an 
+original value that is guaranteed to be unaltered no matter what the method does with the parameter.  
 
-Reference types are not copied when passed as a parameter to a method. Instead so will a reference to the location in the memory be copied and given as parameter to the method. This reference is then used inside the method to look up the object. This means that if the method writes to the object so will these changes affect the object also in the scope outside of the method.  
+Reference types are not copied when passed as a parameter to a method. Instead so will a reference to the location in the memory be copied and given as 
+parameter to the method. This reference is then used inside the method to look up the object. This means that if the method writes to the object so will these 
+changes affect the object also in the scope outside of the method.  
 
 The output of the program in this checkpoint will look like this:  
 ```  
 count 101
 times 0
 ```  
-The myCount object is sent as a reference and will be altered also outside of the method but times is copied and the changes will not be noticed outside of the method.  
+The myCount object is sent as a reference and will be altered also outside of the method but times is copied and the changes will not be noticed outside of the 
+method.  
 
 ## 9.24 ##
 Output:  
@@ -250,7 +262,8 @@ Output:
 After swap1: circle1 = 1.0 circle2 = 2.0  
 After swap2: circle1 = 2.0 circle2 = 1.0  
 ```  
-The method called swap1 does not work as intended. This is because the swap is done on references to the circle objects that are copies of the references outside of the method. This means that the swap works inside the method but the original references used when printing afterwards have not been swapped.  
+The method called swap1 does not work as intended. This is because the swap is done on references to the circle objects that are copies of the references 
+outside of the method. This means that the swap works inside the method but the original references used when printing afterwards have not been swapped.  
 
 ## 9.25 ##
 **(a)**  
@@ -303,7 +316,8 @@ There is only one Date instance this time and it is altered in m1.
 Again two different references variables, both called date. The one local to m1 is set to null in m1 but this will not affect the one outside in main.  
 
 ## 9.26 ##
-The problem with the code in this checkpoint is that no Date instances are being created. All that is created is an array that can be used to store 10 dates. The first element in the array is then accessed but it will be null since there is nothing there yet.  
+The problem with the code in this checkpoint is that no Date instances are being created. All that is created is an array that can be used to store 10 dates. 
+The first element in the array is then accessed but it will be null since there is nothing there yet.  
 
 ## 9.28 ##
 There are three requirements that must be met for a class to be immutable:  
@@ -325,7 +339,8 @@ public class A {
 	}
 }
 ```  
-The reason for the class not being immutable is that the method getValues returns a reference that can be used to alter the content of the member variable called values.  
+The reason for the class not being immutable is that the method getValues returns a reference that can be used to alter the content of the member variable 
+called values.  
 
 ## 9.31 ##
 The output will be:  
@@ -334,14 +349,16 @@ i + j is 23
 k is 2
 j is 0
 ```
-The first line of output will use the variable i from main and the local variable j that is 2. The plus will in this case be interpreted as string concatenation instead of arithmetic addition.  
+The first line of output will use the variable i from main and the local variable j that is 2. The plus will in this case be interpreted as string concatenation 
+instead of arithmetic addition.  
 
 The second line of output is based on the i from main and the static class variable called j.  
 
 The third line of output is based on the static class variable called j.  
 
 ## 9.32 ##
-Within an instance method or a constructor, this is a reference to the current object — the object whose method or constructor is being called. You can refer to any member of the current object from within an instance method or a constructor by using this.  
+Within an instance method or a constructor, this is a reference to the current object — the object whose method or constructor is being called. You can refer to 
+any member of the current object from within an instance method or a constructor by using this.  
 
 ## 9.33 ##
 There are some problems with the following code:  
@@ -387,6 +404,7 @@ public class C {
 Another strange thing with this class is that p is never ever used for anything buts lets ignore this and move on in life.  
 
 ## 9.34 ##
-The problem is that m2 tries to set the member called id by using the class directly. This will not work since we must use an instance of the class instead of the class itself.  
+The problem is that m2 tries to set the member called id by using the class directly. This will not work since we must use an instance of the class instead of 
+the class itself.  
 
 The code would work if the member id was declared as static. But then it would only be one id for all instances which is probably not the intention.
