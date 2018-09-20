@@ -237,7 +237,7 @@ The reason that the output is not reversed is that the reference called "list" u
 two references are not the same even tough they have the same name.
 
 "list" inside reverse will reference memory where the content is in deed reversed when we reach the end of method. But the other "list" in main will still 
-reference another chunk of memory whit unaltered content.  
+reference another chunk of memory with unaltered content.  
 
 ## 7.18 ##
 TODO - Skipping this one because it means to much work right now.  
