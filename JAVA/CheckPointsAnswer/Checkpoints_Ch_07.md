@@ -286,6 +286,12 @@ with
 The java.util.Arrays.sort method is overloaded so that it can be used to sort arrays of any primitive type except boolean. This sort method will not create a 
 new method, the elements will be sorted into the array that is given as argument to the method.  
 
+## 7.28 ##
+The output will be:
+[7, 7, 7, 7]
+[2, 4, 7, 10]
+false
+
 ## 7.29 ##
 These are all valid ways to declare the main method  
 ```Java

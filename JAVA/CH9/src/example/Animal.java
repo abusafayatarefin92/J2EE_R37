@@ -1,3 +1,5 @@
+package example;
+
 
 //class is a blueprint of object
 public class Animal extends Object {

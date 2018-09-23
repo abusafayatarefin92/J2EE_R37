@@ -41,7 +41,7 @@ An anonymous object does not have any reference variable referencing it. These t
 assigned task.  
 
 ## 9.9 ##
-A NullPointerException will occur when trying to use a reference that points to no location in memory (null) as though it were referencing an object.  
+A NullPointerException will occur when we trying to use a reference that points to no location in memory (null) as though it were referencing an object.  
 
 ## 9.10 ##
 An array is an object. An array can hold elements that are themself objects. The default values of elements in an array will be the same as the data fields of 

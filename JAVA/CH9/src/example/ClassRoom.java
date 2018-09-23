@@ -1,3 +1,5 @@
+package example;
+
 
 //constructor and getter base
 public class ClassRoom {

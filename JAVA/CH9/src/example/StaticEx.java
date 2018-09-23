@@ -1,3 +1,5 @@
+package example;
+
 public class StaticEx {
     static int x = 10;
     static final int NUMBER_OF_STUDENTS = 12;//constant

@@ -1,3 +1,5 @@
+package example;
+
 //Setter and getter base
 //Value set then get
 
