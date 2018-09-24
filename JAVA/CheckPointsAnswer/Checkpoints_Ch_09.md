@@ -357,8 +357,8 @@ The second line of output is based on the i from main and the static class varia
 The third line of output is based on the static class variable called j.  
 
 ## 9.32 ##
-Within an instance method or a constructor, this is a reference to the current object — the object whose method or constructor is being called. You can refer to 
-any member of the current object from within an instance method or a constructor by using this.  
+Within an instance method or a constructor, 'this' is a reference to the current object — the object whose method or constructor is being called. You can refer 
+to any member of the current object from within an instance method or a constructor by using 'this'.  
 
 ## 9.33 ##
 There are some problems with the following code:  
