@@ -119,7 +119,7 @@ s1.replaceFirst("o", "T")	// WelcTme to Java
 s1.toCharArray()	// an array holding the characters in the string "Welcome to Java"
 ```  
 
-## 10.14 ##
+## 10.16 ##
 There are two ways to create a String:  
 ```Java  
 String s = "Welcome to Java";

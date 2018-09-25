@@ -1,6 +1,7 @@
 # Checkpoint Answers Chapter 11 #
 ## 11.1 ##
-A subclass is usually not a subset of a superclass. Subclasses will usually add functionality and details that are not present in the superclass thus extending the superclass.  
+A subclass is usually not a subset of a superclass. Subclasses will usually add functionality and details that are not present in the superclass thus extending 
+the superclass.  
 
 ## 11.2 ##
 The keyword extends is used when defining a subclass.  
@@ -19,7 +20,8 @@ public class MountainBike extends Bicycle {
 ## 11.3 ##
 Single inheritance means that a class may only inherit from one particular class.  
 
-Multiple inheritance is a feature of some object-oriented computer programming languages in which an class can inherit characteristics and features from more than one  parent class.  
+Multiple inheritance is a feature of some object-oriented computer programming languages in which an class can inherit characteristics and features from more 
+than one  parent class.  
 
 Multiple inheritance is not supported by the Java programming language.  
 
@@ -47,7 +49,8 @@ It is not possible to override a method that is declared private in the supercla
 ## 11.8 ##
 It is not possible to override a static method defined in a superclass.  
 
-It is still possible to have another static method, with the same name, in a subclass but this method will not override the method in the superclass, it will hide it.  
+It is still possible to have another static method, with the same name, in a subclass but this method will not override the method in the superclass, it will 
+hide it.  
 
 This is a bit tricky read more [here](http://docs.oracle.com/javase/tutorial/java/IandI/override.html "here").  
 
@@ -97,7 +100,8 @@ class B extends Circle {
 ## 11.12 ##
 Method overloading means making multiple versions of a method based on differences in the signature.  
 
-Method overriding means defining a new version of a method in a subclass of a superclass. Overridden methods have the same signature and return type as the original. 
+Method overriding means defining a new version of a method in a subclass of a superclass. Overridden methods have the same signature and return type as the 
+original. 
 
 ## 11.13 ##
 A method in a subclass that have the same signature, and same return type, as a method in its superclass is said to be overriden.  
@@ -109,20 +113,25 @@ Having methods with the same signature but different return types in a subclass 
 A method in a subclass that have the same name as a method in its superclass but with different parameter types is said to be overloaded.  
 
 ## 11.16 ##
-Using the @Override annotation will take advantage of the compiler checking that makes sure that there is an actual overriding of an existing method. This check will catch mistakes of misspelling a method name or not correctly matching the parameters.  
+Using the @Override annotation will take advantage of the compiler checking that makes sure that there is an actual overriding of an existing method. This 
+check will catch mistakes of misspelling a method name or not correctly matching the parameters.  
 
 Another benefit is that this annotation functions as documentation, making the intention of the code easier to understand.  
 
 ## 11.17 ##
 A good definition of polymorphism can be found in [The Java Tutorials](https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html "The Java Tutorials").
-> The dictionary definition of polymorphism refers to a principle in biology in which an organism or species can have many different forms or stages. This principle can also be applied to object-oriented programming and languages like the Java language. Subclasses of a class can define their own unique behaviors and yet share some of the same functionality of the parent class.  
+> The dictionary definition of polymorphism refers to a principle in biology in which an organism or species can have many different forms or stages. This 
+principle can also be applied to object-oriented programming and languages like the Java language. Subclasses of a class can define their own unique behaviors 
+and yet share some of the same functionality of the parent class.  
 
 When an method is overridden in subclass so is it up to the JVM to figure out at runtime which specific method to invoke. This concept is called dynamic binding.  
 
 ## 11.18 ##
-Method matching is the process of deciding what version of an overloaded method to invoke. This is done at compile time by the compiler and the choice is based on the signature of the overloaded methods.  
+Method matching is the process of deciding what version of an overloaded method to invoke. This is done at compile time by the compiler and the choice is based 
+on the signature of the overloaded methods.  
 
-Method binding is the process of finding the method to invoke when using inheritance. A method may be implemented in several classes part of an inheritance chain. The JVM dynamically binds the implementation of the method at runtime, decided by the actual class of the object referenced by the variable.  
+Method binding is the process of finding the method to invoke when using inheritance. A method may be implemented in several classes part of an inheritance 
+chain. The JVM dynamically binds the implementation of the method at runtime, decided by the actual class of the object referenced by the variable.  
 
 ## 11.19 ##
 It is (of course) possible to assign an array of type Object like this:  
@@ -263,7 +272,8 @@ remove(new Integer(1));
 ArrayList<Double> list = new ArrayList<>();
 list.add(1);
 ```  
-The above code will not work because the add function takes an Double Object as argument but an int is provided. There is no auto boxing from int to Double so the code will not compile.  
+The above code will not work because the add function takes an Double Object as argument but an int is provided. There is no auto boxing from int to Double so 
+the code will not compile.  
 
 The code can be fixed by writing like this
 ```Java  
@@ -275,14 +285,16 @@ list.add(new Double(1));
 ```  
 
 ## 11.35 ##
-The asList method does not support primitive types and there is no autoboxing for arrays. This is why the code from the book does not work. A corrected version is shown below.  
+The asList method does not support primitive types and there is no autoboxing for arrays. This is why the code from the book does not work. A corrected version 
+is shown below.  
 ```Java  
 Integer[] array = {3, 5, 95, 4, 15, 34, 3, 6, 5};  
 ArrayList<Integer> list = new ArrayList<(Arrays.asList(array));  
 ```  
 
 ## 11.36 ##
-The max method in the Collections class can not be used with an array as argument. The array need to be converted to an ArrayList that is an type allowed to be used as an argument.  
+The max method in the Collections class can not be used with an array as argument. The array need to be converted to an ArrayList that is an type allowed to be 
+used as an argument.  
 ```Java  
 Integer[] array = {3, 5, 95, 4, 15, 34, 3, 6, 5};
 ArrayList<Integer> list = new ArrayList<(Arrays.asList(array));
@@ -290,20 +302,24 @@ System.out.println(java.util.Collections.max(list));
 ```  
 
 ## 11.37 ##
-A class can by default access another class in the same package, but classes outside of the package will not be able to access it by default. This means that if this is the desired level of visibility so shall the accessibility modifier simply be omitted.  
+A class can by default access another class in the same package, but classes outside of the package will not be able to access it by default. This means that 
+if this is the desired level of visibility so shall the accessibility modifier simply be omitted.  
 
 ## 11.38 ##
-The keyword protected is used as an accessibility modifier to setup so that a class in a different package cannot access the class, but its subclasses in any package can access it.  
+The keyword protected is used as an accessibility modifier to setup so that a class in a different package cannot access the class, but its subclasses in any 
+package can access it.  
 
 ## 11.39 ##
 If the question marks are replaced by blanks, can class B be compiled? Yes, default access means visibility between classes in the same package.  
     
-If the question marks are replaced by private, can class B be compiled? No, private means that the int called i and the method called m can only be used from within the class.  
+If the question marks are replaced by private, can class B be compiled? No, private means that the int called i and the method called m can only be used from 
+within the class.  
 
 If the question marks are replaced by protected, can class B be compiled? Yes, B inherits from A so B can used protected members from A.  
 
 ## 11.40 ##
-If the question marks are replaced by blanks, can class B be compiled? No, B is not in the same package as A so if i and m from class A will not be visible to B if default access is set.  
+If the question marks are replaced by blanks, can class B be compiled? No, B is not in the same package as A so if i and m from class A will not be visible to 
+B if default access is set.  
 
 If the question marks are replaced by private, can class B be compiled? No, i and m will not be visible outside of class A if they are set to private.  
  
