@@ -91,7 +91,7 @@ throw new EmptyStackException();
 ```  
 
 ## 12.12 ##
-The keyword called throw is used to throw an Exception from a method or static block.  
+The keyword called 'throw' is used to throw an Exception from a method or static block.  
 
 The keyword throws is used in method declarations to denote what types of exceptions possibly can be thrown by the method.  
 

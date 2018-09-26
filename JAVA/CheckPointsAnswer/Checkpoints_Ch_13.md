@@ -52,9 +52,11 @@ Legal code.
 ## 13.2 ##
 Abstract classes prevents a developer from instantiating the base class, because a developer has marked it as having missing functionality.  
 
-It also provides compile-time safety so that you can ensure that any classes that extend your abstract class provide the bare minimum functionality to work, and you don't need to worry about putting stub methods that inheritors somehow have to magically know that they have to override a method in order to make it work.  
+It also provides compile-time safety so that you can ensure that any classes that extend your abstract class provide the bare minimum functionality to work, and 
+you don't need to worry about putting stub methods that inheritors somehow have to magically know that they have to override a method in order to make it work.  
 
-Read more at: [StackExchange - Why should I declare a class as an abstract class?](http://programmers.stackexchange.com/questions/96947/why-should-i-declare-a-class-as-an-abstract-class)  
+Read more at: [StackExchange - Why should I declare a class as an abstract class?](
+http://programmers.stackexchange.com/questions/96947/why-should-i-declare-a-class-as-an-abstract-class)  
 
 ## 13.3 ##
 **(a)**  
@@ -73,7 +75,8 @@ A subclass can override a concrete method in a superclass to define it as abstra
 An abstract method cannot be static.  
 
 ## 13.4 ##
-There will be an attempt, at runtime, to create a Double object out of an Number object. But this will not work because the Number object is in based on an Integer object.  
+There will be an attempt, at runtime, to create a Double object out of an Number object. But this will not work because the Number object is in based on an 
+Integer object.  
 
 ## 13.5 ##
 The code from this checkpoint will fail at runtime because a Double object is attempted to be stored where an Integer object is supposed to be stored.  
@@ -98,7 +101,8 @@ The above code will output:
 The problem with the code in this checkpoint is that x is of type Number and the method compareTo(Integer) is undefined for the type Number.  
 
 ## 13.8 ##
-This checkpoint is about the same code that was discussed in checkpoint 13.7. The problem with the code is now tried to be fixed with a cast. There is however a mistake made when introducing the cast. A corrected working version can be seen below.  
+This checkpoint is about the same code that was discussed in checkpoint 13.7. The problem with the code is now tried to be fixed with a cast. There is however a 
+mistake made when introducing the cast. A corrected working version can be seen below.  
 ```Java  
 public class Test {
 	public static void main(String[] args) {
@@ -182,7 +186,8 @@ public class B implements A {
 	}
 }
 ```  
-All methods defined in an interface are public. This means that when a class implements the interface so must all methods be declared public. The visibility cannot be reduced afterwards.  
+All methods defined in an interface are public. This means that when a class implements the interface so must all methods be declared public. The visibility 
+cannot be reduced afterwards.  
 
 ## 13.17 ##
 If a class implements Comparable so can the object of the class invoke the compareTo method.  
@@ -202,13 +207,15 @@ System.out.println(n1.compareTo(n2));
 The above code will not compile because the method compareTo(Integer) in the type Integer is not applicable for the arguments (Object).  
 
 ## 13.20 ##
-By implementing the Comparable interface for a class so can objects of the class be passed to a method that requires a Comparable type. This would not be possible by just implementing a member method called compareTo.    
+By implementing the Comparable interface for a class so can objects of the class be passed to a method that requires a Comparable type. This would not be 
+possible by just implementing a member method called compareTo.    
 
 ## 13.21 ##
-The code in this checkpoint will not work because the class tries to use the sort method but this will only work if the compareTo method from the Comparable interface is present. Having the class Person implement the Comparable interface would fix the problem.  
+The code in this checkpoint will not work because the class tries to use the sort method but this will only work if the compareTo method from the Comparable 
+interface is present. Having the class Person implement the Comparable interface would fix the problem.  
 
 ## 13.22 ##
-A precondition for for invocation of the `clone()` method to clone an object is that the class of the object implement the interface `java.long.Cloneable`.  
+A precondition for invocation of the `clone()` method to clone an object is that the class of the object implement the interface `java.lang.Cloneable`.  
 
 The `Date` class implements `Cloneable`.  
 
@@ -257,17 +264,21 @@ Say that we have the interfaces:
 - Radio  
 - Speedometer  
 
-Then assume that we have the classes House, Car, Bicycle. All these classes could then possible implement several of the above interfaces but likely not all. A Bicycle will for example probably have a lights and a lock but not a door.  
+Then assume that we have the classes House, Car, Bicycle. All these classes could then possible implement several of the above interfaces but likely not all. A 
+Bicycle will for example probably have a lights and a lock but not a door.  
 
 Interfaces makes it possibly to bind things that are less tightly bound to an Object. Things that can be applied in multiple different situations.  
 
 ## 13.28 ##
-An abstract class is a class that is declared with the keyword abstract, it may or may not include abstract methods. Abstract classes cannot be instantiated, but they can be sub-classed.  
+An abstract class is a class that is declared with the keyword abstract, it may or may not include abstract methods. Abstract classes cannot be instantiated, but 
+they can be sub-classed.  
 
 An interface is a collection of abstract methods. A class implements an interface, thereby inheriting the abstract methods of the interface.  
 
-Stole this part from the [The Java Tutorials - Abstract Method and Classes](https://docs.oracle.com/javase/tutorial/java/IandI/abstract.html) that discusses the differenses between intefacees and abstract classes.  
-> Abstract classes are similar to interfaces. You cannot instantiate them, and they may contain a mix of methods declared with or without an implementation. However, with abstract classes, you can declare fields that are not static and final, and define public, protected, and private concrete methods. With interfaces, all fields are automatically public, static, and final, and all methods that you declare or define (as default methods) are public. In addition, you can extend only one class, whether or not it is abstract, whereas you can implement any number of interfaces.  
+Abstract classes are similar to interfaces. You cannot instantiate them, and they may contain a mix of methods declared with or without an implementation. 
+However, with abstract classes, you can declare fields that are not static and final, and define public, protected, and private concrete methods. With interfaces,
+all fields are automatically public, static, and final, and all methods that you declare or define (as default methods) are public. In addition, you can extend 
+only one class, whether or not it is abstract, whereas you can implement any number of interfaces.  
 
 ## 13.29 ##
 **(a)**  
@@ -282,7 +293,8 @@ An interface cannot extend an abstract class.
 An abstract class can extend an interface.  
 
 ## 13.30 ##
-A rational number with the value -2 / 6 = -1 / 3 is created. The numerator is -1 and the denominator is 3. The integer representation will be truncated to 0. The double representation will be -0.333333333...
+A rational number with the value -2 / 6 = -1 / 3 is created. The numerator is -1 and the denominator is 3. The integer representation will be truncated to 0. The 
+double representation will be -0.333333333...
 
 The output of the code in this checkpoint will be:  
 ```  
