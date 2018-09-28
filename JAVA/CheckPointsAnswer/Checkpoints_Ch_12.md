@@ -244,7 +244,7 @@ backslash.
 
 A corrected version looks like this:  
 ```Java  
-new File("c:\\book\\test.dat);
+new File("c:\\book\\test.dat");
 ```   
 
 ## 12.28 ##
