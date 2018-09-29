@@ -8,7 +8,7 @@ public class FactorialEx {
         getFactorials(1020);
        
     }
-//
+
     static void getFactorials(int n) {
         BigInteger f = BigInteger.valueOf(1);
         for (int i = 1; i <= n; i++) {

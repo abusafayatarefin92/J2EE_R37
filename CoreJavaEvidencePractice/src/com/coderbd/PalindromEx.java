@@ -1,6 +1,6 @@
 package com.coderbd;
 
-public class PalindomEx {
+public class PalindromEx {
 
     public static void main(String[] args) {
         // System.out.println(isPalindom("madam"));

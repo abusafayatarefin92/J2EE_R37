@@ -12,7 +12,7 @@ public class MaxMin {
         int n = sc.nextInt();
         Integer[] array = new Integer[n];
 
-        System.out.println("Enter values of array: ");
+        System.out.println("Enter values of the array: ");
         for (int i = 0; i < array.length; i++) {
             array[i] = sc.nextInt();
         }
