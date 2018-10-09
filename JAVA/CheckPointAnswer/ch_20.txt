@@ -34,22 +34,20 @@ throw new UnsupportedOperationException
 Section 20.3
 ▼20.3.1
 How do you obtain an iterator from a collection object?
-The Collection interface extends the Iterable interface. You can obtain an iterator from a
-collection using the iterator() method.
-Hide Answer
+The Collection interface extends the Iterable interface. You can obtain an iterator from a collection using the iterator() method.
+
 ▼20.3.2
 What method do you use to obtain an element in the collection from an iterator?
 Use the next() method.
-Hide Answer
+
 ▼20.3.3
 Can you use a foreach loop to traverse the elements in any instance of Collection?
 Yes.
-Hide Answer
+
 ▼20.3.4
-When using a foreach loop to traverse all elements in a collection, do you need to use the
-next() or hasNext() methods in an iterator?
+When using a foreach loop to traverse all elements in a collection, do you need to use the next() or hasNext() methods in an iterator?
 No. They are implicitly used in a foreach loop.
-Hide Answer
+
 Section 20.4
 ▼20.4.1
 Can you use the forEach method on any instance of Collection? Where is the forEach
@@ -70,11 +68,10 @@ if (Character.isLowerCase(ch)) {
 Hide Answer
 Section 20.5
 ▼20.5.1
-How do you add and remove elements from a list? How do you traverse a list in both
-directions?
-Use the add or remove method to add or remove elements from a list. Use the listIterator() to
-obtain an iterator. This iterator allows you to traverse the list bi-directional.
-Hide Answer
+How do you add and remove elements from a list? How do you traverse a list in both directions?
+Use the add or remove method to add or remove elements from a list. Use the listIterator() to obtain an iterator. This iterator allows you to traverse the list 
+bi-directional.
+
 ▼20.5.2
 Suppose that list1 is a list that contains the strings red, yellow, and green, and that list2 is
 another list that contains the strings red, yellow, and blue. Answer the following questions:
@@ -93,38 +90,31 @@ e. list1 is [red, yellow] What is list1 after executing list1.clear();
 f. list1 is empty
 Hide Answer
 ▼20.5.3
-What are the differences between ArrayList and LinkedList? Which list should you use to
-insert and delete elements at the beginning of a list?
-ArrayList and LinkedList can be operated similarly. The critical differences between them
-are their internal implementation, which impacts the performance. ArrayList is efficient for
-retrieving elements, and for adding and removing elements from the end of the list.
-LinkedList is efficient for adding and removing elements anywhere in the list.
-Hide Answer
+What are the differences between ArrayList and LinkedList? Which list should you use to insert and delete elements at the beginning of a list?
+ArrayList and LinkedList can be operated similarly. The critical differences between them are their internal implementation, which impacts the performance. 
+ArrayList is efficient for retrieving elements, and for adding and removing elements from the end of the list. LinkedList is efficient for adding and removing 
+elements anywhere in the list.
+
 ▼20.5.4
-Are all the methods in ArrayList also in LinkedList? What methods are in LinkedList but not
-in ArrayList?
-All the methods in ArrayList are also in LinkedList except the trimToSize() method. The
-methods getFirst, getLast, addFirst, addLast are in LinkedList, but not in ArrayList.
-Hide Answer
+Are all the methods in ArrayList also in LinkedList? What methods are in LinkedList but not in ArrayList?
+All the methods in ArrayList are also in LinkedList except the trimToSize() method. The methods getFirst, getLast, addFirst, addLast are in LinkedList, but not 
+in ArrayList.
+
 ▼20.5.5
 How do you create a list from an array of objects?
 A simple way to create a list from an array of objects is to use
 new ArrayList(Arrays.asList(arrayObject))
 or
 new LinkedList(Arrays.asList(arrayObject)).
-Hide Answer
+
 Section 20.6
 ▼20.6.1
-What are the differences between the Comparable interface and the Comparator interface? In
-which package is Comparable, and in which package is Comparator?
-The Comparable interface contains the compareTo method and Comparator interface
-contains the compare method and equals method. Normally, if the objects of a class have
-natural order (e.g., String, Date), let the class implement the Comparable interface. The
-Comparator interface is more flexible in the sense that it enables you to define a new class
-that contains the compare(Object, Object) method to compare two objects of other classes.
-The Comparable interface is in the java.lang package, and the Comparator interface is in the
-java.util package.
-Hide Answer
+What are the differences between the Comparable interface and the Comparator interface? In which package is Comparable, and in which package is Comparator?
+The Comparable interface contains the compareTo method and Comparator interface contains the compare method and equals method. Normally, if the objects of a 
+class have natural order (e.g., String, Date), let the class implement the Comparable interface. The Comparator interface is more flexible in the sense that it 
+enables you to define a new class that contains the compare(Object, Object) method to compare two objects of other classes. The Comparable interface is in the 
+java.lang package, and the Comparator interface is in the java.util package.
+
 ▼20.6.2
 How do you define a class A that implements the Comparable interface? Are two instances
 of class A comparable? How do you define a class B that implements the Comparator
@@ -206,7 +196,7 @@ Section 20.7
 ▼20.7.1
 Are all the methods in the Collections class static?
 Yes.
-Hide Answer
+
 ▼20.7.2
 Which of the following static methods in the Collections class are for lists, and which are for
 collections?
@@ -246,26 +236,26 @@ true
 2
 Hide Answer
 ▼20.7.4
-Which method can you use to sort the elements in an ArrayList or a LinkedList? Which
-method can you use to sort an array of strings?
-You can use Collections.sort(list) to sort an ArrayList or a LinkedList and use Arrays.sort
-(Object[]) to sort an array of strings. For example,
+Which method can you use to sort the elements in an ArrayList or a LinkedList? Which method can you use to sort an array of strings?
+You can use Collections.sort(list) to sort an ArrayList or a LinkedList and use Arrays.sort (Object[]) to sort an array of strings. For example,
 LinkedList<String> list = new LinkedList<>();
-list.add("Java"); list.add("Python"); list.add("C++");
+list.add("Java"); 
+list.add("Python"); 
+list.add("C++");
 java.util.Collections.sort(list); // Sort the list
 String[] languages = {"Java", "Python", "C++"};
 java.util.Arrays.sort(languages); // Sort the array
-Hide Answer
+
 ▼20.7.5
-Which method can you use to perform binary search for elements in an ArrayList or a
-LinkedList? Which method can you use to perform binary search for an array of strings?
-You can use Collections.binary(list, key) to perform binary search for an ArrayList or a
-LinkedList and use Arrays.binary(Object[], key) to sort an array of strings.
-Hide Answer
+Which method can you use to perform binary search for elements in an ArrayList or a LinkedList? Which method can you use to perform binary search for an array of
+strings?
+You can use Collections.binary(list, key) to perform binary search for an ArrayList or a LinkedList and use Arrays.binary(Object[], key) to sort an array of 
+strings.
+
 ▼20.7.6
 Write a statement to find the largest element in an array of comparable objects.
 Collections.max(Arrays.asList(arrayObject))
-Hide Answer
+
 Section 20.8
 ▼20.8.1
 What is the return value from invoking pane.getChildren() for a pane?
@@ -285,23 +275,18 @@ radius = Math.random*11 + 10;
 Hide Answer
 Section 20.9
 ▼20.9.1
-How do you create an instance of Vector? How do you add or insert a new element into a
-vector? How do you remove an element from a vector? How do you find the size of a
-vector?
-Vector is the same as ArrayList except that, except that Vector contains the synchronized
-methods for accessing and modifying the vector. Since Vector implements List, you can use
-the methods in List to add, remove elements from a vector, and use the size() method to find
-the size of a vector. To create a vector, use either its constructors.
-Hide Answer
+How do you create an instance of Vector? How do you add or insert a new element into a vector? How do you remove an element from a vector? How do you find the 
+size of a vector?
+Vector is the same as ArrayList except that Vector contains the synchronized methods for accessing and modifying the vector. Since Vector implements
+List, you can use the methods in List to add, remove elements from a vector, and use the size() method to find the size of a vector. To create a vector, use 
+either its constructors.
+
 ▼20.9.2
-How do you create an instance of Stack? How do you add a new element to a stack? How do
-you remove an element from a stack? How do you find the size of a stack?
-Stack is a subclass of Vector. The Stack class represents a last-in-first-out stack of objects.
-The elements are accessed only from the top of the stack. You can retrieve, insert, or remove
-an element from the top of the stack. To add a new element to a stack, use the push method.
-To remove an element from the top of the stack, use the method pop. To find a stack size,
-use the size() method.
-Hide Answer
+How do you create an instance of Stack? How do you add a new element to a stack? How do you remove an element from a stack? How do you find the size of a stack?
+Stack is a subclass of Vector. The Stack class represents a last-in-first-out stack of objects. The elements are accessed only from the top of the stack. You can
+retrieve, insert, or remove an element from the top of the stack. To add a new element to a stack, use the push method. To remove an element from the top of the 
+stack, use the method pop. To find a stack size, use the size() method.
+
 ▼20.9.3
 Does Listing 20.1, TestCollection.java, compile and run if all the occurrences of ArrayList
 are replaced by LinkedList, Vector, or Stack?
@@ -309,23 +294,19 @@ Yes, because these classes are subtypes of the Collection interface.
 Hide Answer
 Section 20.10
 ▼20.10.1
-Is java.util.Queue a subinterface of java.util.Collection, java.util.Set, or java.util.List? Does
-LinkedList implement Queue?
+Is java.util.Queue a subinterface of java.util.Collection, java.util.Set, or java.util.List? Does LinkedList implement Queue?
 java.util.Queue is a subinterface of java.util.Collection, and LinkedList implements Queue.
-Hide Answer
+
 ▼20.10.2
-How do you create a priority queue for integers? By default, how are elements ordered in a
-priority queue? Is the element with the least value assigned the highest priority in a priority
-queue?
-Use the constructors of PriorityQueue to create priority queues. By default, the elements in a
-priority queue are ordered in their natural order using the compareTo method in the
-Comparable interface. The element with the least value is assigned the highest priority in
-PriorityQueue.
-Hide Answer
+How do you create a priority queue for integers? By default, how are elements ordered in a priority queue? Is the element with the least value assigned the 
+highest priority in a priority queue?
+Use the constructors of PriorityQueue to create priority queues. By default, the elements in a priority queue are ordered in their natural order using the 
+compareTo method in the Comparable interface. The element with the least value is assigned the highest priority in PriorityQueue.
+
 ▼20.10.3
-How do you create a priority queue that reverses the natural order of the elements?
+How do you create a priority queue that reverses the natural order of the elements? 
 new PriorityQueue(initialCapacity, Collections.reverseOrder()).
-Hide Answer
+
 Section 20.11
 ▼20.11.1
 Can the EvaluateExpression program evaluate the following expressions "1+2", "1 + 2", "(1)
