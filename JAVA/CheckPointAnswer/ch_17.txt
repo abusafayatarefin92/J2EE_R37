@@ -2,7 +2,7 @@ Chapter 17 Check Point Questions
 Section 17.2
 ▼17.2.1
 What is a text file and what is a binary file? Can you view a text file or a binary file using a text editor?
-Although it is not technically precise, a text file consists of a sequence of characters and abinary file consists of a sequence of bits. You can use a text 
+Although it is not technically precise, a text file consists of a sequence of characters and a binary file consists of a sequence of bits. You can use a text 
 editor to view a text file, but not a binary file.
 
 ▼17.2.2
@@ -18,8 +18,8 @@ converts a Unicode to a file specific encoding when writing a character and cove
 
 ▼17.3.2
 How is a Java character represented in the memory, and how is a character represented in a text file?
-Characters are represented using Unicode in the memory and characters are represented in a file using a specified encoding scheme. If no encoding scheme is 
-specified, the system's default encoding scheme is used.
+Characters are represented using Unicode in the memory and a specified encoding scheme in a file. If no encoding scheme is  specified, the system's default 
+encoding scheme is used.
 
 ▼17.3.3
 If you write the string "ABC" to an ASCII text file, what values are stored in the file?
@@ -38,7 +38,8 @@ The encoding scheme for representing a character in a Java program is the Unicod
 Section 17.4
 ▼17.4.1
 Why do you have to declare to throw IOException in the method or use a try-catch block to handle IOException for Java I/O programs?
-Almost all the methods and constructors in Java I/O classes, because there are always some unexpected situation may arise during I/O.
+Almost all the methods and constructors in Java I/O classes declare to throw IOException in the method or use a try-catch block to handle IOException for Java 
+I/O programs, because there are always some unexpected situation may arise during I/O.
 
 ▼17.4.2
 Why should you always close streams? How do you close streams?
