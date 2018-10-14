@@ -8,8 +8,8 @@ public class MyArrayList<E> extends MyAbstractList<E> {
     }
 
     public MyArrayList(E[] objects) {
-        for (int i = 0; i < objects.length; i++) {
-            add(objects[i]);
+        for (E object : objects) {
+            add(object);
         }
     }
 

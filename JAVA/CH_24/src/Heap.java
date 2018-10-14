@@ -1,14 +1,14 @@
 
 public class Heap<E extends Comparable> {
 
-    private java.util.ArrayList<E> list = new java.util.ArrayList<E>();
+    private java.util.ArrayList<E> list = new java.util.ArrayList<>();
 
     public Heap() {
     }
 
     public Heap(E[] objects) {
-        for (int i = 0; i < objects.length; i++) {
-            add(objects[i]);
+        for (E object : objects) {
+            add(object);
         }
     }
 
@@ -32,7 +32,7 @@ public class Heap<E extends Comparable> {
     }
 
     public E remove() {
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             return null;
         }
 

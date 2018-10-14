@@ -7,8 +7,8 @@ public abstract class MyAbstractList<E> implements MyList<E> {
     }
 
     protected MyAbstractList(E[] objects) {
-        for (int i = 0; i < objects.length; i++) {
-            add(objects[i]);
+        for (E object : objects) {
+            add(object);
         }
     }
 
