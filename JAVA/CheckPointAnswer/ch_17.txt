@@ -18,7 +18,7 @@ converts a Unicode to a file specific encoding when writing a character and cove
 
 ▼17.3.2
 How is a Java character represented in the memory, and how is a character represented in a text file?
-Characters are represented using Unicode in the memory and a specified encoding scheme in a file. If no encoding scheme is  specified, the system's default 
+Characters are represented using Unicode in the memory and a specified encoding scheme for a file. If no encoding scheme is  specified, the system's default 
 encoding scheme is used.
 
 ▼17.3.3
