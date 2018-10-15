@@ -208,15 +208,14 @@ Hide Answer
 Section 22.5
 ▼22.5.1
 What is dynamic programming? Give an example of dynamic programming.
-See the definition and example in the text.
-Hide Answer
+Dynamic programming is the process of solving subproblems, then combining the solutions of the subproblems to obtain an overall solution. The key idea behind 
+dynamic programming is to solve each subproblem only once and store the results for subproblems for later use to avoid redundant computing of the subproblems.
+
 ▼22.5.2
-Why is the recursive Fibonacci algorithm inefficient, but the nonrecursive Fibonacci
-algorithm efficient?
-The recursive Fibonacci algorithm is inefficient, because the subproblems in the recursive
-Fibonacci algorithm overlaps, which causes redundant work. The non- recursive Fibonacci
-algorithm is dynamic algorithm that avoids redundant work.
-Hide Answer
+Why is the recursive Fibonacci algorithm inefficient, but the nonrecursive Fibonacci algorithm efficient?
+The recursive Fibonacci algorithm is inefficient, because the subproblems in the recursive Fibonacci algorithm overlaps, which causes redundant work. The 
+non- recursive Fibonacci algorithm is dynamic algorithm that avoids redundant work.
+
 Section 22.6
 ▼22.6.1
 Prove that the following algorithm for finding the GCD of the two integers m and n is
@@ -247,18 +246,19 @@ Hide Answer
 Section 22.8
 ▼22.8.1
 What is the divide-and-conquer approach? Give an example.
-See the definition and example in the text.
-Hide Answer
+The divide-and-conquer approach divides the problem into subproblems, solves the subproblems, then combines the solutions of the subproblems to obtain the 
+solution for the entire problem. Unlike the dynamic programming approach, the subproblems in the divide-and-conquer approach don’t overlap. A subproblem is like 
+the original problem with a smaller size, so you can apply recursion to solve the problem.
+
 ▼22.8.2
 What is the difference between divide-and-conquer and dynamic programming?
 See the text.
 Hide Answer
 ▼22.8.3
-Can you design an algorithm for finding the minimum element in a list using divide-andconquer?
-What is the complexity of this algorithm?
+Can you design an algorithm for finding the minimum element in a list using divide-and-conquer? What is the complexity of this algorithm?
 Yes. Finding the minimum in the first half and the second half of the list and return the
 minimum of these two. So, the time complexity is O(n) = 2 * O(n/2) + O(1) = O(n).
-Hide Answer
+
 Section 22.9
 ▼22.9.1
 What is backtracking? Give an example.

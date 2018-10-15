@@ -2,16 +2,15 @@ Chapter 20 Check Point Questions
 Section 20.2
 ▼20.2.1
 What is a data structure?
-A data structure is a collection of data organized in some fashion.In object-oriented thinking, a data structure is an object that stores 
-other objects, referred to as data or elements. So some people refer a data structure as a container object or a collection object. To define 
-a data structure is essentially to declare a class.
+A data structure is a collection of data organized in some fashion.In object-oriented thinking, a data structure is an object that stores  other objects, 
+referred to as data or elements. So some people refer a data structure as a container object or a collection object. To define  a data structure is essentially 
+to declare a class.
 
 ▼20.2.2
-Describe the Java Collections Framework. List the interfaces, convenience abstract classes, and concrete classes under the Collection 
-interface.
-The Java Collections Framework defines the Java API for handling common data structures tasks in Java. It defines classes and interfaces for 
-storing and manipulating data in sets, lists, and maps. A convenience class is an abstract class that partially implements an interface. The 
-Java Collections Framework defines interfaces, convenience abstract classes, and concrete classes.
+Describe the Java Collections Framework. List the interfaces, convenience abstract classes, and concrete classes under the Collection interface.
+The Java Collections Framework defines the Java API for handling common data structures tasks in Java. It defines classes and interfaces for storing and 
+manipulating data in sets, lists, and maps. A convenience class is an abstract class that partially implements an interface. The Java Collections Framework 
+defines interfaces, convenience abstract classes, and concrete classes.
 
 ▼20.2.3
 Can a collection object be cloned and serialized?
@@ -23,12 +22,10 @@ addAll(Collection c).
 
 ▼20.2.5
 When should a method throw an UnsupportedOperationException?
-If a method has no meaning in the subclass, you can implement it in the subclass to throw java.lang.UnsupportedOperationException, a subclass 
-of RuntimeException. This is a good design that you can use in your project. If a method has no meaning in the subclass, you can implement it
-as follows:
+If a method has no meaning in the subclass, you can implement it in the subclass to throw java.lang.UnsupportedOperationException, a subclass  of 
+RuntimeException. This is a good design that you can use in your project. If a method has no meaning in the subclass, you can implement it as follows:
 public void someMethod() {
-throw new UnsupportedOperationException
-("Method not supported");
+throw new UnsupportedOperationException("Method not supported");
 }
 
 Section 20.3
@@ -50,10 +47,9 @@ No. They are implicitly used in a foreach loop.
 
 Section 20.4
 ▼20.4.1
-Can you use the forEach method on any instance of Collection? Where is the forEach
-method defined?
+Can you use the forEach method on any instance of Collection? Where is the forEach method defined?
 Yes. It is defined in the Iterable interface which is a super interface for Collection.
-Hide Answer
+
 ▼20.4.2
 Suppose each element in list is a StringBuilder, write a statement using a forEach method to
 change the first character to uppercase for each element in list.
@@ -163,17 +159,16 @@ java.util.sort(points,
 Comparator.comparing(Point2D::x).thenComparing(Point2D::y));
 Hide Answer
 ▼20.6.6
-Write a statement that sorts an ArrayList of strings named list in increasing order of their last
-character.
+Write a statement that sorts an ArrayList of strings named list in increasing order of their last character.
 list.sort((e1, e2) -> {
-if (e1.length() == 0)
-return -1;
-else (e2.length() == 0)
-return 1;
-else
-return charAt(e1.size() - 1) - charAt(e2.size() - 1);
+	if (e1.length() == 0)
+	return -1;
+	else if (e2.length() == 0)
+	return 1;
+	else
+	return charAt(e1.size() - 1) - charAt(e2.size() - 1);
 }
-Hide Answer
+
 ▼20.6.7
 Write a statement that sorts a two-dimensional array of double[][] in increasing order of their
 second column. For example, if the array is double[][] x = {{3, 1}, {2, -1}, {2, 0}}, the
@@ -198,13 +193,12 @@ Are all the methods in the Collections class static?
 Yes.
 
 ▼20.7.2
-Which of the following static methods in the Collections class are for lists, and which are for
-collections?
-sort, binarySearch, reverse, shuffle, max, min, disjoint, frequency
+Which of the following static methods in the Collections class are for lists, and which are for collections? sort, binarySearch, reverse, shuffle, max, min, 
+disjoint, frequency.
 The methods for lists are: sort, binarySearch, reverse, shuffle
 The methods for collections are: max, min, disjoint, frequency
 Note that all the methods for collections are also for lists, because lists are collections.
-Hide Answer
+
 ▼20.7.3
 Show the output of the following code:
 import java.util.*;
@@ -254,13 +248,13 @@ strings.
 
 ▼20.7.6
 Write a statement to find the largest element in an array of comparable objects.
-Collections.max(Arrays.asList(arrayObject))
+Collections.max(Arrays.asList(arrayObject));
 
 Section 20.8
 ▼20.8.1
 What is the return value from invoking pane.getChildren() for a pane?
 The return value is an ObservableList<Node>, which is a subtype of List<Node>.
-Hide Answer
+
 ▼20.8.2
 How do you modify the code in the MutilpleBallApp program to remove the first ball in the
 list when the button is clicked?
@@ -277,9 +271,9 @@ Section 20.9
 ▼20.9.1
 How do you create an instance of Vector? How do you add or insert a new element into a vector? How do you remove an element from a vector? How do you find the 
 size of a vector?
-Vector is the same as ArrayList except that Vector contains the synchronized methods for accessing and modifying the vector. Since Vector implements
-List, you can use the methods in List to add, remove elements from a vector, and use the size() method to find the size of a vector. To create a vector, use 
-either its constructors.
+Vector is the same as ArrayList except that Vector contains the synchronized methods for accessing and modifying the vector. Since Vector implements List, you 
+can use the methods in List to add, remove elements from a vector, and use the size() method to find the size of a vector. To create a vector, use  either its 
+constructors.
 
 ▼20.9.2
 How do you create an instance of Stack? How do you add a new element to a stack? How do you remove an element from a stack? How do you find the size of a stack?

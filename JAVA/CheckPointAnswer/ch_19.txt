@@ -12,7 +12,7 @@ dates.add(new Date());
 dates.add(new String());
 (a) will compile fine, but (b) has a compilation error on Line 3, because dates is declared as a
 list of Date objects. You cannot assign a string to the list.
-Hide Answer
+
 ▼19.2.2
 What is wrong in (a)? Is the code in (b) correct?
 (a) Prior to JDK 1.5
@@ -28,7 +28,8 @@ ArrayList<Date> .
 Hide Answer
 ▼19.2.3
 What are the benefits of using generic types?
-One important benefit is improving reliability and robustness. Potential errors can be detected by the compiler.
+One important benefit is improving reliability and robustness(the ability to withstand or overcome adverse conditions or rigorous testing). Potential errors can 
+be detected by the compiler.
 
 Section 19.3
 ▼19.3.1
