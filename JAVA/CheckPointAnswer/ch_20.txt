@@ -48,7 +48,7 @@ No. They are implicitly used in a foreach loop.
 Section 20.4
 ▼20.4.1
 Can you use the forEach method on any instance of Collection? Where is the forEach method defined?
-Yes. It is defined in the Iterable interface which is a super interface for Collection.
+Yes you can use the forEach method on any instance of Collection. It is defined in the Iterable interface which is a super interface for Collection.
 
 ▼20.4.2
 Suppose each element in list is a StringBuilder, write a statement using a forEach method to
