@@ -28,8 +28,8 @@ ArrayList<Date> .
 Hide Answer
 ▼19.2.3
 What are the benefits of using generic types?
-One important benefit is improving reliability and robustness(the ability to withstand or overcome adverse conditions or rigorous testing). Potential errors can 
-be detected by the compiler.
+One important benefit is improving reliability and robustness(the ability to withstand or overcome adverse conditions). Potential errors can  be detected by the 
+compiler.
 
 Section 19.3
 ▼19.3.1
@@ -131,7 +131,7 @@ it is illegal to refer a generic type parameter for a class in a static method o
 
 ▼19.8.5
 Can you define a custom generic exception class? Why?
-No. The JVM have to check the exception thrown from the try clause to see if it matches the type specified in a catch clause. This is impossible, because the 
+No you can't define a custom generic exception class. The JVM have to check the exception thrown from the try clause to see if it matches the type specified in a catch clause. This is impossible, because the 
 type information is not present at runtime.
 
 Section 19.9

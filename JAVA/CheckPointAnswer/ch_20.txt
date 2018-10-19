@@ -2,9 +2,9 @@ Chapter 20 Check Point Questions
 Section 20.2
 ▼20.2.1
 What is a data structure?
-A data structure is a collection of data organized in some fashion.In object-oriented thinking, a data structure is an object that stores  other objects, 
-referred to as data or elements. So some people refer a data structure as a container object or a collection object. To define  a data structure is essentially 
-to declare a class.
+A data structure is a collection of data organized in some fashion. In object-oriented thinking, a data structure is an object that stores  other objects, 
+referred to as data or elements. So some people refer a data structure as a container object or a collection object. To define  a data structure is essential to
+declare a class.
 
 ▼20.2.2
 Describe the Java Collections Framework. List the interfaces, convenience abstract classes, and concrete classes under the Collection interface.
@@ -14,7 +14,7 @@ defines interfaces, convenience abstract classes, and concrete classes.
 
 ▼20.2.3
 Can a collection object be cloned and serialized?
-Yes. The concrete classes of Set, List, and Map implements the clone() method in the Cloneable interface.
+Yes a collection object can be cloned and serialized. The concrete classes of Set, List, and Map implements the clone() method in the Cloneable interface.
 
 ▼20.2.4
 What method do you use to add all the elements from one collection to another collection?
@@ -66,7 +66,7 @@ Section 20.5
 ▼20.5.1
 How do you add and remove elements from a list? How do you traverse a list in both directions?
 Use the add or remove method to add or remove elements from a list. Use the listIterator() to obtain an iterator. This iterator allows you to traverse the list 
-bi-directional.
+bi-directionally.
 
 ▼20.5.2
 Suppose that list1 is a list that contains the strings red, yellow, and green, and that list2 is

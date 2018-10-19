@@ -45,7 +45,7 @@ count = count * 3;
 (B) 1
 (C) The ceiling of log2n times
 (D) The ceiling of log3(n/15) times
-Hide Answer
+
 ▼22.3.2
 How many stars are displayed in the following code if n is 10? How many if n is 20? Use the
 Big O notation to estimate the time complexity.
@@ -167,15 +167,11 @@ matrix by an m by k matrix.
 Adding two matrices: O(nm). Multiplying two matrices: O(nmk)
 Hide Answer
 ▼22.4.3
-Describe an algorithm for finding the occurrence of the max element in an array. Analyze the
-complexity of the algorithm.
-The algorithm can be designed as follows: Maintain two variables, max and count. max
-stores the current max number, and count stores its occurrences. Initially, assign the first
-number to max and 1 to count. Compare each subsequent number with max. If the number is
-greater than max, assign it to max and reset count to 1. If the number is equal to max,
-increment count by 1. Since each element in the array is examined only once, the complexity
-of the algorithm is O(n).
-Hide Answer
+Describe an algorithm for finding the occurrence of the max element in an array. Analyze the complexity of the algorithm.
+The algorithm can be designed as follows: Maintain two variables, max and count. max stores the current max number, and count stores its occurrences. Initially, 
+assign the first number to max and 1 to count. Compare each subsequent number with max. If the number is greater than max, assign it to max and reset count to 1.
+If the number is equal to max, increment count by 1. Since each element in the array is examined only once, the complexity of the algorithm is O(n).
+
 ▼22.4.4
 Describe an algorithm for removing duplicates from an array. Analyze the complexity of the
 algorithm.
@@ -214,7 +210,7 @@ dynamic programming is to solve each subproblem only once and store the results 
 ▼22.5.2
 Why is the recursive Fibonacci algorithm inefficient, but the nonrecursive Fibonacci algorithm efficient?
 The recursive Fibonacci algorithm is inefficient, because the subproblems in the recursive Fibonacci algorithm overlaps, which causes redundant work. The 
-non- recursive Fibonacci algorithm is dynamic algorithm that avoids redundant work.
+non-recursive Fibonacci algorithm is dynamic algorithm that avoids redundant work.
 
 Section 22.6
 ▼22.6.1
@@ -256,8 +252,8 @@ See the text.
 Hide Answer
 ▼22.8.3
 Can you design an algorithm for finding the minimum element in a list using divide-and-conquer? What is the complexity of this algorithm?
-Yes. Finding the minimum in the first half and the second half of the list and return the
-minimum of these two. So, the time complexity is O(n) = 2 * O(n/2) + O(1) = O(n).
+Yes you can design an algorithm for finding the minimum element in a list using divide-and-conquer. Finding the minimum in the first half and the second half of 
+the list and return the minimum of these two. So, the time complexity is O(n) = 2 * O(n/2) + O(1) = O(n).
 
 Section 22.9
 ▼22.9.1
