@@ -27,5 +27,10 @@ public class EmployeeService implements CommonDAO{
         
         return list;
     }
+
+    @Override
+    public void insert(Employees e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
