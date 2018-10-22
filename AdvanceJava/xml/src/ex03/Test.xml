@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<company>
+    <Staff id = "1">
+        <forstName>Abu Safayat</forstName>
+        <lastName>Arefin</lastName>
+        <salary>20000</salary>
+    </Staff>
+
+</company>

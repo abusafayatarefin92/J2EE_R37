@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface StudentDAO {
 
-    void creteTable(String sql);
+    void creatTable();
 
     void insert(Student s);
 
@@ -13,7 +13,7 @@ public interface StudentDAO {
 
     void delete(Student s);
 
-    Student getById(int id);
+    Student getById(Student s);
 
     List<Student> getStudents();
 }
