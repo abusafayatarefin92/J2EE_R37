@@ -13,7 +13,7 @@ data is called an input stream and an object for writing data is called an outpu
 Section 17.3
 ▼17.3.1
 What are the differences between text I/O and binary I/O?
-Binary I/O reads a byte from a file and copies it directly to the memory with any conversion, vice versa. Text I/O requires encoding and decoding. The JVM 
+Binary I/O reads a byte from a file and copies it directly to the memory without any conversion, vice versa. Text I/O requires encoding and decoding. The JVM 
 converts a Unicode to a file specific encoding when writing a character and coverts a file specific encoding to a Unicode when reading a character.
 
 ▼17.3.2
@@ -26,10 +26,10 @@ If you write the string "ABC" to an ASCII text file, what values are stored in t
 The values stored in the text file are 0x41 0x42 0x43.
 
 ▼17.3.4
-If you write the string "100" to an ASCII text file, what values are stored in the file? If you
-write a numeric byte-type value 100 using binary I/O, what values are stored in the file?
-If you write string "100" to an ASCII text file, the values stored are 0x31 0x30 0x30. If you
-write a numeric byte-type value 100 using binary I/O, the value stored in the file is 0x64.
+If you write the string "100" to an ASCII text file, what values are stored in the file? If you write a numeric byte-type value 100 using binary I/O, what values 
+are stored in the file?
+If you write string "100" to an ASCII text file, the values stored are 0x31 0x30 0x30. If you write a numeric byte-type value 100 using binary I/O, the value 
+stored in the file is 0x64.
 
 ▼17.3.5
 What is the encoding scheme for representing a character in a Java program? By default, what is the encoding scheme for a text file on Windows?
@@ -67,7 +67,7 @@ is created using new FileOutputStream(filename, true) or new FileOutputStream(Fi
 ▼17.4.6
 How do you append data to an existing text file using java.io.PrintWriter?
 An instance of FileInputStream can be used as an argument to construct a Scanner and an instance of FileOutputStream can be used as an argument to construct a 
-Formatter. So you can create a Formatter to append text into a file using new Formatter(new FileOutputStream("temp.txt", true)); If temp.txt does not exist, it 
+PrintWriter. So you can create a Formatter to append text into a file using new PrintWriter(new FileOutputStream("temp.txt", true)); If temp.txt does not exist, it 
 is created. If temp.txt already exists, new data is appended to the file.
 
 ▼17.4.7
@@ -102,7 +102,7 @@ ex.printStackTrace();
 Since java.io.FileNotFoundException is a subclass of IOException, the catch clause for
 java.io.FileNotFoundException should be put before the catch clause for
 java.io.IOException.
-Hide Answer
+
 ▼17.4.11
 Suppose you run the following program on Windows using the default ASCII encoding after
 the program is finished, how many bytes are there in the file t.txt? Show the contents of each
@@ -157,18 +157,14 @@ in the string. Each ASCII character takes one byte in UTF)
 Hide Answer
 ▼17.4.14
 What are the advantages of using buffered streams? Are the following statements correct?
-BufferedInputStream input1 =
-new BufferedInputStream(new FileInputStream("t.dat"));
-DataInputStream input2 = new DataInputStream(
-new BufferedInputStream(new FileInputStream("t.dat")));
-DataOutputStream output = new DataOutputStream(
-new BufferedOutputStream(new FileOutnputStream("t.dat")));
-Since physical input and output involving I/O devices are typically very slow compared with
-CPU processing speeds, buffered input/output streams can be used to improve performance.
-You can create a buffered input stream by wrapping a BufferedInputStream/BufferedReader
-on any instance of InputStream/Reader, and create a buffered output stream by wrapping a
-BufferedOutputStream/BufferedWriter on any instance of BufferedOutputStream/Writer.
-Hide Answer
+BufferedInputStream input1 = new BufferedInputStream(new FileInputStream("t.dat"));
+DataInputStream input2 = new DataInputStream(new BufferedInputStream(new FileInputStream("t.dat")));
+DataOutputStream output = new DataOutputStream(new BufferedOutputStream(new FileOutnputStream("t.dat")));
+
+Since physical input and output involving I/O devices are typically very slow compared with CPU processing speeds, buffered input/output streams can be used to 
+improve performance. You can create a buffered input stream by wrapping a BufferedInputStream/BufferedReader on any instance of InputStream/Reader, and create a
+buffered output stream by wrapping a BufferedOutputStream/BufferedWriter on any instance of BufferedOutputStream/Writer.
+
 Section 17.5
 ▼17.5.1
 How does the program check if a file already exists?
@@ -226,11 +222,12 @@ B b = new B();
 class B {
 }
 A java.io.NotSerializableException would occur.
-Hide Answer
+
 Section 17.7
 ▼17.7.1
 Can RandomAccessFile streams read and write a data file created by DataOutputStream? Can RandomAccessFile streams read and write objects?
-Yes, because they share the same interface for reading and writing data in the same format. No. Cannot write objects.
+Yes, RandomAccessFile streams can read and write a data file created by DataOutputStream because they share the same interface for reading and writing data in 
+the same format. No, RandomAccessFile streams can't read and write objects.
 
 ▼17.7.2
 Create a RandomAccessFile stream for the file address.dat to allow the updating of student
