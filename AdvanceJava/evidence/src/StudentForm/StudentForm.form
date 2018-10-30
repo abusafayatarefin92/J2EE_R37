@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
@@ -146,7 +146,11 @@
                               <Component id="jScrollPane1" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jButtonClearTable" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jButtonClearTable" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="jButtonReadFromTable" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jButtonAddTableWriteFile" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -212,7 +216,10 @@
                       <Component id="jButtonExit" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButtonClearTable" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jButtonClearTable" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonReadFromTable" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -358,6 +365,14 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelMessage">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButtonReadFromTable">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Read From Table"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonReadFromTableActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

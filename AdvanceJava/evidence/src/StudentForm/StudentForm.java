@@ -61,6 +61,7 @@ public class StudentForm extends javax.swing.JFrame {
         jButtonExit = new javax.swing.JButton();
         jButtonClearTable = new javax.swing.JButton();
         jLabelMessage = new javax.swing.JLabel();
+        jButtonReadFromTable = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
@@ -155,6 +156,13 @@ public class StudentForm extends javax.swing.JFrame {
             }
         });
 
+        jButtonReadFromTable.setText("Read From Table");
+        jButtonReadFromTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReadFromTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -189,7 +197,10 @@ public class StudentForm extends javax.swing.JFrame {
                                 .addComponent(jTextFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                                 .addComponent(jTextFieldAge, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jButtonClearTable)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButtonClearTable)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonReadFromTable))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonAddTableWriteFile)
                         .addGap(18, 18, 18)
@@ -242,7 +253,9 @@ public class StudentForm extends javax.swing.JFrame {
                     .addComponent(jButtonClear)
                     .addComponent(jButtonExit))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonClearTable)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonClearTable)
+                    .addComponent(jButtonReadFromTable))
                 .addContainerGap())
         );
 
@@ -340,7 +353,7 @@ public class StudentForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Enter valid email address");
         }else if(Integer.parseInt(jTextFieldAge.getText()) < 18 || Integer.parseInt(jTextFieldAge.getText()) > 70){
             JOptionPane.showMessageDialog(null, "Enter age between 17 to 70");
-        }else if(!jCheckBoxCoding.isSelected() || !jCheckBoxReading.isSelected() || !jCheckBoxTravelling.isSelected()){
+        }else if(!jCheckBoxCoding.isSelected() && !jCheckBoxReading.isSelected() && !jCheckBoxTravelling.isSelected()){
             JOptionPane.showMessageDialog(null, "Select a hobby");
         }else if(jComboBoxRound.getItemAt(jComboBoxRound.getSelectedIndex()) == "Select A Round"){
             JOptionPane.showMessageDialog(null, "Select a round");
@@ -410,6 +423,16 @@ public class StudentForm extends javax.swing.JFrame {
         model.setRowCount(0);
     }//GEN-LAST:event_jButtonClearTableActionPerformed
 
+    private void jButtonReadFromTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReadFromTableActionPerformed
+        // TODO add your handling code here:
+        String[] columns = {" Name " , " Email " , " Age " , " Gender " , " Hobby " , " Round " , " Note "};
+        DefaultTableModel tableModel = new DefaultTableModel(0, 7);
+        
+        tableModel.setColumnIdentifiers(columns);
+        jTable.setModel(tableModel);
+        Utils.displayStudentsDataFromFile("students", tableModel);
+    }//GEN-LAST:event_jButtonReadFromTableActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -451,6 +474,7 @@ public class StudentForm extends javax.swing.JFrame {
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonClearTable;
     private javax.swing.JButton jButtonExit;
+    private javax.swing.JButton jButtonReadFromTable;
     private javax.swing.JCheckBox jCheckBoxCoding;
     private javax.swing.JCheckBox jCheckBoxReading;
     private javax.swing.JCheckBox jCheckBoxTravelling;
