@@ -4,7 +4,7 @@ package StudentForm;
 public class Student {
     private String name;
     private String email;
-    private String age;
+    private int age;
     private String gender;
     private String education;
     private String round;
@@ -13,7 +13,7 @@ public class Student {
     public Student() {
     }
 
-    public Student(String name, String email, String age, String gender, String education, String round, String note) {
+    public Student(String name, String email, int age, String gender, String education, String round, String note) {
         this.name = name;
         this.email = email;
         this.age = age;
@@ -31,7 +31,7 @@ public class Student {
         return email;
     }
 
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 

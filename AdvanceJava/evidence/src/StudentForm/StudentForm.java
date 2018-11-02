@@ -313,17 +313,17 @@ public class StudentForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean checkEmailValidity(String eamil){
-       int atPos = eamil.indexOf("@");
-        int dotPos = eamil.lastIndexOf(".");
-        
-        if(atPos > 2 && (dotPos - atPos) > 2 && dotPos < eamil.length() - 2){
+    public boolean checkEmailValidity(String emil) {
+        int atPos = emil.indexOf("@");
+        int dotPos = emil.lastIndexOf(".");
+
+        if (atPos > 2 && (dotPos - atPos) > 2 && dotPos < emil.length() - 2) {
             return true;
-        }else{
-        return false; 
+        } else {
+            return false;
         }
     }
-    
+
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -345,56 +345,56 @@ public class StudentForm extends javax.swing.JFrame {
 
     private void jButtonAddTableWriteFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddTableWriteFileActionPerformed
         // TODO add your handling code here:
-        String name = "", email = "", age = "", gender = "", hobby = "", round = "", note = ""; 
-        
-        if(jTextFieldName.getText().length() < 2){
+        String name = "", email = "", age = "", gender = "", hobby = "", round = "", note = "";
+
+        if (jTextFieldName.getText().length() < 2) {
             JOptionPane.showMessageDialog(null, "Enter your name");
-        }else if(!checkEmailValidity(jTextFieldEmail.getText()) || jTextFieldEmail.getText().length() < 2){
+        } else if (!checkEmailValidity(jTextFieldEmail.getText()) || jTextFieldEmail.getText().length() < 2) {
             JOptionPane.showMessageDialog(null, "Enter valid email address");
-        }else if(Integer.parseInt(jTextFieldAge.getText()) < 18 || Integer.parseInt(jTextFieldAge.getText()) > 70){
+        } else if (Integer.parseInt(jTextFieldAge.getText()) < 18 || Integer.parseInt(jTextFieldAge.getText()) > 70) {
             JOptionPane.showMessageDialog(null, "Enter age between 17 to 70");
-        }else if(!jCheckBoxCoding.isSelected() && !jCheckBoxReading.isSelected() && !jCheckBoxTravelling.isSelected()){
+        } else if (!jCheckBoxCoding.isSelected() && !jCheckBoxReading.isSelected() && !jCheckBoxTravelling.isSelected()) {
             JOptionPane.showMessageDialog(null, "Select a hobby");
-        }else if(jComboBoxRound.getItemAt(jComboBoxRound.getSelectedIndex()) == "Select A Round"){
+        } else if (jComboBoxRound.getItemAt(jComboBoxRound.getSelectedIndex()) == "Select A Round") {
             JOptionPane.showMessageDialog(null, "Select a round");
-        }else if(jTextAreaNote.getText().length() < 5){
+        } else if (jTextAreaNote.getText().length() < 5) {
             JOptionPane.showMessageDialog(null, "Enter at least 5 characters");
-        }else{
+        } else {
             name = jTextFieldName.getText();
             email = jTextFieldEmail.getText();
             age = jTextFieldAge.getText();
-            if(jRadioButtonMale.isSelected()){
+            if (jRadioButtonMale.isSelected()) {
                 gender = jRadioButtonMale.getText();
             }
-            
-            if(jRadioButtonFemale.isSelected()){
+
+            if (jRadioButtonFemale.isSelected()) {
                 gender = jRadioButtonFemale.getText();
             }
-            
-            if(jCheckBoxCoding.isSelected()){
+
+            if (jCheckBoxCoding.isSelected()) {
                 hobby += jCheckBoxCoding.getText() + " ";
             }
-            
-            if(jCheckBoxReading.isSelected()){
+
+            if (jCheckBoxReading.isSelected()) {
                 hobby += jCheckBoxReading.getText() + " ";
             }
-            
-            if(jCheckBoxTravelling.isSelected()){
+
+            if (jCheckBoxTravelling.isSelected()) {
                 hobby += jCheckBoxTravelling.getText() + " ";
             }
-            
+
             round = jComboBoxRound.getItemAt(jComboBoxRound.getSelectedIndex());
             note = jTextAreaNote.getText();
-            
-            Student student = new Student(name,email,Integer.parseInt(age),gender,hobby,round,note);
+
+            Student student = new Student(name, email, Integer.parseInt(age), gender, hobby, round, note);
             List<Student> students = new ArrayList<>();
-            
+
             students.add(student);
-            
+
             DefaultTableModel model = (DefaultTableModel) jTable.getModel();
             Object[] row = new Object[7];
-            
-            for(int i = 0; i < students.size(); i++){
+
+            for (int i = 0; i < students.size(); i++) {
                 row[0] = students.get(i).getName();
                 row[1] = students.get(i).getEmail();
                 row[2] = students.get(i).getAge();
@@ -402,17 +402,17 @@ public class StudentForm extends javax.swing.JFrame {
                 row[4] = students.get(i).getHobby();
                 row[5] = students.get(i).getRound();
                 row[6] = students.get(i).getNote();
-                
+
                 model.addRow(row);
-                
+
                 try {
                     Utils.writeToFile("students", students);
                 } catch (Exception ex) {
                     Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
-            
+
             jLabelMessage.setText("Successfully added into table and write to file");
         }
     }//GEN-LAST:event_jButtonAddTableWriteFileActionPerformed
@@ -425,9 +425,9 @@ public class StudentForm extends javax.swing.JFrame {
 
     private void jButtonReadFromTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReadFromTableActionPerformed
         // TODO add your handling code here:
-        String[] columns = {" Name " , " Email " , " Age " , " Gender " , " Hobby " , " Round " , " Note "};
+        String[] columns = {" Name ", " Email ", " Age ", " Gender ", " Hobby ", " Round ", " Note "};
         DefaultTableModel tableModel = new DefaultTableModel(0, 7);
-        
+
         tableModel.setColumnIdentifiers(columns);
         jTable.setModel(tableModel);
         Utils.displayStudentsDataFromFile("students", tableModel);

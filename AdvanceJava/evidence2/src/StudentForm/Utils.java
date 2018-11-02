@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Utils {
 
-    public void writeToFile(String fileName, List<Student> student) throws Exception {
+    public static void writeToFile(String fileName, List<Student> student) throws Exception {
         File dstFile = new File(fileName + ".txt");
 
         try {
@@ -33,7 +33,7 @@ public class Utils {
         }
     }
 
-    public void readStudentdataFromFile(String fileName, DefaultTableModel model) {
+    public static void readStudentdataFromFile(String fileName, DefaultTableModel model) {
         String line;
         BufferedReader reader;
 
