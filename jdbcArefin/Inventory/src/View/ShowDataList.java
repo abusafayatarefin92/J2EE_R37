@@ -7,6 +7,7 @@ package View;
 
 import Connection.MySqlDbConnection;
 import Domain.Catagory;
+import Domain.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,21 +24,21 @@ import java.util.logging.Logger;
 public class ShowDataList {
 
     private static Connection conn = MySqlDbConnection.getConnection();
-    
+
     public static List<Catagory> showCatagoryTable() {
         List<Catagory> list = new ArrayList<>();
         String sql = "select * from catagory";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 list.add(new Catagory(rs.getInt(1), rs.getString(2)));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ShowDataList.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return list;
     }
 }

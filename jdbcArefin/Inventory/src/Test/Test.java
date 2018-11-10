@@ -6,7 +6,6 @@
 package Test;
 
 //import Create.CreateTableUsingMySql;
-
 import Domain.Catagory;
 import Domain.Product;
 import Insert.InsertTableUsingMySql;
@@ -23,13 +22,13 @@ public class Test {
         //CreateTableUsingMySql.createCatagorytable();
         //CreateTableUsingMySql.createProductTable();
         Product p = new Product();
-        p.setProduct_name("LG");
+        p.setProduct_name("Sony");
         p.setProduct_quantity(5);
-        p.setProduct_unit_price(40000.00);
-        p.setProduct_total_price(200000.00);
+        p.setProduct_unit_price(70000.00);
+        p.setProduct_total_price(350000.00);
         p.setPurchase_date(new Date());
         Catagory c = new Catagory();
-        c.setCatagory_id(101);
+        c.setCatagory_id(104);
         p.setCatagory(c);
         InsertTableUsingMySql.insertProducttable(p);
     }

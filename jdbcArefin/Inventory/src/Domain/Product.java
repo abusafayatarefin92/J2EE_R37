@@ -24,6 +24,17 @@ public class Product {
     public Product() {
     }
 
+    public Product(int product_id, String product_name, int product_quantity, double product_unit_price, double product_total_price, Date purchase_date, Catagory catagory) {
+        this.product_id = product_id;
+        this.product_name = product_name;
+        this.product_quantity = product_quantity;
+        this.product_unit_price = product_unit_price;
+        this.product_total_price = product_total_price;
+        this.purchase_date = purchase_date;
+        this.catagory = catagory;
+    }
+
+    
 
     public int getProduct_id() {
         return product_id;
