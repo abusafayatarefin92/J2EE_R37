@@ -8,7 +8,7 @@ package Test;
 //import Create.CreateTableUsingMySql;
 import Domain.Catagory;
 import Domain.Product;
-import Insert.InsertTableUsingMySql;
+import Service.InsertTableUsingMySql;
 import java.util.Date;
 
 

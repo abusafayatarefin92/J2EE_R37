@@ -7,7 +7,6 @@ package View;
 
 import Connection.MySqlDbConnection;
 import Domain.Catagory;
-import Domain.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,4 +40,5 @@ public class ShowDataList {
 
         return list;
     }
+    
 }

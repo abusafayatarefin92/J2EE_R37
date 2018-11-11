@@ -7,7 +7,8 @@ package View;
 
 import Domain.Catagory;
 import Domain.Product;
-import Insert.InsertTableUsingMySql;
+import Service.InsertTableUsingMySql;
+import Service.UpateTableUsingMySql;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +25,7 @@ public class InventoryView extends javax.swing.JFrame {
     public InventoryView() {
         initComponents();
         displayCatagoryList();
-        
+        displayProductList();
     }
 
     /**
@@ -38,6 +39,7 @@ public class InventoryView extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollBar1 = new javax.swing.JScrollBar();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,6 +48,7 @@ public class InventoryView extends javax.swing.JFrame {
         jTextFieldCatagoryName = new javax.swing.JTextField();
         jButtonCatagoryInsert = new javax.swing.JButton();
         jLabelCatagoryMessage = new javax.swing.JLabel();
+        jButtonCatagoryUpdate = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCatagory = new javax.swing.JTable();
@@ -65,6 +68,9 @@ public class InventoryView extends javax.swing.JFrame {
         jTextFieldCatagory = new javax.swing.JTextField();
         jButtonProductInsert = new javax.swing.JButton();
         jLabelProductMessaage = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextFieldProductID = new javax.swing.JTextField();
+        jButtonProductUpdate = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableProduct = new javax.swing.JTable();
@@ -104,6 +110,13 @@ public class InventoryView extends javax.swing.JFrame {
 
         jLabelCatagoryMessage.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
 
+        jButtonCatagoryUpdate.setText("Update");
+        jButtonCatagoryUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCatagoryUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -127,9 +140,12 @@ public class InventoryView extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonCatagoryInsert)
-                                    .addComponent(jLabelCatagoryMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jLabelCatagoryMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButtonCatagoryInsert)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(jButtonCatagoryUpdate)))))
+                        .addGap(0, 96, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,10 +162,12 @@ public class InventoryView extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldCatagoryName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(jButtonCatagoryInsert)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCatagoryInsert)
+                    .addComponent(jButtonCatagoryUpdate))
                 .addGap(18, 18, 18)
-                .addComponent(jLabelCatagoryMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabelCatagoryMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -194,7 +212,24 @@ public class InventoryView extends javax.swing.JFrame {
 
         jTextFieldQuantity.setText("0");
 
+        jTextFieldTotalPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTotalPriceActionPerformed(evt);
+            }
+        });
+
+        jTextFieldDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDateActionPerformed(evt);
+            }
+        });
+
         jTextFieldCatagory.setText("0");
+        jTextFieldCatagory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCatagoryActionPerformed(evt);
+            }
+        });
 
         jButtonProductInsert.setText("Insert");
         jButtonProductInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -205,6 +240,17 @@ public class InventoryView extends javax.swing.JFrame {
 
         jLabelProductMessaage.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
 
+        jLabel11.setText("ID");
+
+        jTextFieldProductID.setText("0");
+
+        jButtonProductUpdate.setText("Update");
+        jButtonProductUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProductUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -213,28 +259,39 @@ public class InventoryView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(59, 59, 59)
+                        .addComponent(jTextFieldTotalPrice))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(35, 35, 35)
+                            .addComponent(jLabel11))
+                        .addGap(64, 64, 64)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldProductName)
                             .addComponent(jTextFieldQuantity)
                             .addComponent(jTextFieldUnitPrice)
-                            .addComponent(jTextFieldTotalPrice)
-                            .addComponent(jTextFieldDate)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(0, 90, Short.MAX_VALUE))
+                                .addGap(0, 81, Short.MAX_VALUE))
+                            .addComponent(jTextFieldProductID)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldDate)
                             .addComponent(jTextFieldCatagory)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonProductInsert)
-                            .addComponent(jLabelProductMessaage, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelProductMessaage, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jButtonProductInsert)
+                                .addGap(33, 33, 33)
+                                .addComponent(jButtonProductUpdate)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -243,35 +300,44 @@ public class InventoryView extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextFieldUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextFieldTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextFieldCatagory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonProductInsert)
+                    .addComponent(jTextFieldProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldTotalPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addGap(56, 56, 56))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jTextFieldCatagory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonProductInsert)
+                    .addComponent(jButtonProductUpdate))
+                .addGap(18, 18, 18)
                 .addComponent(jLabelProductMessaage, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(57, 57, 57))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -294,7 +360,7 @@ public class InventoryView extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -302,26 +368,30 @@ public class InventoryView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(232, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 226, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -336,6 +406,25 @@ public class InventoryView extends javax.swing.JFrame {
         for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getCatagory_id();
             row[1] = list.get(i).getCatagory_name();
+
+            model.addRow(row);
+        }
+    }
+
+    private void displayProductList() {
+        List<Product> list = InsertTableUsingMySql.getProductList();
+        DefaultTableModel model = (DefaultTableModel) jTableProduct.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[7];
+
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getProduct_id();
+            row[1] = list.get(i).getProduct_name();
+            row[2] = list.get(i).getProduct_quantity();
+            row[3] = list.get(i).getProduct_unit_price();
+            row[4] = list.get(i).getProduct_total_price();
+            row[5] = list.get(i).getPurchase_date();
+            row[6] = list.get(i).getCatagory().getCatagory_id();
 
             model.addRow(row);
         }
@@ -364,8 +453,46 @@ public class InventoryView extends javax.swing.JFrame {
         p.setCatagory(c);
         InsertTableUsingMySql.insertProducttable(p);
         jLabelProductMessaage.setText("Data Inserted");
-        
+        displayProductList();
     }//GEN-LAST:event_jButtonProductInsertActionPerformed
+
+    private void jTextFieldDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDateActionPerformed
+
+    private void jTextFieldTotalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTotalPriceActionPerformed
+
+    private void jTextFieldCatagoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCatagoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCatagoryActionPerformed
+
+    private void jButtonCatagoryUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCatagoryUpdateActionPerformed
+        // TODO add your handling code here:
+        Catagory c = new Catagory();
+        c.setCatagory_name(jTextFieldCatagoryName.getText());
+        c.setCatagory_id(Integer.parseInt(jTextFieldCatagoryID.getText()));
+        UpateTableUsingMySql.updateCatagoryTable(c);
+        jLabelCatagoryMessage.setText("Data Updated");
+        displayCatagoryList();
+    }//GEN-LAST:event_jButtonCatagoryUpdateActionPerformed
+
+    private void jButtonProductUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProductUpdateActionPerformed
+        // TODO add your handling code here:
+        Product p = new Product();
+        p.setProduct_name(jTextFieldProductName.getText());
+        p.setProduct_quantity(Integer.parseInt(jTextFieldQuantity.getText()));
+        p.setProduct_unit_price(Double.parseDouble(jTextFieldUnitPrice.getText()));
+        p.setProduct_total_price(Double.parseDouble(jTextFieldTotalPrice.getText()));
+        Catagory c = new Catagory();
+        c.setCatagory_id(Integer.parseInt(jTextFieldCatagory.getText()));
+        p.setCatagory(c);
+        p.setProduct_id(Integer.parseInt(jTextFieldProductID.getText()));
+        UpateTableUsingMySql.updateProductTable(p);
+        jLabelProductMessaage.setText("Data Updated");
+        displayProductList();
+    }//GEN-LAST:event_jButtonProductUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -404,9 +531,12 @@ public class InventoryView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCatagoryInsert;
+    private javax.swing.JButton jButtonCatagoryUpdate;
     private javax.swing.JButton jButtonProductInsert;
+    private javax.swing.JButton jButtonProductUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -421,6 +551,7 @@ public class InventoryView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -431,6 +562,7 @@ public class InventoryView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldCatagoryID;
     private javax.swing.JTextField jTextFieldCatagoryName;
     private javax.swing.JTextField jTextFieldDate;
+    private javax.swing.JTextField jTextFieldProductID;
     private javax.swing.JTextField jTextFieldProductName;
     private javax.swing.JTextField jTextFieldQuantity;
     private javax.swing.JTextField jTextFieldTotalPrice;

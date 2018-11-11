@@ -3,14 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Insert;
+package Service;
 
 import Connection.MySqlDbConnection;
 import Domain.Catagory;
 import Domain.Product;
+import View.ShowDataList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,5 +53,23 @@ public class InsertTableUsingMySql {
         } catch (SQLException ex) {
             Logger.getLogger(InsertTableUsingMySql.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+ public static List<Product> getProductList(){
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from product";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+             while(rs.next()){
+                 Catagory c = new Catagory();
+                 c.setCatagory_id(rs.getInt(7));
+                 list.add(new Product(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getDate(6), c));
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ShowDataList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
     }
 }
