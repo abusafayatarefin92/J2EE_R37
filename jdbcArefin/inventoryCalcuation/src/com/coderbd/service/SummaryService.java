@@ -24,7 +24,7 @@ public class SummaryService {
     private String productCode;
      */
     public static void createTable() {
-        String sql = "create table summary(id int auto_increment primary key, productName varchar(50) not null,productCode varchar(30) not null, totalQty int(11) not null,soldQty int(11) not null,availableQty int(11) not null,lastUpdate Date, product_id int(11) not null, foreign key (product_id) references purchase(id))";
+        String sql = "create table summary(id int auto_increment primary key, productName varchar(50) not null, productCode varchar(30) not null, totalQty int(11) not null, soldQty int(11) not null, availableQty int(11) not null, lastUpdate Date, product_id int(11) not null, foreign key (product_id) references purchase(id))";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
@@ -35,7 +35,7 @@ public class SummaryService {
     }
     
     public static void insert(Summary summary) {
-        String sql = "insert into summary(productName,productCode, totalQty,soldQty,availableQty,lastUpdate, product_id) values(?,?,?,?,?,?,?)";
+        String sql = "insert into summary(productName, productCode, totalQty, soldQty, availableQty, lastUpdate, product_id) values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, summary.getProductName());
@@ -53,7 +53,7 @@ public class SummaryService {
     }
     
     public static void update(Summary summary) {
-        String sql = "update summary set totalQty=?,soldQty=?,availableQty=?,lastUpdate=? where productCode=?";
+        String sql = "update summary set totalQty=?, soldQty=?, availableQty=?, lastUpdate=? where productCode=?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, summary.getTotalQty());

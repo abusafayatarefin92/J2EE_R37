@@ -40,7 +40,7 @@ public class MenuFormSalesMan {
             @Override
             public void actionPerformed(ActionEvent e) {
                  f.setVisible(false);
-                new DashBoard().setVisible(true);
+                new UserDashBoard().setVisible(true);
             }
         });
        

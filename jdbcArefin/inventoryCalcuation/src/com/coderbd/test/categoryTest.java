@@ -2,8 +2,6 @@ package com.coderbd.test;
 
 import com.coderbd.domain.ProductCategory;
 import com.coderbd.service.ProductCategoryService;
-import java.util.Locale;
-
 
 /**
  *
@@ -12,9 +10,9 @@ import java.util.Locale;
 public class categoryTest {
 
     public static void main(String[] args) {
-       // ProductCategoryService.createTable();
+        //ProductCategoryService.createTable();
         ProductCategory cat=new ProductCategory();
-        cat.setName("Drone");
+        cat.setName("Car");
         
         ProductCategoryService.insert(cat);
 

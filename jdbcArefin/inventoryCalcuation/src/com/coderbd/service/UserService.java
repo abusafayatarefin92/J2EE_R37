@@ -16,7 +16,7 @@ public class UserService {
     static Connection conn = MySqlDbConnection.getConnection();
 
     public static void createTable() {
-        String sql = "create table user(id int auto_increment primary key, username varchar(30) not null, password varchar(30) not null,userType varchar(30) not null,firstName varchar(30),  lastName varchar(30), email varchar(30) not null, mobile varchar(30) not null, regiDate Date, status bit)";
+        String sql = "create table user(id int auto_increment primary key, username varchar(30) not null, password varchar(30) not null, userType varchar(30) not null, firstName varchar(30), lastName varchar(30), email varchar(30) not null, mobile varchar(30) not null, regiDate Date, status bit)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();

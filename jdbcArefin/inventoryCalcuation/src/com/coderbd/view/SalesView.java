@@ -3,6 +3,7 @@ package com.coderbd.view;
 import com.coderbd.domain.Purchase;
 import com.coderbd.domain.Sales;
 import com.coderbd.domain.Summary;
+import com.coderbd.domain.User;
 import com.coderbd.service.PurchaseService;
 import com.coderbd.service.SalesService;
 import com.coderbd.service.SummaryService;
@@ -444,6 +445,9 @@ public class SalesView extends javax.swing.JFrame {
         Purchase purchase = new Purchase();
         purchase.setId(Integer.parseInt(txtProductId.getText().trim()));
         sales.setPurchase(purchase);
+        User user = new User();
+        user.setId(Login.loggedInUserId);
+        sales.setUser(user);
         SalesService.insertForSales(sales);
         clearForm();
         lblMsg.setText("Sales Success!");

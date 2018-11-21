@@ -20,7 +20,7 @@ public class PurchaseService {
     static Connection conn = MySqlDbConnection.getConnection();
 
     public static void createTable() {
-        String sql = "create table purchase(id int auto_increment primary key, productName varchar(30) not null, productCode varchar(30) not null,qty int(11) not null,unitprice double not null,  totalPrice double not null, purchasedate Date not null, cat_id int(11) not null, foreign key (cat_id) references category(id),user_id int(11) not null, foreign key (user_id) references user(id))";
+        String sql = "create table purchase(id int auto_increment primary key, productName varchar(30) not null, productCode varchar(30) not null, qty int(11) not null, unitprice double not null, totalPrice double not null, purchasedate Date not null, cat_id int(11) not null, foreign key (cat_id) references category(id),user_id int(11) not null, foreign key (user_id) references user(id))";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
@@ -31,7 +31,7 @@ public class PurchaseService {
     }
 
     public static void insert(Purchase purchase) {
-        String sql = "insert into purchase(productName, productCode,qty, unitprice, totalPrice, purchasedate, cat_id,user_id) values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into purchase(productName, productCode, qty, unitprice, totalPrice, purchasedate, cat_id, user_id) values(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, purchase.getProductName());

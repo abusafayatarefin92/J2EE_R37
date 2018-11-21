@@ -33,21 +33,21 @@ public class PurchaseView extends javax.swing.JFrame {
         displaySummaryIntoTable();
         displayPurchaseIntoTable();
         MenuFormAdmin.commonMenuForAdmin(this);
-         txtLoginMsg.setText(Login.loggedIn);
+        txtLoginMsg.setText(Login.loggedIn);
     }
     private DefaultComboBoxModel comboBoxModel = null;
-    
+
     public void comboBoxItemsFromDatabase() {
         comboBoxModel = new DefaultComboBoxModel();
         List<ProductCategory> list = ProductCategoryService.getCatList();
         comboBoxModel.addElement("Select A category");
         for (ProductCategory pc : list) {
-            
+
             comboBoxModel.addElement(pc.getId() + " " + pc.getName());
         }
         cmbCategory.setModel(comboBoxModel);
     }
-    
+
     public void clearForm() {
         cmbCategory.setSelectedIndex(0);
         txtPName.setText("");
@@ -57,7 +57,7 @@ public class PurchaseView extends javax.swing.JFrame {
         txtTotalPrice.setText("");
         lblMsg.setText("");
     }
-    
+
     public void displaySummaryIntoTable() {
         DefaultTableModel model = (DefaultTableModel) tblSummary.getModel();
         model.setRowCount(0);
@@ -72,9 +72,9 @@ public class PurchaseView extends javax.swing.JFrame {
             row[5] = summarys.get(i).getPurchase().getProductCategory().getName();
             model.addRow(row);
         }
-        
+
     }
-    
+
     public void displayPurchaseIntoTable() {
         DefaultTableModel model = (DefaultTableModel) tblPurchase.getModel();
         model.setRowCount(0);
@@ -88,10 +88,10 @@ public class PurchaseView extends javax.swing.JFrame {
             row[4] = list.get(i).getTotalPrice();
             row[5] = list.get(i).getPurchasedate();
             row[6] = list.get(i).getProductCategory().getName();
-            
+
             model.addRow(row);
         }
-        
+
     }
 
     /**
@@ -139,6 +139,7 @@ public class PurchaseView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setText("Sales & Inventory Giant ~ Purchase");
@@ -158,16 +159,14 @@ public class PurchaseView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(txtLoginMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addContainerGap())))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtLoginMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Purchase New  Products");
@@ -175,6 +174,11 @@ public class PurchaseView extends javax.swing.JFrame {
         jLabel5.setText("Category");
 
         cmbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCategoryActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Product Name");
 
@@ -308,7 +312,7 @@ public class PurchaseView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPurchase)
                     .addComponent(btnClear))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
@@ -441,10 +445,10 @@ public class PurchaseView extends javax.swing.JFrame {
         pc.setId(Integer.parseInt(splited[0]));
         User user = new User();
         user.setId(Login.loggedInUserId);
-        
+
         Purchase p = new Purchase(txtPName.getText(), txtPCode.getText(), Integer.parseInt(txtQty.getText()), Double.parseDouble(txtUnitPrice.getText()), Double.parseDouble(txtTotalPrice.getText()), new Date(), pc, user);
         PurchaseService.insertMain(p);
-        
+
         clearForm();
         lblMsg.setText("Purchase Success!");
         displaySummaryIntoTable();
@@ -464,9 +468,9 @@ public class PurchaseView extends javax.swing.JFrame {
         if (txtUnitPrice.getText().trim().length() < 1 || txtQty.getText().trim().length() < 1) {
             txtTotalPrice.setText(String.valueOf(x * y));
         } else {
-            x = Integer.parseInt(txtUnitPrice.getText());
-            y = Double.parseDouble(txtQty.getText());
-            
+            x = Integer.parseInt(txtQty.getText());
+            y = Double.parseDouble(txtUnitPrice.getText());
+
             txtTotalPrice.setText(String.valueOf(x * y));
         }
     }//GEN-LAST:event_txtQtyKeyTyped
@@ -489,7 +493,7 @@ public class PurchaseView extends javax.swing.JFrame {
         } catch (NullPointerException e) {
             lblMsg.setText("Enter Valid Product Code");
         }
-        
+
 
     }//GEN-LAST:event_btnSearchActionPerformed
 
@@ -500,9 +504,13 @@ public class PurchaseView extends javax.swing.JFrame {
 
     private void txtQtyKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQtyKeyPressed
         // TODO add your handling code here:
-        double price = Double.parseDouble(txtUnitPrice.getText().trim()) * Integer.parseInt(txtQty.getText().trim());
-        txtTotalPrice.setText(String.valueOf(price));
+//        double price = Double.parseDouble(txtUnitPrice.getText().trim()) * Integer.parseInt(txtQty.getText().trim());
+//        txtTotalPrice.setText(String.valueOf(price));
     }//GEN-LAST:event_txtQtyKeyPressed
+
+    private void cmbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbCategoryActionPerformed
 
     /**
      * @param args the command line arguments

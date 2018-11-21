@@ -21,7 +21,7 @@ public class SalesService {
     static Connection conn = MySqlDbConnection.getConnection();
 
     public static void createTable() {
-        String sql = "create table sales(id int auto_increment primary key, productName varchar(30) not null, productCode varchar(30) not null,qty int(11) not null,unitprice double not null,  totalPrice double not null, salesdate Date not null, product_id int(11) not null, foreign key (product_id) references purchase(id))";
+        String sql = "create table sales(id int auto_increment primary key, productName varchar(30) not null, productCode varchar(30) not null, qty int(11) not null, unitprice double not null, totalPrice double not null, salesdate Date not null, product_id int(11) not null, foreign key (product_id) references purchase(id), user_id int(11) not null, foreign key (user_id) references user(id))";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
@@ -32,7 +32,7 @@ public class SalesService {
     }
 
     public static void insert(Sales sales) {
-        String sql = "insert into sales(productName, productCode,qty, unitprice, totalPrice, salesdate, product_id, user_id) values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into sales(productName, productCode, qty, unitprice, totalPrice, salesdate, product_id, user_id) values(?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sales.getProductName());
@@ -90,9 +90,9 @@ public class SalesService {
                 Purchase p = new Purchase();
                 p.setProductCategory(pc);
                 sales.setPurchase(p);
-                User user = new User();
-                user.setId(rs.getInt(9));
-                sales.setUser(user);
+//                User user = new User();
+//                user.setId(rs.getInt(8));
+//                sales.setUser(user);
                 list.add(sales);
             }
 
