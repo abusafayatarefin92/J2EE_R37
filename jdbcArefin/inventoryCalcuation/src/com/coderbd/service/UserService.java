@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public static void insert(User user) {
-        String sql = "insert into user(username, password,userType, firstName, lastName, email, mobile, regiDate, status) values(?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into user(username, password, userType, firstName, lastName, email, mobile, regiDate, status) values(?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, user.getUsername());

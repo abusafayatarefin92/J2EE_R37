@@ -23,22 +23,19 @@ public class SalesViewForSalesMan extends javax.swing.JFrame {
     public SalesViewForSalesMan() {
         initComponents();
         displaySummaryIntoTable();
-        if (rAllSales.isSelected() == true) {
-            displaySalesIntoTable();
-        }
-
+        displaySalesIntoTable();
         txtProductId.setVisible(false);
         MenuFormSalesMan.commonMenuForSalesMan(this);
         txtLoginMsg.setText(Login.loggedIn);
     }
 
     public void clearForm() {
-
+        txtProductId.setText("0");
         txtPName.setText("");
         txtPCode.setText("");
-        txtQty.setText("");
-        txtUnitPrice.setText("");
-        txtTotalPrice.setText("");
+        txtQty.setText("0");
+        txtUnitPrice.setText("0");
+        txtTotalPrice.setText("0");
         lblMsg.setText("");
     }
 
@@ -118,7 +115,6 @@ public class SalesViewForSalesMan extends javax.swing.JFrame {
         tblSales = new javax.swing.JTable();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        rAllSales = new javax.swing.JRadioButton();
         txtStartDate = new javax.swing.JTextField();
         txtEndDate = new javax.swing.JTextField();
         btnViewSales = new javax.swing.JButton();
@@ -142,9 +138,8 @@ public class SalesViewForSalesMan extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtLoginMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(84, 84, 84)
+                .addComponent(txtLoginMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,9 +336,6 @@ public class SalesViewForSalesMan extends javax.swing.JFrame {
 
         jLabel12.setText("To Date");
 
-        rAllSales.setSelected(true);
-        rAllSales.setText("All");
-
         txtStartDate.setText("2018-01-15");
 
         txtEndDate.setText("2018-12-31");
@@ -365,14 +357,13 @@ public class SalesViewForSalesMan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(rAllSales)
-                        .addGap(26, 26, 26)
+                        .addGap(20, 20, 20)
                         .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(27, 27, 27)
                         .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(20, 20, 20)
                         .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnViewSales)
@@ -383,17 +374,14 @@ public class SalesViewForSalesMan extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12)
-                        .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnViewSales))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rAllSales)
-                        .addComponent(jLabel11)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewSales)
+                    .addComponent(jLabel11))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -456,12 +444,13 @@ public class SalesViewForSalesMan extends javax.swing.JFrame {
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
+        clearForm();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         try {
-            if (txtPCode.getText().trim().length() >= 5) {
+            if (txtPCode.getText().trim().length() >= 4) {
 
                 Summary summary = SummaryService.getSummaryByProductCode(txtPCode.getText().trim());
                 txtAvialble.setText(String.valueOf(summary.getAvailableQty()));
@@ -599,7 +588,6 @@ public class SalesViewForSalesMan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblMsg;
-    private javax.swing.JRadioButton rAllSales;
     private javax.swing.JTable tblSales;
     private javax.swing.JTable tblSummary;
     private javax.swing.JLabel txtAvialble;

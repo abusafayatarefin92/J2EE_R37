@@ -194,7 +194,7 @@ public class ReportService {
 
     public static Double getTotalPurchaseAmount() {
         Double totalPurchaseAmount = 0.0;
-        String sql = " select totalPrice from purchase";
+        String sql = "select totalPrice from purchase";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();

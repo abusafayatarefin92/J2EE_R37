@@ -152,8 +152,7 @@ public class PurchaseView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(44, 44, 44)
-                .addComponent(txtLoginMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(txtLoginMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,6 +199,11 @@ public class PurchaseView extends javax.swing.JFrame {
         jLabel8.setText("Unit Price");
 
         txtUnitPrice.setText("0");
+        txtUnitPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnitPriceActionPerformed(evt);
+            }
+        });
         txtUnitPrice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtUnitPriceKeyTyped(evt);
@@ -209,6 +213,11 @@ public class PurchaseView extends javax.swing.JFrame {
         jLabel9.setText("Qty");
 
         txtQty.setText("0");
+        txtQty.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQtyActionPerformed(evt);
+            }
+        });
         txtQty.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtQtyKeyPressed(evt);
@@ -221,6 +230,11 @@ public class PurchaseView extends javax.swing.JFrame {
         jLabel10.setText("Total Price");
 
         txtTotalPrice.setText("0");
+        txtTotalPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalPriceActionPerformed(evt);
+            }
+        });
 
         lblMsg.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -466,6 +480,8 @@ public class PurchaseView extends javax.swing.JFrame {
         int x = 0;
         double y = 0;
         if (txtUnitPrice.getText().trim().length() < 1 || txtQty.getText().trim().length() < 1) {
+            x = 0;
+            y = 0;
             txtTotalPrice.setText(String.valueOf(x * y));
         } else {
             x = Integer.parseInt(txtQty.getText());
@@ -511,6 +527,18 @@ public class PurchaseView extends javax.swing.JFrame {
     private void cmbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbCategoryActionPerformed
+
+    private void txtUnitPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnitPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnitPriceActionPerformed
+
+    private void txtQtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQtyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQtyActionPerformed
+
+    private void txtTotalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalPriceActionPerformed
 
     /**
      * @param args the command line arguments

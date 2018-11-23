@@ -28,14 +28,7 @@ public class MenuFormAdmin {
                 new DashBoard().setVisible(true);
             }
         });
-        JMenuItem pCategory = new JMenuItem("category");
-        pCategory.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                f.setVisible(false);
-                new DashBoard().setVisible(true);
-            }
-        });
+        
         JMenuItem purchase = new JMenuItem("Purchase");
         purchase.addActionListener(new ActionListener() {
             @Override
@@ -77,8 +70,6 @@ public class MenuFormAdmin {
             }
         });
         file.add(dashboard);
-        file.addSeparator();
-        file.add(pCategory);
         file.addSeparator();
         file.add(purchase);
         file.addSeparator();
