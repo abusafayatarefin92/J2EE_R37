@@ -23,7 +23,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        //this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -46,6 +46,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel2.setText("Username");
@@ -58,7 +59,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btnSignIn.setBackground(new java.awt.Color(204, 255, 204));
+        btnSignIn.setBackground(new java.awt.Color(255, 204, 204));
         btnSignIn.setForeground(new java.awt.Color(51, 51, 0));
         btnSignIn.setText("Sign In");
         btnSignIn.addActionListener(new java.awt.event.ActionListener() {

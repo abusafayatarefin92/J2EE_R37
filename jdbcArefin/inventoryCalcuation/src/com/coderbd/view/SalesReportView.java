@@ -236,7 +236,7 @@ public class SalesReportView extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
