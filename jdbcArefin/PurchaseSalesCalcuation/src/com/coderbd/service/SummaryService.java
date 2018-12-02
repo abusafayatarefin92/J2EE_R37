@@ -4,8 +4,6 @@ import com.coderbd.connection.MySqlDbConnection;
 import com.coderbd.domain.ProductCategory;
 import com.coderbd.domain.Purchase;
 import com.coderbd.domain.Summary;
-import com.coderbd.domain.User;
-import static com.coderbd.service.UserService.conn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

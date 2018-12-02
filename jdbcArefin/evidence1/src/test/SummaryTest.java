@@ -12,6 +12,7 @@ package test;
  * @author User
  */
 public class SummaryTest {
+
     public static void main(String[] args) {
         //SummaryService.createTable();
     }
