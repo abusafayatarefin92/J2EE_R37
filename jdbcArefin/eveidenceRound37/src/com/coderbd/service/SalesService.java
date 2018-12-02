@@ -1,8 +1,6 @@
 package com.coderbd.service;
 
-import com.coderbd.connection.MySqlDbConnection;
-import com.coderbd.domain.ProductCategory;
-import com.coderbd.domain.Purchase;
+import com.coderbd.conn.MySqlDbConnection;
 import com.coderbd.domain.Sales;
 import com.coderbd.domain.Summary;
 import java.sql.Connection;
@@ -20,7 +18,7 @@ public class SalesService {
     static Connection conn = MySqlDbConnection.getConnection();
 
     public static void createTable() {
-        String sql = "create table sales(id int auto_increment primary key, productName varchar(30) not null, productCode varchar(30) not null, qty int(11) not null, unitprice double not null, totalPrice double not null, salesdate Date not null, product_id int(11) not null, foreign key (product_id) references purchase(id), user_id int(11) not null, foreign key (user_id) references user(id))";
+        String sql = "create table sales(id int auto_increment primary key, productName varchar(30) not null, productCode varchar(30) not null, qty int(11) not null, unitprice double not null, totalPrice double not null, salesdate Date not null, product_id int(11) not null, foreign key (product_id) references purchase(id))";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.execute();
@@ -31,7 +29,7 @@ public class SalesService {
     }
 
     public static void insert(Sales sales) {
-        String sql = "insert into sales(productName, productCode, qty, unitprice, totalPrice, salesdate, product_id, user_id) values(?,?,?,?,?,?,?,?)";
+        String sql = "insert into sales(productName, productCode, qty, unitprice, totalPrice, salesdate, product_id ) values(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, sales.getProductName());
@@ -41,7 +39,7 @@ public class SalesService {
             ps.setDouble(5, sales.getTotalPrice());
             ps.setDate(6, new java.sql.Date(sales.getSalesdate().getTime()));
             ps.setInt(7, sales.getPurchase().getId());
-            ps.setInt(8, sales.getUser().getId());
+        
 
             ps.executeUpdate();
             System.out.println("Data Inserted!");
@@ -72,7 +70,7 @@ public class SalesService {
     public static List<Sales> getSalesList() {
         List<Sales> list = new ArrayList<>();
 
-        String sql = "select s.productName,s.productCode, s.qty, s.unitPrice, s.totalPrice, s.salesdate, c.name from sales s, purchase p, category c where s.product_id=p.id and p.cat_id=c.id";
+        String sql = "select productName,productCode, qty, unitPrice, totalPrice, salesdate from sales";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -83,15 +81,7 @@ public class SalesService {
                 sales.setQty(rs.getInt(3));
                 sales.setUnitprice(rs.getDouble(4));
                 sales.setTotalPrice(rs.getDouble(5));
-                sales.setSalesdate(rs.getDate(6));
-                ProductCategory pc = new ProductCategory();
-                pc.setName(rs.getString(7));
-                Purchase p = new Purchase();
-                p.setProductCategory(pc);
-                sales.setPurchase(p);
-//                User user = new User();
-//                user.setId(rs.getInt(8));
-//                sales.setUser(user);
+                sales.setSalesdate(rs.getDate(6));              
                 list.add(sales);
             }
 

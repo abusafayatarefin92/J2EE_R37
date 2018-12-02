@@ -10,7 +10,6 @@ import com.coderbd.domain.Purchase;
 import com.coderbd.domain.User;
 import com.coderbd.service.PurchaseService;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
