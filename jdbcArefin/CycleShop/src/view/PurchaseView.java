@@ -6,7 +6,12 @@
 package view;
 
 import domain.CyclePurchase;
+import domain.PurchaseSalesSummary;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import service.PurchaseService;
+import service.SummaryService;
 import utils.MenuForm;
 
 /**
@@ -21,6 +26,8 @@ public class PurchaseView extends javax.swing.JFrame {
     public PurchaseView() {
         initComponents();
         MenuForm.commonMenu(this);
+        displayPurchaseIntoTable();
+        displaySummaryIntoTable();
     }
     
     public void clearForm() {
@@ -30,6 +37,42 @@ public class PurchaseView extends javax.swing.JFrame {
         jTextFieldUnitPrice.setText("");
         jTextFieldTotalPrice.setText("");
         jLabelCRUDMessage.setText("");
+    }
+    
+    public void displaySummaryIntoTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableSummary.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[7];
+        List<PurchaseSalesSummary> summarys = SummaryService.getSummaryList();
+        for (int i = 0; i < summarys.size(); i++) {
+            row[0] = summarys.get(i).getName();
+            row[1] = summarys.get(i).getpCode();
+            row[2] = summarys.get(i).getTotalQuantity();
+            row[3] = summarys.get(i).getSoldQuantity();
+            row[4] = summarys.get(i).getAvailableQuantity();
+            row[5] = summarys.get(i).getLastUpdate();
+            row[6] = summarys.get(i).getCp().getId();
+            model.addRow(row);
+        }
+
+    }
+    
+    public void displayPurchaseIntoTable() {
+        DefaultTableModel model = (DefaultTableModel) jTablePurchase.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[6];
+        List<CyclePurchase> list = PurchaseService.getProductList();
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getName();
+            row[1] = list.get(i).getpCode();
+            row[2] = list.get(i).getQuantity();
+            row[3] = list.get(i).getUnitPrice();
+            row[4] = list.get(i).getTotlalPrice();
+            row[5] = list.get(i).getPurchaseDate();
+
+            model.addRow(row);
+        }
+
     }
 
     /**
@@ -49,7 +92,7 @@ public class PurchaseView extends javax.swing.JFrame {
         jTextFieldName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldProductID = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButtonSearch = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldUnitPrice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -106,10 +149,10 @@ public class PurchaseView extends javax.swing.JFrame {
 
         jLabel3.setText("Product ID");
 
-        jButton2.setText("Search");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonSearchActionPerformed(evt);
             }
         });
 
@@ -127,6 +170,11 @@ public class PurchaseView extends javax.swing.JFrame {
         jLabel6.setText("Total Price");
 
         jButtonPurchase.setText("Purchase");
+        jButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPurchaseActionPerformed(evt);
+            }
+        });
 
         jButtonClear.setText("Clear");
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +199,7 @@ public class PurchaseView extends javax.swing.JFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
+                        .addComponent(jButtonSearch))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(24, 24, 24)
@@ -188,7 +236,7 @@ public class PurchaseView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonSearch))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -242,7 +290,7 @@ public class PurchaseView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Product ID", "Total Quantity", "Sold Quantity", "Available Quantity", "Last Update"
+                "Name", "Product Code", "Total Quantity", "Sold Quantity", "Available Quantity", "Last Update", "Product ID"
             }
         ));
         jScrollPane2.setViewportView(jTableSummary);
@@ -312,7 +360,7 @@ public class PurchaseView extends javax.swing.JFrame {
         clearForm();
     }//GEN-LAST:event_jButtonClearActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         // TODO add your handling code here:
         if (jTextFieldProductID.getText().trim().length() >= 4) {
                 CyclePurchase p = PurchaseService.getProductDetails(jTextFieldProductID.getText().trim());
@@ -323,13 +371,24 @@ public class PurchaseView extends javax.swing.JFrame {
             } else {
                 jLabelCRUDMessage.setText("Enter Valid Product Code");
             }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jTextFieldQuantityMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldQuantityMousePressed
         // TODO add your handling code here:
         double price = Double.parseDouble(jTextFieldUnitPrice.getText().trim()) * Integer.parseInt(jTextFieldQuantity.getText().trim());
         jTextFieldTotalPrice.setText(String.valueOf(price));
     }//GEN-LAST:event_jTextFieldQuantityMousePressed
+
+    private void jButtonPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPurchaseActionPerformed
+        // TODO add your handling code here:
+        CyclePurchase p = new CyclePurchase(jTextFieldName.getText(), jTextFieldProductID.getText(), Integer.parseInt(jTextFieldQuantity.getText()), Double.parseDouble(jTextFieldUnitPrice.getText()), Double.parseDouble(jTextFieldTotalPrice.getText()), new Date());
+        PurchaseService.insertToPurchase(p);
+
+        clearForm();
+        jLabelCRUDMessage.setText("Purchase Success!");
+        displaySummaryIntoTable();
+        displayPurchaseIntoTable();
+    }//GEN-LAST:event_jButtonPurchaseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,9 +428,9 @@ public class PurchaseView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonPurchase;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

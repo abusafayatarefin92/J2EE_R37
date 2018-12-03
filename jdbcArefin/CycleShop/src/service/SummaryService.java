@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -95,5 +97,35 @@ public class SummaryService {
         }
 
         return summary;
+    }
+    
+    public static List<PurchaseSalesSummary> getSummaryList() {
+        List<PurchaseSalesSummary> list = new ArrayList<>();
+        
+        String sql = "select name, pCode, totalQuantity, soldQuantity, availableQuantity, lastUpdate, pId from purchasesalessummary";
+        
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                PurchaseSalesSummary summary = new PurchaseSalesSummary();
+                summary.setName(rs.getString(1));
+                summary.setpCode(rs.getString(2));
+                summary.setTotalQuantity(rs.getInt(3));
+                summary.setSoldQuantity(rs.getInt(4));
+                summary.setAvailableQuantity(rs.getInt(5));
+                summary.setLastUpdate(rs.getDate(6));
+                CyclePurchase p = new CyclePurchase();
+                p.setId(rs.getInt(7));
+                summary.setCp(p);
+                list.add(summary);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SummaryService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+        
+        return list;
     }
 }

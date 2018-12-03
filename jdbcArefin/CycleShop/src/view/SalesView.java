@@ -5,6 +5,15 @@
  */
 package view;
 
+import domain.CyclePurchase;
+import domain.CycleSales;
+import domain.PurchaseSalesSummary;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.PurchaseService;
+import service.SalesService;
+import service.SummaryService;
 import utils.MenuForm;
 
 /**
@@ -19,6 +28,55 @@ public class SalesView extends javax.swing.JFrame {
     public SalesView() {
         initComponents();
         MenuForm.commonMenu(this);
+        displaySalesIntoTable();
+        displaySummaryIntoTable();
+    }
+    
+    public void clearForm() {
+        jLabelAvailableQuantity.setText("0");
+        jTextFieldName.setText("");
+        jTextFieldProductID.setText("");
+        jTextFieldQuantity.setText("");
+        jTextFieldUnitPrice.setText("");
+        jTextFieldTotalPrice.setText("");
+        jLabelCRUDMessage.setText("");
+    }
+    
+    public void displaySummaryIntoTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableSummary.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[7];
+        List<PurchaseSalesSummary> summarys = SummaryService.getSummaryList();
+        for (int i = 0; i < summarys.size(); i++) {
+            row[0] = summarys.get(i).getName();
+            row[1] = summarys.get(i).getpCode();
+            row[2] = summarys.get(i).getTotalQuantity();
+            row[3] = summarys.get(i).getSoldQuantity();
+            row[4] = summarys.get(i).getAvailableQuantity();
+            row[5] = summarys.get(i).getLastUpdate();
+            row[6] = summarys.get(i).getCp().getId();
+            model.addRow(row);
+        }
+
+    }
+    
+    public void displaySalesIntoTable() {
+        DefaultTableModel model = (DefaultTableModel) jTableSales.getModel();
+        model.setRowCount(0);
+        Object[] row = new Object[7];
+        List<CycleSales> list = SalesService.getSalesList();
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getName();
+            row[1] = list.get(i).getpCode();
+            row[2] = list.get(i).getQuantity();
+            row[3] = list.get(i).getUnitPrice();
+            row[4] = list.get(i).getTotlalPrice();
+            row[5] = list.get(i).getSalesDate();
+            row[6] = list.get(i).getCp().getId();
+
+            model.addRow(row);
+        }
+
     }
 
     /**
@@ -38,7 +96,7 @@ public class SalesView extends javax.swing.JFrame {
         jTextFieldName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldProductID = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButtonSearch = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldUnitPrice = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -48,6 +106,9 @@ public class SalesView extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabelAvailableQuantity = new javax.swing.JLabel();
         jLabelCRUDMessage = new javax.swing.JLabel();
+        jButtonSale = new javax.swing.JButton();
+        jButtonClear = new javax.swing.JButton();
+        jLabelProductID = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSales = new javax.swing.JTable();
@@ -107,17 +168,45 @@ public class SalesView extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Search");
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Unit Price");
 
         jLabel5.setText("Quantity");
 
         jTextFieldQuantity.setText("0");
+        jTextFieldQuantity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTextFieldQuantityMousePressed(evt);
+            }
+        });
 
         jLabel6.setText("Total Price");
 
         jLabel8.setText("Available Quantity");
+
+        jLabelAvailableQuantity.setText("0");
+
+        jButtonSale.setText("Sales");
+        jButtonSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaleActionPerformed(evt);
+            }
+        });
+
+        jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
+
+        jLabelProductID.setText("0");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,35 +217,43 @@ public class SalesView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCRUDMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(43, 43, 43)
+                        .addComponent(jTextFieldName))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
                         .addComponent(jTextFieldTotalPrice))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jButtonSale)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonClear)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(33, 33, 33)
                         .addComponent(jTextFieldQuantity))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(24, 24, 24)
-                        .addComponent(jTextFieldUnitPrice))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelAvailableQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
                             .addComponent(jLabel3))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                                .addComponent(jButton2))
-                            .addComponent(jTextFieldName)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonSearch)
+                                .addGap(0, 16, Short.MAX_VALUE))
+                            .addComponent(jTextFieldUnitPrice)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelProductID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelAvailableQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -164,10 +261,12 @@ public class SalesView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jLabelProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabelAvailableQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelAvailableQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,7 +275,7 @@ public class SalesView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonSearch))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldUnitPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,12 +285,16 @@ public class SalesView extends javax.swing.JFrame {
                     .addComponent(jTextFieldQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldTotalPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelCRUDMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSale)
+                    .addComponent(jButtonClear))
+                .addGap(32, 32, 32))
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
@@ -202,7 +305,7 @@ public class SalesView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Product ID", "Quantity", "Unit Price", "Total Price", "Sales Date"
+                "Name", "Product Code", "Quantity", "Unit Price", "Total Price", "Sales Date", "Product ID"
             }
         ));
         jScrollPane1.setViewportView(jTableSales);
@@ -226,7 +329,7 @@ public class SalesView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Product ID", "Total Quantity", "Sold Quantity", "Available Quantity", "Last Update"
+                "Name", "Product Code", "Total Quantity", "Sold Quantity", "Available Quantity", "Last Update", "Product ID"
             }
         ));
         jScrollPane2.setViewportView(jTableSummary);
@@ -299,6 +402,52 @@ public class SalesView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldProductIDActionPerformed
 
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        // TODO add your handling code here:
+        clearForm();
+    }//GEN-LAST:event_jButtonClearActionPerformed
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        // TODO add your handling code here:
+        if (jTextFieldProductID.getText().trim().length() >= 4) {
+
+                PurchaseSalesSummary summary = SummaryService.getSummaryByProductCode(jTextFieldProductID.getText().trim());
+                jLabelAvailableQuantity.setText(String.valueOf(summary.getAvailableQuantity()));
+
+                CyclePurchase purchase = PurchaseService.getProductDetails(jTextFieldProductID.getText().trim());
+                jTextFieldName.setText(purchase.getName());
+                jTextFieldUnitPrice.setText(String.valueOf(Math.round(purchase.getUnitPrice()* 1.10)));
+                jLabelProductID.setText(String.valueOf(purchase.getId()));
+            } else {
+                jLabelCRUDMessage.setText("Enter Valid Product Code");
+            }
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jTextFieldQuantityMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldQuantityMousePressed
+        // TODO add your handling code here:
+        double price = Double.parseDouble(jTextFieldUnitPrice.getText().trim()) * Integer.parseInt(jTextFieldQuantity.getText().trim());
+        jTextFieldTotalPrice.setText(String.valueOf(price));
+    }//GEN-LAST:event_jTextFieldQuantityMousePressed
+
+    private void jButtonSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaleActionPerformed
+        // TODO add your handling code here:
+        CycleSales sales = new CycleSales();
+        sales.setName(jTextFieldName.getText().trim());
+        sales.setpCode(jTextFieldProductID.getText().trim());
+        sales.setQuantity(Integer.parseInt(jTextFieldQuantity.getText().trim()));
+        sales.setUnitPrice(Double.parseDouble(jTextFieldUnitPrice.getText().trim()));
+        sales.setTotlalPrice(Double.parseDouble(jTextFieldTotalPrice.getText().trim()));
+        sales.setSalesDate(new Date());
+        CyclePurchase purchase = new CyclePurchase();
+        purchase.setId(Integer.parseInt(jLabelProductID.getText().trim()));
+        sales.setCp(purchase);
+        SalesService.insertForSales(sales);
+        clearForm();
+        jLabelCRUDMessage.setText("Sales Success!");
+        displaySummaryIntoTable();
+        displaySalesIntoTable();
+    }//GEN-LAST:event_jButtonSaleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -339,7 +488,9 @@ public class SalesView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonClear;
+    private javax.swing.JButton jButtonSale;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -350,6 +501,7 @@ public class SalesView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelAvailableQuantity;
     private javax.swing.JLabel jLabelCRUDMessage;
+    private javax.swing.JLabel jLabelProductID;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

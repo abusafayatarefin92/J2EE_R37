@@ -31,7 +31,7 @@ CREATE TABLE `cyclepurchase` (
   `totalPrice` double DEFAULT NULL,
   `purchaseDate` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `cyclepurchase` (
 
 LOCK TABLES `cyclepurchase` WRITE;
 /*!40000 ALTER TABLE `cyclepurchase` DISABLE KEYS */;
-INSERT INTO `cyclepurchase` VALUES (1,'Core Project 1','CORE01',10,14000,140000,'2018-12-02'),(2,'Core Project 1','CORE01',10,14000,140000,'2018-12-02');
+INSERT INTO `cyclepurchase` VALUES (1,'Core Project 1','CORE01',10,14000,140000,'2018-12-02'),(2,'Core Project 1','CORE01',10,14000,140000,'2018-12-02'),(3,'Talus 1','TALUS01',10,15000,150000,'2018-12-03'),(4,'Talus 1','TALUS01',10,15000,150000,'2018-12-03');
 /*!40000 ALTER TABLE `cyclepurchase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,7 @@ CREATE TABLE `cyclesales` (
   PRIMARY KEY (`id`),
   KEY `pId` (`pId`),
   CONSTRAINT `cyclesales_ibfk_1` FOREIGN KEY (`pId`) REFERENCES `cyclepurchase` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +72,7 @@ CREATE TABLE `cyclesales` (
 
 LOCK TABLES `cyclesales` WRITE;
 /*!40000 ALTER TABLE `cyclesales` DISABLE KEYS */;
-INSERT INTO `cyclesales` VALUES (1,'Core Project 1','CORE01',5,15000,750000,'2018-12-02',1);
+INSERT INTO `cyclesales` VALUES (1,'Core Project 1','CORE01',5,15000,750000,'2018-12-02',1),(2,'Talus 1','TALUS01',5,16500,82500,'2018-12-04',3);
 /*!40000 ALTER TABLE `cyclesales` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -95,7 +95,7 @@ CREATE TABLE `purchasesalessummary` (
   PRIMARY KEY (`id`),
   KEY `pId` (`pId`),
   CONSTRAINT `purchasesalessummary_ibfk_1` FOREIGN KEY (`pId`) REFERENCES `cyclepurchase` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -104,7 +104,7 @@ CREATE TABLE `purchasesalessummary` (
 
 LOCK TABLES `purchasesalessummary` WRITE;
 /*!40000 ALTER TABLE `purchasesalessummary` DISABLE KEYS */;
-INSERT INTO `purchasesalessummary` VALUES (2,'Core Project 1','CORE01',20,5,15,'2018-12-02',1);
+INSERT INTO `purchasesalessummary` VALUES (2,'Core Project 1','CORE01',20,5,15,'2018-12-02',1),(3,'Talus 1','TALUS01',20,5,15,'2018-12-04',3);
 /*!40000 ALTER TABLE `purchasesalessummary` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -117,4 +117,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-02 21:58:22
+-- Dump completed on 2018-12-04  0:17:32

@@ -142,7 +142,7 @@ public class PurchaseReportView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Product ID", "Quantity", "Unit Price", "Total Price", "Purchase Date"
+                "Name", "Product Code", "Quantity", "Unit Price", "Total Price", "Purchase Date"
             }
         ));
         jScrollPane1.setViewportView(jTablePurchaseDetails);

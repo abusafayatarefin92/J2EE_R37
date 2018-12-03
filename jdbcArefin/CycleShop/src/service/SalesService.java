@@ -6,12 +6,16 @@
 package service;
 
 import connection.MySqlDbConnection;
+import domain.CyclePurchase;
 import domain.CycleSales;
 import domain.PurchaseSalesSummary;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -66,5 +70,32 @@ public class SalesService {
                 System.out.println("You do not have sufficient Product");
             }
         }
+    }
+    
+    public static List<CycleSales> getSalesList() {
+        List<CycleSales> list = new ArrayList<>();
+
+        String sql = "select name, pCode, quantity, unitPrice, totalPrice, salesDate, pId from cyclesales";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                CycleSales sales = new CycleSales();
+                sales.setName(rs.getString(1));
+                sales.setpCode(rs.getString(2));
+                sales.setQuantity(rs.getInt(3));
+                sales.setUnitPrice(rs.getDouble(4));
+                sales.setTotlalPrice(rs.getDouble(5));
+                sales.setSalesDate(rs.getDate(6));
+                CyclePurchase p = new CyclePurchase();
+                p.setId(rs.getInt(7));
+                sales.setCp(p);
+                list.add(sales);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
     }
 }
