@@ -85,16 +85,39 @@ public class PurchaseService {
             CyclePurchase p = getPurchaseByProductCode(purchase.getpCode());
             PurchaseSalesSummary summary = SummaryService.getSummaryByProductCode(purchase.getpCode());
             if (purchase.getpCode().equalsIgnoreCase(summary.getpCode())) {
-                int totalQty = summary.getTotalQuantity()+ purchase.getQuantity();
-                int avilQty = summary.getAvailableQuantity()+ purchase.getQuantity();
+                int totalQty = summary.getTotalQuantity() + purchase.getQuantity();
+                int avilQty = summary.getAvailableQuantity() + purchase.getQuantity();
                 summary.setTotalQuantity(totalQty);
                 summary.setAvailableQuantity(avilQty);
                 summary.setLastUpdate(new Date());
                 SummaryService.update(summary);
-            }else{
+            } else {
                 PurchaseSalesSummary summary3 = new PurchaseSalesSummary(purchase.getName(), purchase.getpCode(), purchase.getQuantity(), 0, purchase.getQuantity(), new Date(), p);
                 SummaryService.insert(summary3);
             }
         }
+    }
+
+    public static CyclePurchase getProductDetails(String productCode) {
+        CyclePurchase purchase = new CyclePurchase();
+        String sql = " select * from cyclePurchase where pCode=? limit 1";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, productCode);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                purchase.setId(rs.getInt(1));
+                purchase.setName(rs.getString(2));
+                purchase.setpCode(rs.getString(3));
+                purchase.setQuantity(rs.getInt(4));
+                purchase.setUnitPrice(rs.getDouble(5));
+                purchase.setTotlalPrice(rs.getDouble(6));
+                purchase.setPurchaseDate(rs.getDate(7));
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return purchase;
     }
 }

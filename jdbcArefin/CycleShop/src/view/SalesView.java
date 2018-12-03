@@ -5,6 +5,8 @@
  */
 package view;
 
+import utils.MenuForm;
+
 /**
  *
  * @author User
@@ -16,6 +18,7 @@ public class SalesView extends javax.swing.JFrame {
      */
     public SalesView() {
         initComponents();
+        MenuForm.commonMenu(this);
     }
 
     /**

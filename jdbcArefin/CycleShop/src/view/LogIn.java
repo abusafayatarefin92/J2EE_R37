@@ -71,9 +71,6 @@ public class LogIn extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -84,7 +81,10 @@ public class LogIn extends javax.swing.JFrame {
                                 .addComponent(jButton5)
                                 .addComponent(jTextFieldUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                                 .addComponent(jPasswordField))
-                            .addComponent(jLabelMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabelMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jLabel1)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -149,6 +149,7 @@ public class LogIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (jTextFieldUserName.getText().equalsIgnoreCase("admin") && jPasswordField.getText().equalsIgnoreCase("123")) {
             this.setVisible(false);
+            new DashBoard().setVisible(true);
         } else {
             jLabelMessage.setText("incorrect id & password");
         }

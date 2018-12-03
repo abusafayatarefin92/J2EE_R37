@@ -495,7 +495,7 @@ public class PurchaseView extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
-            if (txtPCode.getText().trim().length() >= 5) {
+            if (txtPCode.getText().trim().length() >= 4) {
                 Purchase p = PurchaseService.getProductDetails(txtPCode.getText().trim());
                 int x = p.getProductCategory().getId();
                 cmbCategory.setSelectedIndex(x);
