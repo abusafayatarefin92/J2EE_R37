@@ -160,7 +160,7 @@ public class SalesView extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Product ID");
+        jLabel3.setText("Product Code");
 
         jTextFieldProductID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +168,8 @@ public class SalesView extends javax.swing.JFrame {
             }
         });
 
+        jButtonSearch.setBackground(new java.awt.Color(153, 102, 255));
+        jButtonSearch.setForeground(new java.awt.Color(51, 0, 51));
         jButtonSearch.setText("Search");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,6 +194,8 @@ public class SalesView extends javax.swing.JFrame {
 
         jLabelAvailableQuantity.setText("0");
 
+        jButtonSale.setBackground(new java.awt.Color(204, 255, 153));
+        jButtonSale.setForeground(new java.awt.Color(51, 51, 0));
         jButtonSale.setText("Sales");
         jButtonSale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +203,8 @@ public class SalesView extends javax.swing.JFrame {
             }
         });
 
+        jButtonClear.setBackground(new java.awt.Color(255, 153, 204));
+        jButtonClear.setForeground(new java.awt.Color(51, 0, 51));
         jButtonClear.setText("Clear");
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,13 +223,11 @@ public class SalesView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelCRUDMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(43, 43, 43)
-                        .addComponent(jTextFieldName))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldTotalPrice))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelProductID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelAvailableQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -233,27 +237,23 @@ public class SalesView extends javax.swing.JFrame {
                                 .addComponent(jButtonClear)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(33, 33, 33)
-                        .addComponent(jTextFieldQuantity))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(20, 20, 20)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldTotalPrice)
+                            .addComponent(jTextFieldQuantity)
+                            .addComponent(jTextFieldName)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextFieldProductID, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonSearch)
-                                .addGap(0, 16, Short.MAX_VALUE))
-                            .addComponent(jTextFieldUnitPrice)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelProductID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelAvailableQuantity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 13, Short.MAX_VALUE))
+                            .addComponent(jTextFieldUnitPrice))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(

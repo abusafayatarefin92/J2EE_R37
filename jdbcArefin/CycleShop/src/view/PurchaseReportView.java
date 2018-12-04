@@ -120,6 +120,7 @@ public class PurchaseReportView extends javax.swing.JFrame {
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
         );
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Purchase Details Information"));
 
         jLabel1.setText("From Date");
@@ -130,6 +131,8 @@ public class PurchaseReportView extends javax.swing.JFrame {
 
         jTextFieldToDate.setText("2018-12-31");
 
+        jButtonSearch.setBackground(new java.awt.Color(255, 255, 153));
+        jButtonSearch.setForeground(new java.awt.Color(51, 51, 0));
         jButtonSearch.setText("Search");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

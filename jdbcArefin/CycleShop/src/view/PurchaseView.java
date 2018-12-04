@@ -149,6 +149,8 @@ public class PurchaseView extends javax.swing.JFrame {
 
         jLabel3.setText("Product ID");
 
+        jButtonSearch.setBackground(new java.awt.Color(255, 153, 255));
+        jButtonSearch.setForeground(new java.awt.Color(51, 0, 51));
         jButtonSearch.setText("Search");
         jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +171,8 @@ public class PurchaseView extends javax.swing.JFrame {
 
         jLabel6.setText("Total Price");
 
+        jButtonPurchase.setBackground(new java.awt.Color(255, 204, 153));
+        jButtonPurchase.setForeground(new java.awt.Color(51, 51, 0));
         jButtonPurchase.setText("Purchase");
         jButtonPurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +180,8 @@ public class PurchaseView extends javax.swing.JFrame {
             }
         });
 
+        jButtonClear.setBackground(new java.awt.Color(153, 255, 153));
+        jButtonClear.setForeground(new java.awt.Color(0, 51, 51));
         jButtonClear.setText("Clear");
         jButtonClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

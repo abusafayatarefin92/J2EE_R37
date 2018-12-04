@@ -91,13 +91,13 @@ public class ReportService {
 
     public static int getTotalPurchaseItemsByToday(Date today) {
         int totalPurchaseItems = 0;
-        String sql = "select quantity from cyclepurchase where purchaseDate=?";
+        String sql = "select sum(quantity) from cyclepurchase where purchaseDate=?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setDate(1, new java.sql.Date(today.getTime()));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                totalPurchaseItems += rs.getInt(1);
+                totalPurchaseItems = rs.getInt(1);
             }
 
         } catch (SQLException ex) {
@@ -108,13 +108,13 @@ public class ReportService {
     
     public static Double getTodayPurchaseAmount(Date today) {
         Double todayPurchaseAmount = 0.0;
-        String sql = "select totalPrice from cyclepurchase where purchaseDate=?";
+        String sql = "select sum(totalPrice) from cyclepurchase where purchaseDate=?";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setDate(1, new java.sql.Date(today.getTime()));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                todayPurchaseAmount += rs.getDouble(1);
+                todayPurchaseAmount = rs.getDouble(1);
             }
 
         } catch (SQLException ex) {
