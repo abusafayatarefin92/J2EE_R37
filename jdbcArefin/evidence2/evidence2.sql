@@ -32,13 +32,15 @@ CREATE TABLE `purchase` (
   `price` double DEFAULT NULL,
   `date` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `purchase`
 --
 
 /*!40000 ALTER TABLE `purchase` DISABLE KEYS */;
+INSERT INTO `purchase` (`id`,`name`,`price`,`date`) VALUES 
+ (1,'LG G6',25000,'2018-12-04');
 /*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
 
 
@@ -56,13 +58,15 @@ CREATE TABLE `sales` (
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   CONSTRAINT `sales_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `purchase` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sales`
 --
 
 /*!40000 ALTER TABLE `sales` DISABLE KEYS */;
+INSERT INTO `sales` (`id`,`name`,`price`,`date`,`pid`) VALUES 
+ (1,'htc mobile',16000,'2018-12-04',1);
 /*!40000 ALTER TABLE `sales` ENABLE KEYS */;
 
 

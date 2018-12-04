@@ -114,42 +114,42 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Purchase"));
 
         jButton2.setBackground(new java.awt.Color(153, 204, 255));
-        jButton2.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 51, 51));
         jButton2.setText("Todays's Purchase");
 
         jButtonTodayPurchase.setBackground(new java.awt.Color(255, 204, 153));
-        jButtonTodayPurchase.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButtonTodayPurchase.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButtonTodayPurchase.setForeground(new java.awt.Color(51, 51, 0));
         jButtonTodayPurchase.setText("0.0");
 
         jButton4.setBackground(new java.awt.Color(153, 153, 255));
-        jButton4.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 51, 51));
         jButton4.setText("Entire Purchase");
 
         jButtonEntirePurchase.setBackground(new java.awt.Color(255, 255, 153));
-        jButtonEntirePurchase.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButtonEntirePurchase.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButtonEntirePurchase.setForeground(new java.awt.Color(51, 51, 0));
         jButtonEntirePurchase.setText("0.0");
 
         jButton6.setBackground(new java.awt.Color(204, 153, 255));
-        jButton6.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton6.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButton6.setForeground(new java.awt.Color(51, 0, 51));
         jButton6.setText("Total Items");
 
         jButtonTotalItems.setBackground(new java.awt.Color(204, 255, 153));
-        jButtonTotalItems.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButtonTotalItems.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButtonTotalItems.setForeground(new java.awt.Color(51, 51, 0));
         jButtonTotalItems.setText("0");
 
         jButton8.setBackground(new java.awt.Color(255, 153, 153));
-        jButton8.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton8.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButton8.setForeground(new java.awt.Color(51, 0, 51));
         jButton8.setText("Today's Purchase Items");
 
         jButtonTodayPurchaseItems.setBackground(new java.awt.Color(153, 255, 153));
-        jButtonTodayPurchaseItems.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButtonTodayPurchaseItems.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButtonTodayPurchaseItems.setForeground(new java.awt.Color(0, 51, 51));
         jButtonTodayPurchaseItems.setText("0");
 
@@ -204,42 +204,42 @@ public class DashBoard extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Sales"));
 
         jButton10.setBackground(new java.awt.Color(153, 255, 204));
-        jButton10.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton10.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButton10.setForeground(new java.awt.Color(51, 51, 51));
         jButton10.setText("Today's Sales");
 
         jButtonTodaySales.setBackground(new java.awt.Color(255, 153, 204));
-        jButtonTodaySales.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButtonTodaySales.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButtonTodaySales.setForeground(new java.awt.Color(51, 0, 51));
         jButtonTodaySales.setText("0.0");
 
         jButton12.setBackground(new java.awt.Color(204, 255, 153));
-        jButton12.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton12.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButton12.setForeground(new java.awt.Color(51, 51, 0));
         jButton12.setText("Entire sales");
 
         jButtonEntireSales.setBackground(new java.awt.Color(204, 153, 255));
-        jButtonEntireSales.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButtonEntireSales.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButtonEntireSales.setForeground(new java.awt.Color(51, 0, 51));
         jButtonEntireSales.setText("0.0");
 
         jButton14.setBackground(new java.awt.Color(255, 204, 153));
-        jButton14.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton14.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButton14.setForeground(new java.awt.Color(51, 51, 0));
         jButton14.setText("Total Sales Items");
 
         jButtonTotalSalesItems.setBackground(new java.awt.Color(153, 153, 255));
-        jButtonTotalSalesItems.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButtonTotalSalesItems.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButtonTotalSalesItems.setForeground(new java.awt.Color(51, 0, 51));
         jButtonTotalSalesItems.setText("0");
 
         jButton16.setBackground(new java.awt.Color(255, 153, 153));
-        jButton16.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButton16.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButton16.setForeground(new java.awt.Color(51, 0, 0));
         jButton16.setText("Today's Sales Items");
 
         jButtonTodaySalesItems.setBackground(new java.awt.Color(153, 204, 255));
-        jButtonTodaySalesItems.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
+        jButtonTodaySalesItems.setFont(new java.awt.Font("sansserif", 1, 20)); // NOI18N
         jButtonTodaySalesItems.setForeground(new java.awt.Color(0, 51, 51));
         jButtonTodaySalesItems.setText("0");
 

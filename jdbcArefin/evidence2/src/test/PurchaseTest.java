@@ -5,6 +5,8 @@
  */
 package test;
 
+import domain.Purchase;
+import java.util.Date;
 import service.PurchaseService;
 
 /**
@@ -15,5 +17,12 @@ public class PurchaseTest {
 
     public static void main(String[] args) {
         //PurchaseService.createTable();
+//        Purchase p = new Purchase("htc mobile", 15000, new Date());
+//        PurchaseService.insert(p);
+//        Purchase p = new Purchase();
+//        p.setName("htc 626");
+//        p.setPrice(14000);
+//        p.setId(1);
+//        PurchaseService.update(p);
     }
 }

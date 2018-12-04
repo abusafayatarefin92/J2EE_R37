@@ -6,9 +6,13 @@
 package service;
 
 import connection.MySqlDbConnection;
+import domain.Purchase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,7 +34,64 @@ public class PurchaseService {
         }
     }
     
-    public static void insert(){
+    public static void insert(Purchase p){
+        String sql = "insert into purchase(name,price,date) values(?,?,?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, p.getName());
+            ps.setDouble(2, p.getPrice());
+            ps.setDate(3, new java.sql.Date(p.getDate().getTime()));
+            ps.executeUpdate();
+            System.out.println("Data Inserted!");
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
+    public static void update(Purchase p){
+        String sql = "update purchase set name = ?, price = ? where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, p.getName());
+            ps.setDouble(2, p.getPrice());
+            ps.setInt(3, p.getId());
+            ps.executeUpdate();
+            System.out.println("Data Updated!");
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void delete(Purchase p){
+        String sql = "delete from purchase where id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, p.getId());
+            ps.executeUpdate();
+            System.out.println("data deleted");
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static List<Purchase> getPurchaseTable(){
+        List<Purchase> list = new ArrayList<>();
+        String sql = "select name, price, date from purchase";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                Purchase p = new Purchase();
+                p.setName(rs.getString(1));
+                p.setPrice(rs.getDouble(2));
+                p.setDate(rs.getDate(3));
+                list.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return list;
     }
 }
