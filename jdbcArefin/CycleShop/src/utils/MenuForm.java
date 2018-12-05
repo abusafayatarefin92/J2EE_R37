@@ -86,8 +86,19 @@ public class MenuForm {
         report.add(purchaseReport);
         report.add(saleReport);
         
+        JMenu exit = new JMenu("Exit");
+        JMenuItem e = new JMenuItem("exit");
+        e.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        exit.add(e);
+        
         menuBar.add(file);
         menuBar.add(report);
+        menuBar.add(exit);
         
         f.setJMenuBar(menuBar);
         f.setExtendedState(JFrame.MAXIMIZED_BOTH);

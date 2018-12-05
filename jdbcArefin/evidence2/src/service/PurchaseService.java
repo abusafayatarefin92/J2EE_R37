@@ -76,16 +76,17 @@ public class PurchaseService {
     
     public static List<Purchase> getPurchaseTable(){
         List<Purchase> list = new ArrayList<>();
-        String sql = "select name, price, date from purchase";
+        String sql = "select * from purchase";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             
             while(rs.next()){
                 Purchase p = new Purchase();
-                p.setName(rs.getString(1));
-                p.setPrice(rs.getDouble(2));
-                p.setDate(rs.getDate(3));
+                p.setId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setPrice(rs.getDouble(3));
+                p.setDate(rs.getDate(4));
                 list.add(p);
             }
         } catch (SQLException ex) {

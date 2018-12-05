@@ -6,7 +6,6 @@
 package view;
 
 import domain.Purchase;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -30,7 +29,6 @@ public class PurchaseView extends javax.swing.JFrame {
         jTextFieldID.setText("");
         jTextFieldName.setText("");
         jTextFieldPrice.setText("");
-        jTextFieldDate.setText("");
         jLabelMessage.setText("");
     }
 
@@ -39,12 +37,13 @@ public class PurchaseView extends javax.swing.JFrame {
         model.setRowCount(0);
 
         List<Purchase> list = PurchaseService.getPurchaseTable();
-        Object[] row = new Object[3];
+        Object[] row = new Object[4];
 
         for (int i = 0; i < list.size(); i++) {
-            row[0] = list.get(i).getName();
-            row[1] = list.get(i).getPrice();
-            row[2] = list.get(i).getDate();
+            row[0] = list.get(i).getId();
+            row[1] = list.get(i).getName();
+            row[2] = list.get(i).getPrice();
+            row[3] = list.get(i).getDate();
 
             model.addRow(row);
         }
@@ -67,8 +66,6 @@ public class PurchaseView extends javax.swing.JFrame {
         jTextFieldName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldPrice = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextFieldDate = new javax.swing.JTextField();
         jLabelMessage = new javax.swing.JLabel();
         jButtonInsert = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
@@ -91,7 +88,11 @@ public class PurchaseView extends javax.swing.JFrame {
 
         jLabel4.setText("Price");
 
-        jLabel5.setText("Date");
+        jTextFieldPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPriceActionPerformed(evt);
+            }
+        });
 
         jButtonInsert.setText("Insert");
         jButtonInsert.addActionListener(new java.awt.event.ActionListener() {
@@ -131,26 +132,26 @@ public class PurchaseView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel3))
                         .addGap(57, 57, 57)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldDate)
-                            .addComponent(jTextFieldPrice)
                             .addComponent(jTextFieldName)
                             .addComponent(jTextFieldID)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(63, 63, 63)
+                        .addComponent(jTextFieldPrice))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonClearForm)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButtonInsert)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonUpdate)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonDelete))
-                            .addComponent(jButtonClearForm))
+                                .addComponent(jButtonDelete)))
                         .addGap(0, 26, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -168,13 +169,9 @@ public class PurchaseView extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextFieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextFieldPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -184,7 +181,7 @@ public class PurchaseView extends javax.swing.JFrame {
                     .addComponent(jButtonDelete))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonClearForm)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -194,7 +191,7 @@ public class PurchaseView extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Price", "Date"
+                "ID", "Name", "Price", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTablePurchase);
@@ -275,6 +272,10 @@ public class PurchaseView extends javax.swing.JFrame {
         getPurchaseTable();
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
+    private void jTextFieldPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPriceActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -319,13 +320,11 @@ public class PurchaseView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelMessage;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablePurchase;
-    private javax.swing.JTextField jTextFieldDate;
     private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldName;
     private javax.swing.JTextField jTextFieldPrice;
