@@ -36,7 +36,7 @@ public class SalesView extends javax.swing.JFrame {
         jLabelAvailableQuantity.setText("0");
         jTextFieldName.setText("");
         jTextFieldProductID.setText("");
-        jTextFieldQuantity.setText("");
+        jTextFieldQuantity.setText("0");
         jTextFieldUnitPrice.setText("");
         jTextFieldTotalPrice.setText("");
         jLabelCRUDMessage.setText("");
@@ -196,6 +196,8 @@ public class SalesView extends javax.swing.JFrame {
 
         jLabelAvailableQuantity.setText("0");
 
+        jLabelCRUDMessage.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+
         jButtonSale.setBackground(new java.awt.Color(204, 255, 153));
         jButtonSale.setForeground(new java.awt.Color(51, 51, 0));
         jButtonSale.setText("Sales");
@@ -213,8 +215,6 @@ public class SalesView extends javax.swing.JFrame {
                 jButtonClearActionPerformed(evt);
             }
         });
-
-        jLabelProductID.setText("0");
 
         jLabel9.setText("Product ID");
 

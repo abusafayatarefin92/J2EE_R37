@@ -171,6 +171,8 @@ public class PurchaseView extends javax.swing.JFrame {
 
         jLabel6.setText("Total Price");
 
+        jLabelCRUDMessage.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+
         jButtonPurchase.setBackground(new java.awt.Color(255, 204, 153));
         jButtonPurchase.setForeground(new java.awt.Color(51, 51, 0));
         jButtonPurchase.setText("Purchase");
