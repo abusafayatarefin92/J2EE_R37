@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Hello World!</h1><br/>
+        <a href="home.jsp">home</a><br/>
+        <a href="date.jsp">date</a>
     </body>
 </html>

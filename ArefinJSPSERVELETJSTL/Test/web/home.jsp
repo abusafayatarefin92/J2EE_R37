@@ -12,6 +12,8 @@
         <title>Home Page</title>
     </head>
     <body>
-        <h1>This is home page!</h1>
+        <h1>This is home page!</h1><br/>
+        <a href="index.jsp">index</a><br/>
+        <a href="date.jsp">date</a>
     </body>
 </html>
