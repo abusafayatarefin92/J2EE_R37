@@ -48,33 +48,30 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <h1>Hello World!</h1>\n");
-      out.write("        <!--Declaration Tag--->\n");
-      out.write("          <!--Jsp scriptlet tag  ");
-      out.print( new java.util.Date() );
-      out.write(" -->\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <title>JSP Page</title>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <h1>Hello World!</h1>\r\n");
+      out.write("        <!--Declaration Tag--->\r\n");
       out.write("        ");
-      out.write("\n");
-      out.write("        <!--Expression Tag--->\n");
+      out.write("\r\n");
+      out.write("        <!--Expression Tag--->\r\n");
       out.write("        ");
       out.print( "First name: " + fname);
-      out.write("\n");
-      out.write("        <!--Scriptlet Tag--->\n");
+      out.write("\r\n");
+      out.write("        <!--Scriptlet Tag--->\r\n");
       out.write("        ");
 
             out.println("Last name: " + lname);
         
-      out.write("\n");
+      out.write("\r\n");
       out.write("        ");
 
             int x = 10;
@@ -83,18 +80,18 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
             out.print("Sum: " + sum);
         
-      out.write("\n");
+      out.write("\r\n");
       out.write("        ");
       out.print("Sum:::" + sum);
-      out.write("\n");
+      out.write("\r\n");
       out.write("        ");
-      out.write("\n");
+      out.write("\r\n");
       out.write("        ");
       out.print("X: " + x);
-      out.write("\n");
-      out.write("\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

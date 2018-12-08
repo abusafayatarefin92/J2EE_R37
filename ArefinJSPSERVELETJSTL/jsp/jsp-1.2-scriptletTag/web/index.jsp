@@ -15,8 +15,8 @@
         <h1>Hello World!</h1>
         <!--Declaration Tag--->
         <%!
-            String fname = "Md";
-            String lname = "BD";
+            String fname = "Safayat";
+            String lname = "Arefin";
         %>
         <!--Expression Tag--->
         <%= "First name: " + fname%>

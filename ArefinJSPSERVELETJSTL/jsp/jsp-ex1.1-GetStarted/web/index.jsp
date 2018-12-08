@@ -9,11 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Index JSP Page</title>
     </head>
     <body>
       <div>Our First Form | JSP Example</div>
+    
         <form action="action.jsp" method="POST">
+            
             <input type="text" name="fname"/>
             <input type="submit" value="Send"/>
             
