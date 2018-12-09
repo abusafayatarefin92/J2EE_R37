@@ -14,7 +14,7 @@
     <body>
         <h1>Hello World!</h1>
 
-        <% out.print("Today is:" + java.util.Calendar.getInstance().getTime());%>  
+        <% out.print("Today is:" + java.util.Calendar.getInstance().getTime());%><br/>  
         <%= request.getParameter("name")%>  
     </body>
 </html>

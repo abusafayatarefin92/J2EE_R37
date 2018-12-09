@@ -13,6 +13,8 @@
     </head>
     <body>
         <h1>I am from Included Page</h1>
+        <jsp:include page="header.jsp" />
             <% out.print("Today is:"+java.util.Calendar.getInstance().getTime()); %>  
+            <jsp:include page="footer.jsp" />
     </body>
 </html>

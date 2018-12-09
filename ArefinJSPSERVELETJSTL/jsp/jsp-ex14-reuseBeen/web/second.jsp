@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <jsp:useBean id="u" class="com.coderbd.Student" scope="session"></jsp:useBean>  
+        <jsp:useBean id="u" class="com.coderbd.Student" scope="session"/>  
             Record:<br>  
         <jsp:getProperty property="name" name="u"/><br>  
         <jsp:getProperty property="password" name="u"/><br>  
