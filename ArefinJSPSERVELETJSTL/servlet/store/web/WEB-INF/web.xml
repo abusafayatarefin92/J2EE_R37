@@ -9,4 +9,10 @@
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        <exception-type>
+            com.apress.projsp.store.ItemAlreadyAddedException
+        </exception-type>
+        <location>/duplicateItem.html</location>
+    </error-page>
 </web-app>

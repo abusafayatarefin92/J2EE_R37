@@ -42,8 +42,19 @@ public class FrontController  extends HttpServlet{
             Class c = getClass().getClassLoader().loadClass(name);
             Action action = (Action)c.newInstance();
             viewName = action.process(req, res);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch (InstantiationException e) {
+            e.printStackTrace();
+        }catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        
+        RequestDispatcher dispatcher = req.getRequestDispatcher(viewName);
+        dispatcher.forward(req, res);
+    }
+    
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+        doPost(req, res);
     }
 }
