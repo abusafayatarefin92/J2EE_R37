@@ -5,10 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
 
-public class MainAction implements Action {
-
+public class ConfirmAction implements Action {
 	public String process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		return "/main.jsp";
+		return "/confirmed.html";
 	}
 }
