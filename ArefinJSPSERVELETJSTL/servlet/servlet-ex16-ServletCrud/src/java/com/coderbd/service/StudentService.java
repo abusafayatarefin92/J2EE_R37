@@ -40,7 +40,7 @@ public class StudentService implements StudentDao {
                 pstm.setInt(2, s.getId());
 
                 pstm.executeUpdate();
-                System.out.println(" updated succc......");
+                System.out.println(" updated succceed......");
 
             }
         } catch (Exception e) {
