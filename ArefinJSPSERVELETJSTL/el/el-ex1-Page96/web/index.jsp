@@ -14,8 +14,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-       
-        
+        <jsp:useBean id="bean" class="bean.MyBean" />
+        ${bean.name}<br/>
         ${20+5}
 
     </body>
