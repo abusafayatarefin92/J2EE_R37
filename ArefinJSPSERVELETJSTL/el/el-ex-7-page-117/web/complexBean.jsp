@@ -3,7 +3,7 @@
     Created on : Dec 12, 2018, 10:14:39 AM
     Author     : User
 --%>
-<jsp:useBean id="person" class="com.apress.projsp.Preson">
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,11 +21,24 @@
         <h2>EL and Complex JavaBeans</h2>
         <table border="1">
             <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Address line 1</th>
+                <th>Town</th>
+                <th>Country</th>
+                <th>Number1</th>
+                <th>Number2</th>
+            </tr>
+            <tr>
                 <td>${person.name}</td>
                 <td>${person.age}</td>
                 <td>${person.address.line1}</td>
                 <td>${person.address.town}</td>
-                
+                <td>${person.address.country}</td>
+                <td>${person.address.phoneNumbers[0].std}
+                    ${person.address.phoneNumbers[0].number}</td>
+                <td>${person.address.phoneNumbers[1].std}
+                    ${person.address.phoneNumbers[1].number}</td>
             </tr>
         </table>
     </body>
