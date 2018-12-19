@@ -16,12 +16,12 @@
         <body>
             <h3>You entered these search parameters</h3>
             <p>Origination: <h:outputText value="#{flight.origination}"/>
-            <p>Origination: <h:outputText value="#{flight.departDate}"/>
-            <p>Origination: <h:outputText value="#{flight.departTime}"/>
-            <p>Origination: <h:outputText value="#{flight.destination}"/>
-            <p>Origination: <h:outputText value="#{flight.returnDate}"/>
-            <p>Origination: <h:outputText value="#{flight.returnTime}"/>
-            <p>Origination: <h:outputText value="#{flight.tripType}"/>
+            <p>Depart date: <h:outputText value="#{flight.departDate}"/>
+            <p>Depart time: <h:outputText value="#{flight.departTime}"/>
+            <p>Destination: <h:outputText value="#{flight.destination}"/>
+            <p>Return date: <h:outputText value="#{flight.returnDate}"/>
+            <p>Return time: <h:outputText value="#{flight.returnTime}"/>
+            <!--<p>Trip type: <h:outputText value="#{flight.tripType}"/>-->
         </body>
     </f:view>
 </html>
