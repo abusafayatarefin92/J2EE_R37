@@ -57,28 +57,41 @@
                                 <f:convertDateTime pattern="MM/dd/yy"/>
                                 <f:validator validatorId="date.validator"/>
                             </h:inputText>
-                            
+                            <h:message for="departDate"/>
                         </td>
                         <td>
-                            <h:selectOneMenu value="#{flight.departTime}">
+                            <h:selectOneMenu value="#{flight.departTime}" id="departTimes">
                                 <f:selectItems value="#{times.times}"/>
                             </h:selectOneMenu>
                         </td>
                         <td>
+                            <c:if test="${flight.tripType == 'One Way'}">
+                                <!--
+                            </c:if>
                             <h:inputText id="returnDate" value="#{flight.returnDate}">
                                 <f:convertDateTime pattern="MM/dd/yy"/>
                                 <f:validator validatorId="date.validator"/>
                             </h:inputText>
-                        </td>
+                            <h:message for="returnDate"/>
+                            <c:if test="${flight.tripType == 'One Way'}">
+                                -->
+                            </c:if>
+                        </td>     
                         <td>
-                            <h:selectOneMenu value="#{flight.returnTime}">
+                            <c:if test="${flight.tripType == 'One Way'}">
+                                <!--
+                            </c:if>
+                            <h:selectOneMenu value="#{flight.returnTime}" id="returnTimes">
                                 <f:selectItems value="#{times.times}"/>
                             </h:selectOneMenu>
+                            <c:if test="${flight.tripType == 'One Way'}">
+                                -->
+                            </c:if>  
                         </td>
                     </tr>
                 </table>
                 <p>
-                    <h:commandButton value="Search" action="#{flight.search}" immediate="true"/>
+                    <h:commandButton value="Search" action="#{flight.search}"/>
                 </p>
             </h:form>
         </body>
