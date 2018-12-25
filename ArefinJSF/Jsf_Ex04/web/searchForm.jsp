@@ -18,7 +18,7 @@
         <body>
             <h:form>
                 <h2>Search Flights</h2>
-                <h:outputText value="What type of flighr do you need?"/>
+                <h:outputText value="What type of flight do you need?"/>
                 <h:selectOneRadio layout="lineDirection" value="#{flight.tripType}" valueChangeListener="#{flight.typeChanged}" onclick="submit()" immediate="true">
                     <f:selectItems value="#{types.tripTypes}"/>
                 </h:selectOneRadio>

@@ -17,6 +17,7 @@ import javax.faces.event.ValueChangeEvent;
  */
 public class FlightSearch {
 
+    String flightNum;
     Airport origination;
     Airport destination;
     String departDate;
@@ -25,17 +26,16 @@ public class FlightSearch {
     String returnTime;
     String tripType;
     ArrayList matchingFlights = new ArrayList();
-    String flightNum;
     Flight matchingFlight;
 
     public FlightSearch() {
         setTripType("Roundtrip");
     }
-    
-    public void typeChanged(ValueChangeEvent event){
-        if("Roundtrip".equals(event.getNewValue().toString())){
+
+    public void typeChanged(ValueChangeEvent event) {
+        if ("Roundtrip".equals(event.getNewValue().toString())) {
             setTripType("Roundtrip");
-        }else{
+        } else {
             setTripType("One Way");
         }
         FacesContext.getCurrentInstance().renderResponse();
@@ -59,11 +59,11 @@ public class FlightSearch {
             return "no flights";
         }
     }
-    
-    public String select(){
+
+    public String select() {
         FacesContext context = FacesContext.getCurrentInstance();
         Map requestParams = context.getExternalContext().getRequestParameterMap();
-        flightNum = (String)requestParams.get("flightNum");
+        flightNum = (String) requestParams.get("flightNum");
         return "select";
     }
 
@@ -82,7 +82,7 @@ public class FlightSearch {
             if (matchingFlight.flightNum.equals(flightNum)) {
                 break;
             }
-            
+
             matchingFlight = null;
         }
         return matchingFlight;
