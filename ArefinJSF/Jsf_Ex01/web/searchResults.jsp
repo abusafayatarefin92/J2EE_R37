@@ -21,7 +21,7 @@
             <p>Destination: <h:outputText value="#{flight.destination}"/>
             <p>Return date: <h:outputText value="#{flight.returnDate}"/>
             <p>Return time: <h:outputText value="#{flight.returnTime}"/>
-            <!--<p>Trip type: <h:outputText value="#{flight.tripType}"/>-->
+            
         </body>
     </f:view>
 </html>
