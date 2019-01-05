@@ -1,0 +1,8 @@
+How to configure hibernate:
+add jar
+hibetnate.cfg.xml
+HibernateUtil
+Student domain class
+StudentService class
+StudentBean Class
+xhtml
