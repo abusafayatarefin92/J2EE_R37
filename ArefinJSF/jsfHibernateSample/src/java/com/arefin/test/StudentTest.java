@@ -14,15 +14,14 @@ import com.arefin.service.StudentService;
  */
 public class StudentTest {
     public static void main(String[] args) {
+        StudentService service = new StudentService();
 //        Students student = new Students();
-//        //student.setId(0);
+//        student.setId(1);
 //        student.setName("Arefin");
-//        student.setRound("Rounf-37");
+//        student.setRound("Round-37");
 //        student.setGender("Male");
 //        student.setCompletedCourse("Java");
 //        student.setMsg("ok");
-//        StudentService service = new StudentService();
 //        service.saveOrUpdate(student);
-//        System.out.println("Data inserted");
     }
 }
