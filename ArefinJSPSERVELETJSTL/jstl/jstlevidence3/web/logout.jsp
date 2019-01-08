@@ -13,8 +13,8 @@
     </head>
     <body>
         <%
-        session.removeAttribute("loginUser");
+            session.removeAttribute("loginUser");
         %>
-        <a href="login.jsp">Login</a>
+        <a href="index.jsp">Login</a>
     </body>
 </html>
