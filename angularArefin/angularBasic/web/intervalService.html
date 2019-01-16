@@ -8,16 +8,17 @@ and open the template in the editor.
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <body>
         <div ng-app="myApp" ng-controller="myCtrl">
-            <p>Today's welcome message is:</p>
-            <h1>{{myWelcome}}</h1>
+            <p>The time is:</p>
+            <h3>{{theTime}}</h3>
         </div>
-        <p>The $http service requests a page on the server, and the response is set as the value of the "myWelcome" variable.</p>
+        <p>The $interval service runs a function every specified millisecond.</p>
         <script>
             var app = angular.module("myApp", []);
-            app.controller("myCtrl", function ($scope, $http){
-                $http.get("welcome.html").then(function (response){
-                    $scope.myWelcome = response.data;
-                });
+            app.controller("myCtrl", function ($scope, $interval) {
+                $scope.theTime = new Date().toLocaleTimeString();
+                $interval(function () {
+                    $scope.theTime = new Date().toLocaleTimeString();
+                }, 1000);
             });
         </script>
     </body>
