@@ -50,6 +50,6 @@ Contributor(s):
         <property name="hibernate.connection.pool_size">100</property>
         <property name="show_sql">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <mapping class="com.arefin.entity.Students"/>
+        <mapping class="com.arefin.entity.Student"/>
     </session-factory>
 </hibernate-configuration>

@@ -63,7 +63,7 @@ public class StudentService {
             students = session.createQuery("FROM Students").list();
             transaction.commit();
         } catch (Exception e) {
-            System.out.println("Something went wropng");
+            System.out.println("Something went wrong");
         }
         return students;
     }
