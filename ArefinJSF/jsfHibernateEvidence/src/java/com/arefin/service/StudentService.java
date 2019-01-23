@@ -57,4 +57,16 @@ public class StudentService {
         }
         return list;
     }
+    
+    /*
+    public void login(String username, String password){
+        User user = service.findByUsernameAndPassword(username,password);
+        if(user != null){
+            login ok
+        }else{
+            
+        }
+    }
+    
+    */
 }
