@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="address" class="com.arefin.springsample.Address">
+        <constructor-arg value="Dhanmondi"></constructor-arg>
+        <constructor-arg value="Dhaka"></constructor-arg>
+        <constructor-arg value="Bangladesh"></constructor-arg>
+    </bean>
+
+    <bean id="department" class="com.arefin.springsample.Department">
+        <constructor-arg value="1"></constructor-arg>
+        <constructor-arg value="Software"></constructor-arg>
+    </bean>
+
+    <bean id="student" class="com.arefin.springsample.Student">
+        <constructor-arg value="1"></constructor-arg>
+        <constructor-arg value="Arefin"></constructor-arg>
+        <constructor-arg>
+            <ref bean="address"/>
+        </constructor-arg>
+        <constructor-arg>
+            <ref bean="department"/>
+        </constructor-arg>
+    </bean>
+</beans>
