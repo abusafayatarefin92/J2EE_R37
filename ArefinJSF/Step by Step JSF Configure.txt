@@ -1,8 +1,0 @@
-Read DB
-Web Project
-package
-com.arefin.entity
-com.arefin.controller
-Entity from database
-Controller classes from database
-jsf pages from entity
