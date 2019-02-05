@@ -7,15 +7,21 @@ import org.springframework.context.annotation.Configuration;
 public class StudentConfig {
     @Bean(name = "student1")
     public Student getStudent() {
-        Student student = new Student(1, "Arefin");
+        Address address1 = new Address("Dhanmondi", "Dhaka", "Bangladesh");
+        Department department1 = new Department("Software");
+        Student student = new Student(1, "Arefin", address1, department1);
         return student;
     }
 
     @Bean(name = "student2")
     public Student getStudentBySetter() {
         Student student = new Student();
+        Address address1 = new Address("Dhanmondi", "Dhaka", "Bangladesh");
+        Department department1 = new Department("Software");
         student.setId(2);
         student.setName("Zakir");
+        student.setAddress(address1);
+        student.setDepartment(department1);
         return student;
     }
 }
