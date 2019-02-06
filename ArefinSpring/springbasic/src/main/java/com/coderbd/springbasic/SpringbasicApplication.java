@@ -27,6 +27,7 @@ public class SpringbasicApplication {
 
 
         //Context Example
+		//Factory or Design pattern
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         Vehicle vehicle = (Vehicle) context.getBean("vehicle");
         vehicle.drive();

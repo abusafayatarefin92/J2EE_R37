@@ -16,8 +16,12 @@ public class StudentConfig {
     @Bean(name = "student2")
     public Student getStudentBySetter() {
         Student student = new Student();
-        Address address1 = new Address("Dhanmondi", "Dhaka", "Bangladesh");
-        Department department1 = new Department("Software");
+        Address address1 = new Address();
+        address1.setState("Dhanmondi");
+        address1.setCity("Dhaka");
+        address1.setCountry("Bangladesh");
+        Department department1 = new Department();
+        department1.setDepName("Software");
         student.setId(2);
         student.setName("Zakir");
         student.setAddress(address1);
