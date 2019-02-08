@@ -4,6 +4,7 @@ import com.arefin.hellomvc.entity.Student;
 import com.arefin.hellomvc.entity.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -116,6 +117,7 @@ public class HomeController {
     }
 
     long id = list1.size();
+
     @GetMapping(value = "/add/{username}/{mobile}")
     public List<User> addUserToListDynamically(@PathVariable("username") String username, @PathVariable("mobile") String mobile){
         id++;
@@ -131,13 +133,34 @@ public class HomeController {
         return list2;
     }
 
+    @GetMapping(value = "/best")
+    public User getUser(@RequestParam(value = "id") Long id){
+        User user = null;
+        for(User u : this.list1){
+            if(id == u.getId()){
+                user = new User();
+                user = new User(u.getId(), u.getUsername(), u.getMobile());
+                break;
+            }
+        }
+        return user;
+    }
+
+    @GetMapping(value = "/addu")
+    public List<User> addUserToListUsingParam(@RequestParam(value = "username") String username, @RequestParam(value = "mobile") String mobile){
+        id++;
+        list1.add(new User(id, username, mobile));
+        return list1;
+    }
+
     @GetMapping(value = "/remove/{id}")
     public List<User> removeUserToListDynamically(@PathVariable("id") long id){
         list1.remove(getUserByI(id));
         return list1;
     }
 
-    public User getUserByI(@PathVariable("id") Long id) {
+    ///////////////////Extra helper Method=================
+    public User getUserByI(Long id) {
         User user = null;
         for (User u : this.list1) {
             if (id == u.getId()) {
@@ -148,6 +171,4 @@ public class HomeController {
         }
         return user;
     }
-
-
 }
