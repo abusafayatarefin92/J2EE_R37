@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .err{
+            color: red;
+        }
+        .success{
+            color: greenyellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h3>Student Form</h3>
+<span th:class="success" th:text="${stusuccess}"></span>
+<form action="#" th:object="${student}" th:action="@{/student}" th:method="POST">
+    Name: <input type="text" th:field="*{name}"/> <p th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>  <br/>
+    Age: <input type="number" th:field="*{age}"/> <p th:class="err" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</p> <br/>
+    Email: <input type="email" th:field="*{email}"/> <p th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</p> <br/>
+    <button type="submit">Save</button>
+</form>
+<a th:href="@{/}">Home</a>
+</body>
+</html>
