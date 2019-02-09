@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <style type="text/css">
+        table {
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-<h3>Hello World!</h3>
-<a th:href="@{/student}">Add User</a>
+<a th:href="@{/student}">Add Student</a>
 <table>
     <tr>
         <th>ID</th>
@@ -23,8 +28,8 @@
         <td th:text="${s.name}"></td>
         <td th:text="${s.age}"></td>
         <td th:text="${s.email}"></td>
-        <td><a th:href="@{'/edit'}" </td>
-        <td></td>
+        <td><a th:href="@{'/edit/' + ${s.id}}">edit</a></td>
+        <td><a th:href="@{'/del/' + ${s.id}}">delete</a></td>
 
     </tr>
 </table>
