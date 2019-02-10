@@ -42,20 +42,14 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDate;
 
-    public User() {
-    }
+    //////File Upload==============
+    private long fileSize;
+    private  String fileName;
 
-    public User(String name, String email, String phone, int age, String gender, String[] courses, String round, Date regiDate, Date lastModifiedDate, Date birthDate) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.age = age;
-        this.gender = gender;
-        this.courses = courses;
-        this.round = round;
-        this.regiDate = regiDate;
-        this.lastModifiedDate = lastModifiedDate;
-        this.birthDate = birthDate;
+    private String filePath;
+    private String fileExtention;
+
+    public User() {
     }
 
     public Long getId() {
@@ -146,12 +140,45 @@ public class User {
         this.birthDate = birthDate;
     }
 
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFileExtention() {
+        return fileExtention;
+    }
+
+    public void setFileExtention(String fileExtention) {
+        this.fileExtention = fileExtention;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return age == user.age &&
+                fileSize == user.fileSize &&
                 Objects.equals(id, user.id) &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(email, user.email) &&
@@ -161,12 +188,15 @@ public class User {
                 Objects.equals(round, user.round) &&
                 Objects.equals(regiDate, user.regiDate) &&
                 Objects.equals(lastModifiedDate, user.lastModifiedDate) &&
-                Objects.equals(birthDate, user.birthDate);
+                Objects.equals(birthDate, user.birthDate) &&
+                Objects.equals(fileName, user.fileName) &&
+                Objects.equals(filePath, user.filePath) &&
+                Objects.equals(fileExtention, user.fileExtention);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, name, email, phone, age, gender, round, regiDate, lastModifiedDate, birthDate);
+        int result = Objects.hash(id, name, email, phone, age, gender, round, regiDate, lastModifiedDate, birthDate, fileSize, fileName, filePath, fileExtention);
         result = 31 * result + Arrays.hashCode(courses);
         return result;
     }
@@ -185,6 +215,10 @@ public class User {
                 ", regiDate=" + regiDate +
                 ", lastModifiedDate=" + lastModifiedDate +
                 ", birthDate=" + birthDate +
+                ", fileSize=" + fileSize +
+                ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", fileExtention='" + fileExtention + '\'' +
                 '}';
     }
 }

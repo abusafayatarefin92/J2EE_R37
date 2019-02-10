@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/edit/} + ${id}" th:object="${user}" th:method="POST">
+<form action="#" th:action="@{/edit/} + ${id}" th:object="${user}" method="POST">
     <table>
         <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
         <input type="hidden" th:field="*{regiDate}" th:value="${user.regiDate}"/>
@@ -47,9 +47,9 @@
                 PPT: <input type="checkbox" th:field="*{courses}" th:value="PPT"/>
                 HTML: <input type="checkbox" th:field="*{courses}" th:value="HTML"/>
                 JavaScript: <input type="checkbox" th:field="*{courses}" th:value="JavaScript"/>
-                Core Java: <input type="checkbox" th:field="*{courses}" th:value="Core Java"/>
-                Advanced Java: <input type="checkbox" th:field="*{courses}" th:value="Advanced Java"/>
-                Java EE: <input type="checkbox" th:field="*{courses}" th:value="Java EE"/>
+                Core Java: <input type="checkbox" th:field="*{courses}" th:value="Core-Java"/>
+                Advanced Java: <input type="checkbox" th:field="*{courses}" th:value="Advanced-Java"/>
+                Java EE: <input type="checkbox" th:field="*{courses}" th:value="Java-EE"/>
                 Spring: <input type="checkbox" th:field="*{courses}" th:value="Spring"/>
             </td>
         </tr>

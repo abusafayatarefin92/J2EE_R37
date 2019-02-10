@@ -14,7 +14,7 @@
 </head>
 <body>
 <span th:class="success" th:text="${successmsg}"></span>
-<form th:action="@{/add}" th:object="${user}" method="POST">
+<form th:action="@{/add}" th:object="${user}" method="POST" enctype="multipart/form-data">
     <table>
         <tr>
             <td><label>Name :</label></td>
@@ -64,6 +64,10 @@
         <tr>
             <td><label>Birth Date: </label></td>
             <td><input type="date" th:field="*{birthDate}"/></td>
+        </tr>
+        <tr>
+            <td>Photo</td>
+            <td><input type="file" name="file"/></td>
         </tr>
         <tr>
             <td><button type="submit">Submit</button></td>
