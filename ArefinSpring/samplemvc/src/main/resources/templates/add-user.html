@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <style type="text/css">
+        .success{
+            color: greenyellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<span th:class="success" th:text="${successmsg}"></span>
+<form th:action="@{/add}" th:object="${user}" method="POST">
+    <table>
+        <tr>
+            <td><label>Name :</label></td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td><label>Email :</label></td>
+            <td><input type="email" th:field="*{email}"/></td>
+        </tr>
+        <tr>
+            <td><label>Phone :</label></td>
+            <td><input type="text" th:field="*{phone}"/></td>
+        </tr>
+        <tr>
+            <td><label>Age :</label></td>
+            <td><input type="number" th:field="*{age}"/></td>
+        </tr>
+        <tr>
+            <td><label>Gender :</label></td>
+            <td>
+               Male: <input type="radio" th:field="*{gender}" th:value="Male"/>
+               Female: <input type="radio" th:field="*{gender}" th:value="Female"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Courses :</label></td>
+            <td>
+                PPT: <input type="checkbox" th:field="*{courses}" th:value="PPT"/>
+                HTML: <input type="checkbox" th:field="*{courses}" th:value="HTML"/>
+                JavaScript: <input type="checkbox" th:field="*{courses}" th:value="JavaScript"/>
+                Core Java: <input type="checkbox" th:field="*{courses}" th:value="Core-Java"/>
+                Advanced Java: <input type="checkbox" th:field="*{courses}" th:value="Advanced-Java"/>
+                Java EE: <input type="checkbox" th:field="*{courses}" th:value="Java-EE"/>
+                Spring: <input type="checkbox" th:field="*{courses}" th:value="Spring"/>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Round: </label></td>
+            <td>
+                <select th:field="*{round}">
+                    <option th:value="36">36</option>
+                    <option th:value="37">37</option>
+                    <option th:value="38">38</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Birth Date: </label></td>
+            <td><input type="date" th:field="*{birthDate}"/></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{/}">Home</a>
+</body>
+</html>

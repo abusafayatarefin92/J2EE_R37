@@ -1,4 +1,4 @@
-package com.arefin.webmvcthymeleaf.controller;
+0package com.arefin.webmvcthymeleaf.controller;
 
 import com.arefin.webmvcthymeleaf.entity.Student;
 import com.arefin.webmvcthymeleaf.repository.StudentRepo;
