@@ -26,6 +26,9 @@ public class ImageOptimizer {
         BufferedImage bufferedImage= ImageIO.read(Files.newInputStream(path));
         BufferedImage resizedBufferedImage=resize(bufferedImage,height,width);
         ImageIO.write(resizedBufferedImage,"jpg",optimizedImage);
+        File fi = new File(path.toString());
+        fi.createNewFile();
+        fi.delete();
         //  multipartFile.transferTo(optimizedImage);
         //  return multipartFile;
     }

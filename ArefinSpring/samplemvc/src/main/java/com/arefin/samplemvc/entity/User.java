@@ -4,6 +4,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
@@ -15,18 +19,26 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
+    @Size(min = 3, max = 30, message = "Name should at least has 3 characters")
     private String name;
 
+    @NotBlank(message = "Enter your email")
     private String email;
 
+    @NotBlank(message = "Enter your phone number")
     private String phone;
 
+    @NotNull(message = "Enter your age")
     private int age;
 
+    @NotBlank(message = "Select your gender")
     private String gender;
 
+    @NotEmpty(message = "Select your suject")
     private String[] courses;
 
+    @NotEmpty(message = "Select your round")
     private String round;
 
     @Temporal(TemporalType.TIMESTAMP)

@@ -14,25 +14,29 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/edit/} + ${id}" th:object="${user}" method="POST">
+<form action="#" th:action="@{/edit/} + ${id}" th:object="${user}" method="POST" enctype="multipart/form-data">
     <table>
         <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
         <input type="hidden" th:field="*{regiDate}" th:value="${user.regiDate}"/>
         <tr>
             <td><label>Name :</label></td>
             <td><input type="text" th:field="*{name}" th:value="${user.name}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
         </tr>
         <tr>
             <td><label>Email :</label></td>
             <td><input type="email" th:field="*{email}" th:value="${user.email}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
         </tr>
         <tr>
             <td><label>Phone :</label></td>
             <td><input type="text" th:field="*{phone}" th:value="${user.phone}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></td>
         </tr>
         <tr>
             <td><label>Age :</label></td>
             <td><input type="number" th:field="*{age}" th:value="${user.age}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></td>
         </tr>
         <tr>
             <td><label>Gender :</label></td>
@@ -40,6 +44,7 @@
                Male: <input type="radio" th:field="*{gender}" th:value="Male"/>
                Female: <input type="radio" th:field="*{gender}" th:value="Female"/>
             </td>
+            <td th:class="err" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></td>
         </tr>
         <tr>
             <td><label>Courses :</label></td>
@@ -52,6 +57,7 @@
                 Java EE: <input type="checkbox" th:field="*{courses}" th:value="Java-EE"/>
                 Spring: <input type="checkbox" th:field="*{courses}" th:value="Spring"/>
             </td>
+            <td th:class="err" th:if="${#fields.hasErrors('courses')}" th:errors="*{courses}"></td>
         </tr>
         <tr>
             <td><label>Round :</label></td>
@@ -62,10 +68,17 @@
                     <option th:value="38">38</option>
                 </select>
             </td>
+            <td th:class="err" th:if="${#fields.hasErrors('round')}" th:errors="*{round}"></td>
         </tr>
         <tr>
             <td><label>Birth Date: </label></td>
             <td><input type="date" th:field="*{birthDate}" th:value="${user.birthDate}"/></td>
+            <td th:class="err" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></td>
+        </tr>
+        <tr>
+            <td>Photo</td>
+            <td><input type="file" name="file"/></td>
+            <td></td>
         </tr>
         <tr>
             <td><button type="submit">Submit</button></td>
