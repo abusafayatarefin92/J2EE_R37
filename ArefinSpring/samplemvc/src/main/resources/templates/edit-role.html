@@ -10,6 +10,9 @@
             color: greenyellow;
             font-weight: bold;
         }
+        .err{
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -21,6 +24,7 @@
             <td><label>Name :</label></td>
             <td><input type="text" th:field="*{roleName}" th:value="${role.roleName}"/></td>
             <td th:class="err" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"></td>
+            <span th:class="err" th:text="${existmsg}"></span>
         </tr>
         <tr>
             <td><button type="submit">Submit</button></td>

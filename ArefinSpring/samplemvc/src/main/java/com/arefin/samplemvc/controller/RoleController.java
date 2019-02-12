@@ -44,10 +44,18 @@ public class RoleController {
     public String addUser(@Valid Role role, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "add-role";
+        } else {
+            if (role != null) {
+                Role role1 = this.roleRepo.findByRoleName(role.getRoleName());
+                if (role1 != null) {
+                    model.addAttribute("existmsg", "Role name is already exist");
+                } else {
+                    this.roleRepo.save(role);
+                    model.addAttribute("role", new Role());
+                    model.addAttribute("successmsgrole", "You Have Successfully add Role");
+                }
+            }
         }
-        this.roleRepo.save(role);
-        model.addAttribute("role", new Role());
-        model.addAttribute("successmsgrole", "You Have Successfully add Role");
         return "add-role";
     }
 
@@ -61,9 +69,18 @@ public class RoleController {
     public String edit(@Valid Role role, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
         if (bindingResult.hasErrors()) {
             return "edit-role";
+        }else {
+            if (role != null) {
+                Role role1 = this.roleRepo.findByRoleName(role.getRoleName());
+                if (role1 != null) {
+                    model.addAttribute("existmsg", "Role name is already exist");
+                    return "edit-role";
+                } else {
+                    this.roleRepo.save(role);
+                    model.addAttribute("role", new Role());
+                }
+            }
         }
-        this.roleRepo.save(role);
-        model.addAttribute("role", new Role());
         return "redirect:/role-list";
     }
 

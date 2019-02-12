@@ -19,6 +19,17 @@
         <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
         <input type="hidden" th:field="*{regiDate}" th:value="${user.regiDate}"/>
         <tr>
+            <td><label>Roles :</label></td>
+            <td>
+                <select th:field="*{roles}" multiple>
+                    <option th:each="role : ${rolelist}" th:value="${role.id}">
+                        <span th:text="${role.roleName}"></span>
+                    </option>
+                </select>
+            </td>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+        </tr>
+        <tr>
             <td><label>Name :</label></td>
             <td><input type="text" th:field="*{name}" th:value="${user.name}"/></td>
             <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
@@ -77,7 +88,7 @@
         </tr>
         <tr>
             <td>Photo</td>
-            <td><input type="file" name="file"/></td>
+            <td><input type="file" name="file" required="false"/></td>
             <td></td>
         </tr>
         <tr>

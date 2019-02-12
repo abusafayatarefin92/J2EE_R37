@@ -6,11 +6,12 @@
     <meta charset="UTF-8">
     <title>Add User</title>
     <style type="text/css">
-        .success{
+        .success {
             color: greenyellow;
             font-weight: bold;
         }
-        .err{
+
+        .err {
             color: red;
         }
     </style>
@@ -19,6 +20,17 @@
 <span th:class="success" th:text="${successmsg}"></span>
 <form th:action="@{/add}" th:object="${user}" method="POST" enctype="multipart/form-data">
     <table>
+        <tr>
+            <td><label>Roles :</label></td>
+            <td>
+                <select th:field="*{roles}" multiple>
+                    <option th:each="role : ${rolelist}" th:value="${role.id}">
+                        <span th:text="${role.roleName}"></span>
+                    </option>
+                </select>
+            </td>
+            <td th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+        </tr>
         <tr>
             <td><label>Name :</label></td>
             <td><input type="text" th:field="*{name}"/></td>
@@ -42,8 +54,8 @@
         <tr>
             <td><label>Gender :</label></td>
             <td>
-               Male: <input type="radio" th:field="*{gender}" th:value="Male"/>
-               Female: <input type="radio" th:field="*{gender}" th:value="Female"/>
+                Male: <input type="radio" th:field="*{gender}" th:value="Male"/>
+                Female: <input type="radio" th:field="*{gender}" th:value="Female"/>
             </td>
             <td th:class="err" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></td>
         </tr>
@@ -82,7 +94,9 @@
             <td></td>
         </tr>
         <tr>
-            <td><button type="submit">Submit</button></td>
+            <td>
+                <button type="submit">Submit</button>
+            </td>
         </tr>
     </table>
 </form>

@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -60,6 +61,14 @@ public class User {
 
     private String filePath;
     private String fileExtention;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "u_id"),
+            inverseJoinColumns = @JoinColumn(name = "r_id")
+    )
+    private Set<Role> roles;
 
     public User() {
     }
@@ -184,6 +193,14 @@ public class User {
         this.fileName = fileName;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -203,12 +220,13 @@ public class User {
                 Objects.equals(birthDate, user.birthDate) &&
                 Objects.equals(fileName, user.fileName) &&
                 Objects.equals(filePath, user.filePath) &&
-                Objects.equals(fileExtention, user.fileExtention);
+                Objects.equals(fileExtention, user.fileExtention) &&
+                Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, name, email, phone, age, gender, round, regiDate, lastModifiedDate, birthDate, fileSize, fileName, filePath, fileExtention);
+        int result = Objects.hash(id, name, email, phone, age, gender, round, regiDate, lastModifiedDate, birthDate, fileSize, fileName, filePath, fileExtention, roles);
         result = 31 * result + Arrays.hashCode(courses);
         return result;
     }
@@ -231,6 +249,7 @@ public class User {
                 ", fileName='" + fileName + '\'' +
                 ", filePath='" + filePath + '\'' +
                 ", fileExtention='" + fileExtention + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

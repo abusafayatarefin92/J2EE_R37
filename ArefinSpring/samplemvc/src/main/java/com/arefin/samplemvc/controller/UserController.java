@@ -2,6 +2,7 @@ package com.arefin.samplemvc.controller;
 
 import com.arefin.samplemvc.entity.User;
 import com.arefin.samplemvc.image.ImageOptimizer;
+import com.arefin.samplemvc.repository.RoleRepo;
 import com.arefin.samplemvc.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class UserController {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private RoleRepo roleRepo;
+
     @GetMapping(value = "/")
     public String index(Model model) {
         model.addAttribute("list", this.userRepo.findAll());
@@ -40,7 +44,8 @@ public class UserController {
     }
 
     @GetMapping(value = "/add")
-    public String showAddUser(User user) {
+    public String showAddUser(User user, Model model) {
+        model.addAttribute("rolelist", this.roleRepo.findAll());
         return "add-user";
     }
 
@@ -64,31 +69,26 @@ public class UserController {
             //////////////////////For Image Upload end/////////////////////
             this.userRepo.save(user);
             model.addAttribute("user", new User());
+            model.addAttribute("rolelist", this.roleRepo.findAll());
             model.addAttribute("successmsg", "You Have Successfully add user");
             imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 100, 100);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        model.addAttribute("rolelist", this.roleRepo.findAll());
         return "add-user";
-    }
-
-    @GetMapping(value = "/delete/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        if (id != null) {
-            this.userRepo.deleteById(id);
-        }
-        return "redirect:/";
     }
 
     @GetMapping(value = "/edit/{id}")
     public String editView(Model model, @PathVariable("id") Long id) {
         model.addAttribute("user", this.userRepo.getOne(id));
+        model.addAttribute("rolelist", this.roleRepo.findAll());
         return "edit-user";
     }
 
     @PostMapping(value = "/edit/{id}")
     public String edit(@Valid User user, BindingResult bindingResult, @PathVariable("id") Long id, Model model , @RequestParam("file") MultipartFile file) {
+        User user1 = this.userRepo.getOne(id);
         if (bindingResult.hasErrors()) {
             return "edit-user";
         }
@@ -107,10 +107,20 @@ public class UserController {
             //////////////////////For Image Upload end/////////////////////
             this.userRepo.save(user);
             model.addAttribute("user", new User());
+            model.addAttribute("rolelist", this.roleRepo.findAll());
             model.addAttribute("successmsg", "You Have Successfully add user");
             imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 100, 100);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        model.addAttribute("rolelist", this.roleRepo.findAll());
+        return "redirect:/";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        if (id != null) {
+            this.userRepo.deleteById(id);
         }
         return "redirect:/";
     }
