@@ -87,7 +87,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/edit/{id}")
-    public String edit(@Valid User user, BindingResult bindingResult, @PathVariable("id") Long id, Model model , @RequestParam("file") MultipartFile file) {
+    public String edit(@Valid User user, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam("file") MultipartFile file) {
         User user1 = this.userRepo.getOne(id);
         if (bindingResult.hasErrors()) {
             return "edit-user";
@@ -96,20 +96,29 @@ public class UserController {
 
         try {
             //////////////////////For Image Upload start /////////////////////
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            if (file.getOriginalFilename().length() > 0) {
+                byte[] bytes = file.getBytes();
+                Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
 
-            Files.write(path, bytes);
-            user.setFileName("new-" + file.getOriginalFilename());
-            user.setFileSize(file.getSize());
-            user.setFilePath("images/" + "new-" + file.getOriginalFilename());
-            user.setFileExtention(file.getContentType());
+                Files.write(path, bytes);
+                user.setFileName("new-" + file.getOriginalFilename());
+                user.setFileSize(file.getSize());
+                user.setFilePath("images/" + "new-" + file.getOriginalFilename());
+                user.setFileExtention(file.getContentType());
+            } else {
+                user.setFileName(user1.getFileName());
+                user.setFilePath(user1.getFilePath());
+                user.setFileSize(user1.getFileSize());
+                user.setFileExtention(user1.getFileExtention());
+            }
             //////////////////////For Image Upload end/////////////////////
             this.userRepo.save(user);
             model.addAttribute("user", new User());
             model.addAttribute("rolelist", this.roleRepo.findAll());
             model.addAttribute("successmsg", "You Have Successfully add user");
-            imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 100, 100);
+            if (file.getOriginalFilename().length() > 0) {
+                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 100, 100);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
