@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="simpleServiceBean" class="com.springaopfour.Employee">
+        <property name="name" value="Hello"/>
+        <property name="id" value="12345"/>
+    </bean>
+    <bean id="doBeforeMethodBean" class="com.springaopfour.DoBeforeMethod"/>
+    <bean id="doAfterReturningMethodBean" class="com.springaopfour.DoAfterReturningMethod"/>
+    <bean id="doAfterThrowingExceptionMethodBean" class="com.springaopfour.DoAfterThrowingExceptionMethod"/>
+    <bean id="doAroundMethodBean" class="com.springaopfour.DoAroundMethod"/>
+    <bean id="simpleServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="simpleServiceBean"/>
+        <property name="interceptorNames">
+            <list>
+                <value>doBeforeMethodBean</value>
+                <value>doAfterReturningMethodBean</value>
+                <value>doAfterThrowingExceptionMethodBean</value>
+                <value>doAroundMethodBean</value>
+            </list>
+        </property>
+    </bean>
+</beans>
