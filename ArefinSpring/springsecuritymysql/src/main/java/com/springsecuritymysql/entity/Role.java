@@ -1,6 +1,7 @@
 package com.springsecuritymysql.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -12,13 +13,13 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-    private String roleName;
+    @NotBlank(message = "Insert a Role name")
+    private String rolename;
 
     public Role() {
     }
 
-    public Role(int id) {
+    public Role(int id){
         this.id = id;
     }
 
@@ -30,12 +31,12 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getRolename() {
+        return rolename;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
     }
 
     @Override
@@ -43,20 +44,20 @@ public class Role {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
-        return Objects.equals(id, role.id) &&
-                Objects.equals(roleName, role.roleName);
+        return id == role.id &&
+                Objects.equals(rolename, role.rolename);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, roleName);
+        return Objects.hash(id, rolename);
     }
 
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", roleName='" + roleName + '\'' +
+                ", rolename='" + rolename + '\'' +
                 '}';
     }
 }

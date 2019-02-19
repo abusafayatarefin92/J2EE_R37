@@ -21,6 +21,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
+    private LoggingAccessDeniedHandler loggingAccessDeniedHandler;
+
+    @Autowired
     CustomUserDetailsService customUserDetailsService;
 
     @Bean
@@ -49,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/public/**", "/login", "/", "/user-save", "/role-save"
                             ).permitAll()
                 .antMatchers(
-                        "/sa/**"
+                        "/sa/**", "/role/**", "/users/**"
                             ).hasRole("SUPERADMIN")
                 .antMatchers(
                         "/adm/**"
@@ -58,9 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/user/**"
                             ).hasRole("USER")
                 .antMatchers(
+                        "/m/**"
+                ).hasRole("USER")
+                .antMatchers(
                         "/sec/**"
                             ).hasAnyRole(
-                        "SUPERADMIN", "ADMIN", "USER"
+                        "SUPERADMIN", "ADMIN", "USER", "MANAGER"
                                         )
                 .anyRequest()
                 .authenticated()
@@ -74,6 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(loggingAccessDeniedHandler);
     }
 }
