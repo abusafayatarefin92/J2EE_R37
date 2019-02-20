@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/public/**", "/login", "/", "/user-save", "/role-save"
                             ).permitAll()
                 .antMatchers(
-                        "/sa/**", "/role/**", "/users/**"
+                        "/sa/**", "/role/**", "/users/**", "/test"
                             ).hasRole("SUPERADMIN")
                 .antMatchers(
                         "/adm/**"

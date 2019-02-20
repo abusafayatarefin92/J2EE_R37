@@ -1,6 +1,8 @@
 package com.springsecuritymysql.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,11 +12,23 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NotBlank(message = "Enter your name")
     private String name;
+
+    @NotBlank(message = "Enter your mobile")
     private String mobile;
+
+    @NotBlank(message = "Enter your email")
     private String email;
+
+    @NotNull(message = "Select your status")
     private boolean status;
+
+    @NotBlank(message = "Enter your username")
     private String username;
+
+    @NotBlank(message = "Enter your password")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -28,7 +42,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String mobile, String email, boolean status, String username, String password, Set<Role> roles) {
+    public User(@NotBlank(message = "Enter your name") String name, @NotBlank(message = "Enter your mobile") String mobile, @NotBlank(message = "Enter your email") String email, @NotNull(message = "Select your status") boolean status, @NotBlank(message = "Enter your username") String username, @NotBlank(message = "Enter your password") String password, Set<Role> roles) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
