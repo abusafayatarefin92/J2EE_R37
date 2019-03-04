@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <title>User Registration with Spring Boot</title>
+</head>
+<body>
+<div>
+    <hr/>
+    <h4>Set your password</h4>
+
+    <div th:if="${successMessage}" role="alert" th:text="${successMessage}"></div>
+
+    <div th:if="${errorMessage}" role="alert" th:text=${errorMessage}></div>
+
+    <div th:if="${invalidToken}" role="alert" th:text=${invalidToken}></div>
+
+    <form th:if="!${invalidToken}" id="passwordForm" role="form" action="#"
+          th:object="${setPassword}" th:action="@{/confirm}" method="post">
+
+        <input type="hidden" name="token" th:value=${confirmationToken}  />
+
+        <div>
+            <input name="password" type="password" id="password"
+                   placeholder="Password" required />
+
+        </div>
+
+        <div>
+            <input type="password" id="signup-password-confirm" placeholder="Confirm Password" name="ConfirmPassword" data-fv-notempty="true"
+                   data-fv-notempty-message="Please confirm password"
+                   data-fv-identical="true"
+                   data-fv-identical-field="password"
+                   data-fv-identical-message="Both passwords must be identical" />
+        </div>
+
+        <button type="submit">Save</button>
+    </form>
+</div>
+</body>
+</html>

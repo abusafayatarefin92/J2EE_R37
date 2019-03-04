@@ -20,6 +20,7 @@ public class User {
     private String mobile;
 
     @NotBlank(message = "Enter your email")
+    @Column(nullable = false)
     private String email;
 
     @NotNull(message = "Select your status")
@@ -29,7 +30,12 @@ public class User {
     private String username;
 
     @NotBlank(message = "Enter your password")
+    @Transient
     private String password;
+
+    private boolean enabled;
+
+    private String confirmationToken;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -42,13 +48,15 @@ public class User {
     public User() {
     }
 
-    public User(@NotBlank(message = "Enter your name") String name, @NotBlank(message = "Enter your mobile") String mobile, @NotBlank(message = "Enter your email") String email, @NotNull(message = "Select your status") boolean status, @NotBlank(message = "Enter your username") String username, @NotBlank(message = "Enter your password") String password, Set<Role> roles) {
+    public User(@NotBlank(message = "Enter your name") String name, @NotBlank(message = "Enter your mobile") String mobile, @NotBlank(message = "Enter your email") String email, @NotNull(message = "Select your status") boolean status, @NotBlank(message = "Enter your username") String username, @NotBlank(message = "Enter your password") String password, boolean enabled, String confirmationToken, Set<Role> roles) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
         this.status = status;
         this.username = username;
         this.password = password;
+        this.enabled = enabled;
+        this.confirmationToken = confirmationToken;
         this.roles = roles;
     }
 
@@ -59,6 +67,8 @@ public class User {
         this.status = user.status;
         this.username = user.username;
         this.password = user.password;
+        this.enabled = user.enabled;
+        this.confirmationToken = user.confirmationToken;
         this.roles = user.roles;
 
     }
@@ -119,6 +129,22 @@ public class User {
         this.password = password;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -134,17 +160,19 @@ public class User {
         User user = (User) o;
         return id == user.id &&
                 status == user.status &&
+                enabled == user.enabled &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(mobile, user.mobile) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
+                Objects.equals(confirmationToken, user.confirmationToken) &&
                 Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, mobile, email, status, username, password, roles);
+        return Objects.hash(id, name, mobile, email, status, username, password, enabled, confirmationToken, roles);
     }
 
     @Override
@@ -157,6 +185,8 @@ public class User {
                 ", status=" + status +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", confirmationToken='" + confirmationToken + '\'' +
                 ", roles=" + roles +
                 '}';
     }

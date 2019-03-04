@@ -1,1 +1,0 @@
-https://angularfirebase.com/lessons/animation-examples-in-angular-4-3/

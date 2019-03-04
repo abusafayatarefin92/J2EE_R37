@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = {"/login", "/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login", "/", "/users/**"}, method = RequestMethod.GET)
     public String login(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
