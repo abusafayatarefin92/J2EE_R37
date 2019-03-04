@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="#" th:action="@{/users/edit} + ${id}" th:object="${user}" method="POST">
+        <table>
+            <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
+            <tr>
+                <td><label>Roles: </label></td>
+                <td>
+                    <select th:field="*{roles}" multiple>
+                        <option th:each="role : ${rolelist}" th:value="${role.id}">
+                            <span th:text="${role.rolename}"></span>
+                        </option>
+                    </select>
+                </td>
+                <td th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></td>
+            </tr>
+            <tr>
+                <td><label>Name: </label></td>
+                <td>
+                    <input type="text" th:field="*{name}" th:value="${user.name}"/>
+                </td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+            </tr>
+            <tr>
+                <td><label>Mobile: </label></td>
+                <td>
+                    <input type="text" th:field="*{mobile}" th:value="${user.mobile}"/>
+                </td>
+                <td th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></td>
+            </tr>
+            <tr>
+                <td><label>Email: </label></td>
+                <td>
+                    <input type="email" th:field="*{email}" th:value="${user.email}"/>
+                </td>
+                <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></td>
+            </tr>
+            <tr>
+                <td><label>Status: </label></td>
+                <td>
+                    True <input type="radio" th:field="*{status}" th:value="true"/>
+                    False <input type="radio" th:field="*{status}" th:value="false"/>
+                </td>
+                <td th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></td>
+            </tr>
+            <tr>
+                <td><label>User Name: </label></td>
+                <td>
+                    <input type="text" th:field="*{username}" th:value="${user.username}"/>
+                </td>
+                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+            </tr>
+            <tr>
+                <td><label>Password: </label></td>
+                <td>
+                    <input type="hidden" th:field="*{password}" th:value="${user.password}"/>
+                </td>
+                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

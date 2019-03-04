@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a th:href="@{role/add}">Add Role</a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Role Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="r : ${list}">
+            <td th:text="${r.id}"></td>
+            <td th:text="${r.rolename}"></td>
+            <td><a th:href="@{'/role/edit/' + ${r.id}}">edit</a> </td>
+            <td><a th:href="@{'/role/delete/' + ${r.id}}">delete</a> </td>
+        </tr>
+    </table>
+</body>
+</html>
