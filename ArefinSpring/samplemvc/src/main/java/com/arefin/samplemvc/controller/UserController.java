@@ -115,7 +115,7 @@ public class UserController {
             this.userRepo.save(user);
             model.addAttribute("user", new User());
             model.addAttribute("rolelist", this.roleRepo.findAll());
-            model.addAttribute("successmsg", "You Have Successfully add user");
+            model.addAttribute("successmsg", "You Have Successfully edited user");
             if (file.getOriginalFilename().length() > 0) {
                 imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 100, 100);
             }

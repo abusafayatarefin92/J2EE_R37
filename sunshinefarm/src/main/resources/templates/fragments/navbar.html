@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<aside th:fragment="main-navbar" id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand" href="/" th:href="@{/}"><img src="/images/logo.png" th:src="@{/images/logo.png}" alt="Logo"></a>
+            <a class="navbar-brand hidden" href="/" th:href="@{/}"><img src="/images/logo2.png" th:src="@{/images/logo2.png}" alt="Logo"></a>
+        </div>
+
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/" th:href="@{/}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>Role</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-puzzle-piece"></i><a href="/role/create.jsf" th:href="@{/role/create.jsf}">Add Role</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="edit-role.html">Edit Role</a></li>
+                        <li><i class="fa fa-bars"></i><a href="/role/list.jsf" th:href="@{/role/list.jsf}">Role list</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>User</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-rub"></i><a href="add-user.html">Add User</a></li>
+                        <li><i class="fa fa-stack-exchange"></i><a href="edit-user.html">Edit User</a></li>
+                        <li><i class="fa fa-try"></i><a href="user-list.html">User List</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Designation</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-puzzle-piece"></i><a href="/designation/create.jsf" th:href="@{/designation/create.jsf}">Add Designation</a></li>
+                        <li><i class="menu-icon fa fa-th"></i><a href="edit-designation.html">Edit Designation</a></li>
+                        <li><i class="menu-icon fa fa-th"></i><a href="/designation/list.jsf" th:href="@{/designation/list.jsf}">Designation List</a></li>
+                    </ul>
+                </li>
+
+
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Employees</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="add-employees.html">Add Employees</a></li>
+                        <li><i class="menu-icon ti-themify-logo"></i><a href="edit-employees.html">Edit Employees</a></li>
+                        <li><i class="menu-icon ti-themify-logo"></i><a href="employees-list.html">Employees List</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cutlery"></i>Crops</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="add-crops.html">Add Crops</a></li>
+                        <li><i class="menu-icon ti-themify-logo"></i><a href="edit-crops.html">Edit Crops</a></li>
+                        <li><i class="menu-icon ti-themify-logo"></i><a href="crops-list.html">Crops List</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Sales</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-line-chart"></i><a href="add-sales.html">Add Sales</a></li>
+                        <li><i class="menu-icon fa fa-area-chart"></i><a href="edit-sales.html">Edit Sales</a></li>
+                        <li><i class="menu-icon fa fa-pie-chart"></i><a href="sales-list.html">Sales List</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Equipment</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-map-o"></i><a href="add-equipment.html">Add Equipment</a></li>
+                        <li><i class="menu-icon fa fa-street-view"></i><a href="edit-equipment.html">Edit Equipment</a></li>
+                        <li><i class="menu-icon fa fa-street-view"></i><a href="equipment-list.html">Equipment List</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Insecticides</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href="add-insecticides.html">Add Insecticides</a></li>
+                        <li><i class="menu-icon fa fa-sign-in"></i><a href="edit-insecticides.html">Edit Insecticides</a></li>
+                        <li><i class="menu-icon fa fa-paper-plane"></i><a href="insecticides-list.html">Insecticides List</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-pagelines"></i>Pesticides</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-puzzle-piece"></i><a href="add-pesticides.html">Add Pesticides</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="edit-pesticides.html">Edit Pesticides</a></li>
+                        <li><i class="fa fa-bars"></i><a href="pesticides-list.html">Pesticides List</a></li>
+
+                    </ul>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-pagelines"></i>Expenses</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-puzzle-piece"></i><a href="/expenses/create.jsf" th:href="@{/expenses/create.jsf}">Add Expenses</a></li>
+                        <li><i class="fa fa-id-badge"></i><a href="edit-pesticides.html">Edit Expenses</a></li>
+                        <li><i class="fa fa-bars"></i><a href="/expenses/list.jsf" th:href="@{/expenses/list.jsf}">Expenses List</a></li>
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+</body>
+</html>
