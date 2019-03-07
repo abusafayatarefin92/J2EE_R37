@@ -23,17 +23,22 @@
             Add <strong>Designation</strong>
         </div>
         <div class="card-body card-block">
-            <span th:class="success" th:text="${successMsg}"></span>
-            <form action="" method="post" class="form-horizontal" th:object="${obj}"
-                  th:action="@{/designation/create}">
+            <span th:text="${existdesignation}"></span>
+            <form action="#" method="post" class="form-horizontal" th:object="${designation}"
+                  th:action="@{/designation/update} + ${id}">
+                <div class="row form-group">
+                    <div class="col-12 col-md-12">
+                        <input type="hidden" th:field="*{id}" th:value="${designation.id}"/>
+                    </div>
+                </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Designation Name</label></div>
                     <div class="col-12 col-md-6"><input type="text" id="designationName" name="designationName"
                                                         placeholder="Enter Designation name" class="form-control"
                                                         th:field="*{designationName}" required></div>
                     <div class="col-12 col-md-3">
-                        <td th:if="${#fields.hasErrors('designationName')}" th:errors="*{designationName}"></td>
-                        <span th:text="${existdesignation}"></span>
+                        <span th:if="${#fields.hasErrors('designationName')}" th:errors="*{designationName}"></span>
+
                     </div>
                 </div>
                 <div class="card-footer">

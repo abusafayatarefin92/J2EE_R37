@@ -5,6 +5,16 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
 <head>
     <title>Sun-Shine Farm Inc.</title>
+    <style type="text/css">
+        .success {
+            color: greenyellow;
+            font-weight: bold;
+        }
+
+        .err {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,6 +24,7 @@
             Add <strong>Role</strong>
         </div>
         <div class="card-body card-block">
+            <span th:class="success" th:text="${successrole}"></span>
             <form th:action="@{/role/create}" method="post" class="form-horizontal" th:object="${role}">
                 <div class="row form-group">
                     <div class="col col-md-3">
@@ -24,7 +35,7 @@
                                class="form-control" th:field="*{roleName}" required>
                     </div>
                     <div class="col-12 col-md-3">
-                        <td th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"></td>
+                        <span th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"></span>
                         <span th:text="${existrole}"></span>
                     </div>
                 </div>

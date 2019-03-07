@@ -87,6 +87,7 @@ public class UserController {
             return "user/update";
         } else {
             this.userRepo.save(user);
+            model.addAttribute("user", new User());
             model.addAttribute("rolelist", this.roleRepo.findAll());
         }
         return "user/list";
