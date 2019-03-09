@@ -29,29 +29,22 @@ public class EmployeesController {
     public DesignationRepo designationRepo;
 
     @GetMapping(value = "create")
-    public String addEmployeesView(Model model){
+    public String addEmployeesView(Model model) {
         model.addAttribute("employees", new Employees());
         model.addAttribute("designationlist", this.designationRepo.findAll());
         return "employees/create";
     }
 
     @PostMapping(value = "create")
-    public String addEmployees(@Valid Employees employees, BindingResult bindingResult, Model model){
-        if (bindingResult.hasErrors()){
+    public String addEmployees(@Valid Employees employees, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "employees/create";
         }
-        if (employees != null) {
-            Optional<Employees> employees1 = this.employeesRepo.findByName(employees.getName());
-            if (employees1 != null) {
-                model.addAttribute("existemployee", "Employee is already exist");
-            } else {
-                employees.setStartingDate(new Date());
-                this.employeesRepo.save(employees);
-                model.addAttribute("successemployees", "Save employee Success");
-                model.addAttribute("employees", new Employees());
-                model.addAttribute("designationlist", this.designationRepo.findAll());
-            }
-        }
+        employees.setStartingDate(new Date());
+        this.employeesRepo.save(employees);
+        model.addAttribute("successemployees", "Save employee Success");
+        model.addAttribute("employees", new Employees());
+        model.addAttribute("designationlist", this.designationRepo.findAll());
         return "employees/create";
     }
 

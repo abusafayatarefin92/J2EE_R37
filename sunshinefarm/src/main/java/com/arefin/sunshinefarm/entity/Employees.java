@@ -28,7 +28,6 @@ public class Employees {
     private Date startingDate;
 
     @Column(name = "monthly_salary")
-    @NotBlank(message = "Enter employee's monthly salary")
     private Double monthlySalary;
 
     @ManyToOne

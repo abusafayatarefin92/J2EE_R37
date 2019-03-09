@@ -30,28 +30,21 @@ public class EquipmentController {
     public CropsRepo cropsRepo;
 
     @GetMapping(value = "create")
-    public String addEquipmentView(Model model){
+    public String addEquipmentView(Model model) {
         model.addAttribute("equipment", new Equipment());
         model.addAttribute("croplist", this.cropsRepo.findAll());
         return "equipment/create";
     }
 
     @PostMapping(value = "create")
-    public String addEquipment(@Valid Equipment equipment, BindingResult bindingResult, Model model){
-        if (bindingResult.hasErrors()){
+    public String addEquipment(@Valid Equipment equipment, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "equipment/create";
         }
-        if (equipment != null) {
-            Optional<Equipment> equipment1 = this.equipmentRepo.findByName(equipment.getName());
-            if (equipment1 != null) {
-                model.addAttribute("existemployee", "Employee is already exist");
-            } else {
-                this.equipmentRepo.save(equipment);
-                model.addAttribute("successequipment", "Save equipment Success");
-                model.addAttribute("equipment", new Equipment());
-                model.addAttribute("croplist", this.cropsRepo.findAll());
-            }
-        }
+        this.equipmentRepo.save(equipment);
+        model.addAttribute("successequipment", "Save equipment Success");
+        model.addAttribute("equipment", new Equipment());
+        model.addAttribute("croplist", this.cropsRepo.findAll());
         return "equipment/create";
     }
 
@@ -67,15 +60,9 @@ public class EquipmentController {
         if (bindingResult.hasErrors()) {
             return "equipment/update";
         }
-        Optional<Equipment> equipment1 = this.equipmentRepo.findByName(equipment.getName());
-        if (equipment1.get().getId() != id) {
-            model.addAttribute("existequipment", "Already Have This Entry");
-            return "equipment/update";
-        } else {
-            this.equipmentRepo.save(equipment);
-            model.addAttribute("equipment", new Equipment());
-            model.addAttribute("croplist", this.cropsRepo.findAll());
-        }
+        this.equipmentRepo.save(equipment);
+        model.addAttribute("equipment", new Equipment());
+        model.addAttribute("croplist", this.cropsRepo.findAll());
         return "equipment/list";
     }
 

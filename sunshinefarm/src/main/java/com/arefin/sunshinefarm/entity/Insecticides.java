@@ -25,7 +25,6 @@ public class Insecticides {
     private int quantity;
 
     @Column(name = "purchase_price")
-    @NotBlank(message = "Enter insecticides purchase price")
     private Double purchasePrice;
 
     @Column(name = "person_name")
@@ -42,7 +41,7 @@ public class Insecticides {
     public Insecticides() {
     }
 
-    public Insecticides(@NotBlank(message = "Enter insecticides name") String name, @NotBlank(message = "Enter insecticides product code") String productCode, int quantity, @NotBlank(message = "Enter insecticides purchase price") Double purchasePrice, @NotBlank(message = "Enter person's name, responsible for purchasing this insecticides") String personName, Set<Crops> crops) {
+    public Insecticides(@NotBlank(message = "Enter insecticides name") String name, @NotBlank(message = "Enter insecticides product code") String productCode, int quantity, Double purchasePrice, @NotBlank(message = "Enter person's name, responsible for purchasing this insecticides") String personName, Set<Crops> crops) {
         this.name = name;
         this.productCode = productCode;
         this.quantity = quantity;

@@ -22,7 +22,6 @@
                                 <thead>
                                 <tr>
                                     <th>User Name</th>
-                                    <th>Password</th>
                                     <th>Email</th>
                                     <th>Mobile No.</th>
                                     <th>Name</th>
@@ -35,7 +34,6 @@
                                 <tbody>
                                 <tr th:each="data : ${userlist}">
                                     <td th:text="${data.userName}"></td>
-                                    <td th:text="${data.password}"></td>
                                     <td th:text="${data.email}"></td>
                                     <td th:text="${data.mobile}"></td>
                                     <td th:text="${data.name}"></td>

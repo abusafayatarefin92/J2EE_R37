@@ -28,28 +28,21 @@ public class InsecticidesController {
     public CropsRepo cropsRepo;
 
     @GetMapping(value = "create")
-    public String addInsecticidesView(Model model){
+    public String addInsecticidesView(Model model) {
         model.addAttribute("insecticides", new Insecticides());
         model.addAttribute("croplist", this.cropsRepo.findAll());
         return "insecticides/create";
     }
 
     @PostMapping(value = "create")
-    public String addInsecticides(@Valid Insecticides insecticides, BindingResult bindingResult, Model model){
-        if (bindingResult.hasErrors()){
+    public String addInsecticides(@Valid Insecticides insecticides, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "insecticides/create";
         }
-        if (insecticides != null) {
-            Optional<Insecticides> insecticides1 = this.insecticidesRepo.findByName(insecticides.getName());
-            if (insecticides1 != null) {
-                model.addAttribute("existinsecticides", "Insecticides is already exist");
-            } else {
-                this.insecticidesRepo.save(insecticides);
-                model.addAttribute("successinsecticides", "Save insecticides Success");
-                model.addAttribute("insecticides", new Insecticides());
-                model.addAttribute("croplist", this.cropsRepo.findAll());
-            }
-        }
+        this.insecticidesRepo.save(insecticides);
+        model.addAttribute("successinsecticides", "Save insecticides Success");
+        model.addAttribute("insecticides", new Insecticides());
+        model.addAttribute("croplist", this.cropsRepo.findAll());
         return "insecticides/create";
     }
 
@@ -65,15 +58,9 @@ public class InsecticidesController {
         if (bindingResult.hasErrors()) {
             return "insecticides/update";
         }
-        Optional<Insecticides> insecticides1 = this.insecticidesRepo.findByName(insecticides.getName());
-        if (insecticides1.get().getId() != id) {
-            model.addAttribute("existinsecticides", "Already Have This Entry");
-            return "insecticides/update";
-        } else {
-            this.insecticidesRepo.save(insecticides);
-            model.addAttribute("insecticides", new Insecticides());
-            model.addAttribute("croplist", this.cropsRepo.findAll());
-        }
+        this.insecticidesRepo.save(insecticides);
+        model.addAttribute("insecticides", new Insecticides());
+        model.addAttribute("croplist", this.cropsRepo.findAll());
         return "insecticides/list";
     }
 

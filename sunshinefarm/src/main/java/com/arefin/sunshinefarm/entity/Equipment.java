@@ -25,7 +25,6 @@ public class Equipment {
     private int quantity;
 
     @Column(name = "purchase_price")
-    @NotBlank(message = "Enter equipment purchase price")
     private Double purchasePrice;
 
     @Column(name = "person_name")
@@ -42,7 +41,7 @@ public class Equipment {
     public Equipment() {
     }
 
-    public Equipment(@NotBlank(message = "Enter equipment name") String name, @NotBlank(message = "Enter equipment product code") String productCode, int quantity, @NotBlank(message = "Enter equipment purchase price") Double purchasePrice, @NotBlank(message = "Enter person's name, responsible for purchasing this equipment") String personName, Set<Crops> crops) {
+    public Equipment(@NotBlank(message = "Enter equipment name") String name, @NotBlank(message = "Enter equipment product code") String productCode, int quantity, Double purchasePrice, @NotBlank(message = "Enter person's name, responsible for purchasing this equipment") String personName, Set<Crops> crops) {
         this.name = name;
         this.productCode = productCode;
         this.quantity = quantity;

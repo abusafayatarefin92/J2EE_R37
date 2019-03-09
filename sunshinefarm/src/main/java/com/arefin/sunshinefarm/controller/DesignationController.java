@@ -22,45 +22,35 @@ public class DesignationController {
     DesignationRepo designationRepo;
 
     @GetMapping(value = "create")
-    public String displayDesignation(Model model){
+    public String displayDesignation(Model model) {
         model.addAttribute("obj", new Designation());
         return "designation/create";
     }
 
     @PostMapping(value = "create")
-    public String saveDesignation(@Valid Designation obj, BindingResult result, Model model){
-        if(result.hasErrors()){
+    public String saveDesignation(@Valid Designation obj, BindingResult result, Model model) {
+        if (result.hasErrors()) {
             return "designation/create";
         }
-        if (designationRepo.existsDesignationByDesignationName(obj.getDesignationName())) {
-            model.addAttribute("existdesignation", "Designation already exist");
-        }else{
-            designationRepo.save(obj);
-            model.addAttribute("successMsg", "Success");
-            model.addAttribute("obj", new Designation());
-        }
+        designationRepo.save(obj);
+        model.addAttribute("successMsg", "Success");
+        model.addAttribute("obj", new Designation());
         return "designation/create";
     }
 
     @GetMapping(value = "update/{id}")
-    public String editDesignationView(Model model, @PathVariable("id") Long id){
+    public String editDesignationView(Model model, @PathVariable("id") Long id) {
         model.addAttribute("designation", this.designationRepo.getOne(id));
         return "designation/update";
     }
 
     @PostMapping(value = "update/{id}")
-    public String editDesignation(@Valid Designation designation, BindingResult bindingResult, @PathVariable("id") Long id, Model model){
-        if(bindingResult.hasErrors()){
+    public String editDesignation(@Valid Designation designation, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
+        if (bindingResult.hasErrors()) {
             return "designation/update";
         }
-        Optional<Designation> designation1 = this.designationRepo.findByDesignationName(designation.getDesignationName());
-        if (designation1.get().getId() != id) {
-            model.addAttribute("existdesignation", "Already Have This Entry");
-            return "designation/update";
-        } else {
-            this.designationRepo.save(designation);
-            model.addAttribute("designation", new Designation());
-        }
+        this.designationRepo.save(designation);
+        model.addAttribute("designation", new Designation());
         return "designation/list";
     }
 

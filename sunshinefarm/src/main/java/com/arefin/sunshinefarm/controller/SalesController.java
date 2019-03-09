@@ -46,7 +46,7 @@ public class SalesController {
             return "sales/create";
         }
         try{
-            CropsSummary cropsSummary = (CropsSummary) this.cropsSummaryRepo.findByProductCode(sales.getProductCode());
+            CropsSummary cropsSummary = this.cropsSummaryRepo.findByProductCode(sales.getProductCode());
             if(sales.getQuantity() <= cropsSummary.getAvailableQuantity()){
                 this.salesRepo.save(sales);
                 model.addAttribute("sales", new Sales());

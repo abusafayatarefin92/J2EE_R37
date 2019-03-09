@@ -28,28 +28,21 @@ public class PesticidesController {
     public CropsRepo cropsRepo;
 
     @GetMapping(value = "create")
-    public String addInsecticidesView(Model model){
+    public String addInsecticidesView(Model model) {
         model.addAttribute("pesticides", new Pesticides());
         model.addAttribute("croplist", this.cropsRepo.findAll());
         return "pesticides/create";
     }
 
     @PostMapping(value = "create")
-    public String addInsecticides(@Valid Pesticides pesticides, BindingResult bindingResult, Model model){
-        if (bindingResult.hasErrors()){
+    public String addInsecticides(@Valid Pesticides pesticides, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
             return "pesticides/create";
         }
-        if (pesticides != null) {
-            Optional<Pesticides> pesticides1 = this.pesticidesRepo.findByName(pesticides.getName());
-            if (pesticides1 != null) {
-                model.addAttribute("existpesticides", "Pesticides is already exist");
-            } else {
-                this.pesticidesRepo.save(pesticides);
-                model.addAttribute("successpesticides", "Save pesticides Success");
-                model.addAttribute("pesticides", new Pesticides());
-                model.addAttribute("croplist", this.cropsRepo.findAll());
-            }
-        }
+        this.pesticidesRepo.save(pesticides);
+        model.addAttribute("successpesticides", "Save pesticides Success");
+        model.addAttribute("pesticides", new Pesticides());
+        model.addAttribute("croplist", this.cropsRepo.findAll());
         return "pesticides/create";
     }
 
@@ -65,15 +58,9 @@ public class PesticidesController {
         if (bindingResult.hasErrors()) {
             return "pesticides/update";
         }
-        Optional<Pesticides> pesticides1 = this.pesticidesRepo.findByName(pesticides.getName());
-        if (pesticides1.get().getId() != id) {
-            model.addAttribute("existpesticides", "Already Have This Entry");
-            return "pesticides/update";
-        } else {
-            this.pesticidesRepo.save(pesticides);
-            model.addAttribute("pesticides", new Pesticides());
-            model.addAttribute("croplist", this.cropsRepo.findAll());
-        }
+        this.pesticidesRepo.save(pesticides);
+        model.addAttribute("pesticides", new Pesticides());
+        model.addAttribute("croplist", this.cropsRepo.findAll());
         return "pesticides/list";
     }
 
