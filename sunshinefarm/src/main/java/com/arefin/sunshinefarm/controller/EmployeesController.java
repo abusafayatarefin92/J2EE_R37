@@ -35,7 +35,7 @@ public class EmployeesController {
         return "employees/create";
     }
 
-    @GetMapping(value = "create")
+    @PostMapping(value = "create")
     public String addEmployees(@Valid Employees employees, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
             return "employees/create";

@@ -36,21 +36,16 @@ public class CropsSummary {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date lastUpdate;
 
-    @OneToOne
-    @JoinColumn(name = "crops_id", nullable = false)
-    private Crops crops;
-
     public CropsSummary() {
     }
 
-    public CropsSummary(@NotBlank(message = "Enter product name") String productName, @NotBlank(message = "Enter product code") String productCode, int totalQuantity, int salesQuantity, int availableQuantity, Date lastUpdate, Crops crops) {
+    public CropsSummary(@NotBlank(message = "Enter product name") String productName, @NotBlank(message = "Enter product code") String productCode, int totalQuantity, int salesQuantity, int availableQuantity, Date lastUpdate) {
         this.productName = productName;
         this.productCode = productCode;
         this.totalQuantity = totalQuantity;
         this.salesQuantity = salesQuantity;
         this.availableQuantity = availableQuantity;
         this.lastUpdate = lastUpdate;
-        this.crops = crops;
     }
 
     public Long getId() {
@@ -109,14 +104,6 @@ public class CropsSummary {
         this.lastUpdate = lastUpdate;
     }
 
-    public Crops getCrops() {
-        return crops;
-    }
-
-    public void setCrops(Crops crops) {
-        this.crops = crops;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -128,13 +115,12 @@ public class CropsSummary {
                 Objects.equals(id, that.id) &&
                 Objects.equals(productName, that.productName) &&
                 Objects.equals(productCode, that.productCode) &&
-                Objects.equals(lastUpdate, that.lastUpdate) &&
-                Objects.equals(crops, that.crops);
+                Objects.equals(lastUpdate, that.lastUpdate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productName, productCode, totalQuantity, salesQuantity, availableQuantity, lastUpdate, crops);
+        return Objects.hash(id, productName, productCode, totalQuantity, salesQuantity, availableQuantity, lastUpdate);
     }
 
     @Override
@@ -147,7 +133,6 @@ public class CropsSummary {
                 ", salesQuantity=" + salesQuantity +
                 ", availableQuantity=" + availableQuantity +
                 ", lastUpdate=" + lastUpdate +
-                ", crops=" + crops +
                 '}';
     }
 }

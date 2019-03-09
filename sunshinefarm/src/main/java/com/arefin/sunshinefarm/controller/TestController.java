@@ -39,7 +39,7 @@ public class TestController {
     @GetMapping(value = "/user-save")
     public String saveUser(){
         Set<Role> roles = new HashSet<>();
-        roles.add(new Role(1L));
+        roles.add(new Role(2L));
         User user = new User("arefin", "arefinsafayat92@gmail.com", "01788857672", "Safayat Arefin", new Date(), true, UUID.randomUUID().toString(), roles);
         user.setPassword(passwordEncoder.encode("123"));
         userRepo.save(user);

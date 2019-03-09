@@ -1,8 +1,10 @@
 package com.arefin.sunshinefarm.controller;
 
 import com.arefin.sunshinefarm.entity.Crops;
+import com.arefin.sunshinefarm.entity.CropsSummary;
 import com.arefin.sunshinefarm.image.ImageOptimizer;
 import com.arefin.sunshinefarm.repo.CropsRepo;
+import com.arefin.sunshinefarm.repo.CropsSummaryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,18 +16,16 @@ import javax.validation.Valid;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/crops/")
 public class CropsController {
-    //Save the uploaded file to this folder
-    private static final String UPLOADED_FOLDER = "src/main/resources/static/images/";
-
-    @Autowired
-    private ImageOptimizer imageOptimizer;
-
     @Autowired
     private CropsRepo cropsRepo;
+
+    @Autowired
+    private CropsSummaryRepo cropsSummaryRepo;
 
     @GetMapping(value = "list")
     public String cropsListView(Model model) {
@@ -37,88 +37,42 @@ public class CropsController {
     }
 
     @GetMapping(value = "create")
-    public String addCropsView() {
+    public String addCropsView(Model model){
+        model.addAttribute("crops", new Crops());
         return "crops/create";
     }
 
     @PostMapping(value = "create")
-    public String addCrops(@Valid Crops crops, BindingResult bindingResult, Model model, @RequestParam("file") MultipartFile file) {
-        if (bindingResult.hasErrors()) {
+    public String addCrops(@Valid Crops crops, BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()){
             return "crops/create";
-        } else {
-            if (crops != null) {
-                Crops crops1 = this.cropsRepo.findByName(crops.getName());
-                if(crops1 != null){
-                    model.addAttribute("existCrops", "crop is already exist");
-                }else{
-                    try {
-                        //////////////////////For Image Upload start /////////////////////
-                        byte[] bytes = file.getBytes();
-                        Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-
-                        Files.write(path, bytes);
-                        crops.setFileName("new-" + file.getOriginalFilename());
-                        crops.setFileSize(file.getSize());
-                        crops.setFilePath("images/" + "new-" + file.getOriginalFilename());
-                        crops.setFileExtention(file.getContentType());
-                        //////////////////////For Image Upload end/////////////////////
-                        this.cropsRepo.save(crops);
-                        model.addAttribute("crops", new Crops());
-                        model.addAttribute("successcrops", "You Have Successfully add crop");
-                        imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 100, 100);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+        }
+        this.cropsRepo.save(crops);
+        model.addAttribute("crops", new Crops());
+        model.addAttribute("successcrops", "Crops Successfully added");
+        try{
+            CropsSummary cropsSummary = (CropsSummary) this.cropsSummaryRepo.findByProductCode(crops.getProductCode());
+            int availableQuantity = cropsSummary.getAvailableQuantity() + crops.getQuantity();
+            cropsSummary.setAvailableQuantity(availableQuantity);
+            cropsSummary.setLastUpdate(new Date());
+            int totalQuantity = cropsSummary.getTotalQuantity() + crops.getQuantity();
+            cropsSummary.setTotalQuantity(totalQuantity);
+            cropsSummaryRepo.save(cropsSummary);
+        }catch (Exception e){
+            CropsSummary cropsSummary1 = new CropsSummary();
+            cropsSummary1.setProductName(crops.getName());
+            cropsSummary1.setProductCode(crops.getProductCode());
+            cropsSummary1.setTotalQuantity(crops.getQuantity());
+            cropsSummary1.setSalesQuantity(0);
+            cropsSummary1.setAvailableQuantity(crops.getQuantity());
+            cropsSummary1.setLastUpdate(new Date());
+            cropsSummaryRepo.save(cropsSummary1);
         }
         return "crops/create";
     }
 
-    @GetMapping(value = "update/{id}")
-    public String editCropsView(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("crops", this.cropsRepo.getOne(id));
-        return "crops/update";
-    }
-
-    @PostMapping(value = "update/{id}")
-    public String editCrops(@Valid Crops crops, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam("file") MultipartFile file) {
-        Crops crops1 = this.cropsRepo.getOne(id);
-        if (bindingResult.hasErrors()) {
-            return "crops/update";
-        }
-        try {
-            //////////////////////For Image Upload start /////////////////////
-            if (file.getOriginalFilename().length() > 0) {
-                byte[] bytes = file.getBytes();
-                Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-
-                Files.write(path, bytes);
-                crops.setFileName("new-" + file.getOriginalFilename());
-                crops.setFileSize(file.getSize());
-                crops.setFilePath("images/" + "new-" + file.getOriginalFilename());
-                crops.setFileExtention(file.getContentType());
-            } else {
-                crops.setFileName(crops1.getFileName());
-                crops.setFilePath(crops1.getFilePath());
-                crops.setFileSize(crops1.getFileSize());
-                crops.setFileExtention(crops1.getFileExtention());
-            }
-            //////////////////////For Image Upload end/////////////////////
-            this.cropsRepo.save(crops);
-            model.addAttribute("crops", new Crops());
-            model.addAttribute("successcrops", "You Have Successfully Edited crop");
-            if (file.getOriginalFilename().length() > 0) {
-                imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 100, 100);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "crops/list";
-    }
-
     @GetMapping(value = "delete/{id}")
-    public String delete(@PathVariable("id") Long id) {
+    private String getList(@PathVariable("id") Long id){
         if (id != null) {
             this.cropsRepo.deleteById(id);
         }

@@ -11,8 +11,8 @@ import java.util.Set;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
-    public Optional<User> findByUsernameOrEmail(String username, String email);
-    Optional<User> findByUserName(String username);
+    public Optional<User> findByUserNameOrEmail(String userName, String email);
+    Optional<User> findByUserName(String userName);
     Optional<User> findByEmail(String email);
     List<User> findAllByRoles(Set<Role> roles);
     User findByName(String name);

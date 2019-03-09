@@ -55,7 +55,7 @@ public class ExpenseController {
         return "expenses/update";
     }
 
-    @GetMapping(value = "update/{id}")
+    @PostMapping(value = "update/{id}")
     public String editExpenses(@Valid Expenses expenses, BindingResult bindingResult, @PathVariable("id") Long id, Model model){
         if (bindingResult.hasErrors()){
             return "expenses/update";

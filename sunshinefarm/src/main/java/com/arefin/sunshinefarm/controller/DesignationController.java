@@ -43,12 +43,12 @@ public class DesignationController {
     }
 
     @GetMapping(value = "update/{id}")
-    public String editDesignationView(@PathVariable("id") Long id, Model model){
+    public String editDesignationView(Model model, @PathVariable("id") Long id){
         model.addAttribute("designation", this.designationRepo.getOne(id));
         return "designation/update";
     }
 
-    @GetMapping(value = "update/{id}")
+    @PostMapping(value = "update/{id}")
     public String editDesignation(@Valid Designation designation, BindingResult bindingResult, @PathVariable("id") Long id, Model model){
         if(bindingResult.hasErrors()){
             return "designation/update";

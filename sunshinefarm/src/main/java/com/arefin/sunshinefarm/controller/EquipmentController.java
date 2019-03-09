@@ -36,7 +36,7 @@ public class EquipmentController {
         return "equipment/create";
     }
 
-    @GetMapping(value = "create")
+    @PostMapping(value = "create")
     public String addEquipment(@Valid Equipment equipment, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
             return "equipment/create";

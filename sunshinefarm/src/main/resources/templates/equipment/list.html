@@ -5,44 +5,56 @@
 <head>
     <title>Sun-Shine Farm Inc.</title>
 </head>
+
 <body>
 <div layout:fragment="custom-content">
     <div class="content mt-3">
         <div class="animated fadeIn">
             <div class="row">
+
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Expenses List</strong>
+                            <strong class="card-title">Equipment List</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>Expense Name</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Product Code</th>
+                                    <th>Quantity</th>
+                                    <th>Purchase Price</th>
                                     <th>Person Name</th>
+                                    <th>Crops</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="data : ${list}">
-                                    <td th:text="${data.expenseName}"></td>
-                                    <td th:text="${data.amount}"></td>
-                                    <td th:text="${data.date}"></td>
+                                <tr th:each="data : ${equipmentlist}">
+                                    <td th:text="${data.name}"></td>
+                                    <td th:text="${data.productCode}"></td>
+                                    <td th:text="${data.quantity}"></td>
+                                    <td th:text="${data.purchasePrice}"></td>
                                     <td th:text="${data.personName}"></td>
-                                    <td><a th:href="@{'/expenses/edit/' + ${data.id}}">edit</a> </td>
-                                    <td><a th:href="@{'/expenses/delete/' + ${data.id}}">delete</a> </td>
+                                    <td>
+                                          <span th:each="r : ${data.crops}">
+                                                 <span th:text="${r.name} + ' '"/>
+                                          </span>
+                                    </td>
+                                    <td><a th:href="@{'/equipment/edit/' + ${data.id}}">edit</a></td>
+                                    <td><a th:href="@{'/equipment/delete/' + ${data.id}}">delete</a></td>
                                 </tr>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>Expense Name</th>
-                                    <th>Amount</th>
-                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Product Code</th>
+                                    <th>Quantity</th>
+                                    <th>Purchase Price</th>
                                     <th>Person Name</th>
+                                    <th>Crops</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -56,4 +68,5 @@
     </div><!-- .content -->
 </div>
 </body>
+
 </html>

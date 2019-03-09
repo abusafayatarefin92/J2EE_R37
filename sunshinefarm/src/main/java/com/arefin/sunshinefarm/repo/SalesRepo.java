@@ -15,4 +15,5 @@ public interface SalesRepo extends JpaRepository<Sales, Long> {
     Optional<Sales> findByProductName(String name);
     List<Sales> findAllByCrops(Set<Crops> crops);
     boolean existsByProductName(String name);
+    Sales findByProductCode(String productCode);
 }

@@ -29,26 +29,15 @@ public class Crops {
     @Column(name = "per_unit_selling_price")
     private Double perUnitSellingPrice;
 
-    //////File Upload==============
-    private long fileSize;
-    private  String fileName;
-
-    private String filePath;
-    private String fileExtention;
-
     public Crops() {
     }
 
-    public Crops(@NotBlank(message = "Enter crop's name") String name, @NotBlank(message = "Enter crop's duration") String duration, @NotBlank(message = "Enter crop's product code") String productCode, int quantity, Double perUnitSellingPrice, long fileSize, String fileName, String filePath, String fileExtention) {
+    public Crops(@NotBlank(message = "Enter crop's name") String name, @NotBlank(message = "Enter crop's duration") String duration, @NotBlank(message = "Enter crop's product code") String productCode, int quantity, Double perUnitSellingPrice) {
         this.name = name;
         this.duration = duration;
         this.productCode = productCode;
         this.quantity = quantity;
         this.perUnitSellingPrice = perUnitSellingPrice;
-        this.fileSize = fileSize;
-        this.fileName = fileName;
-        this.filePath = filePath;
-        this.fileExtention = fileExtention;
     }
 
     public Long getId() {
@@ -99,58 +88,22 @@ public class Crops {
         this.perUnitSellingPrice = perUnitSellingPrice;
     }
 
-    public long getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(long fileSize) {
-        this.fileSize = fileSize;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public String getFileExtention() {
-        return fileExtention;
-    }
-
-    public void setFileExtention(String fileExtention) {
-        this.fileExtention = fileExtention;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Crops crops = (Crops) o;
         return quantity == crops.quantity &&
-                fileSize == crops.fileSize &&
                 Objects.equals(id, crops.id) &&
                 Objects.equals(name, crops.name) &&
                 Objects.equals(duration, crops.duration) &&
                 Objects.equals(productCode, crops.productCode) &&
-                Objects.equals(perUnitSellingPrice, crops.perUnitSellingPrice) &&
-                Objects.equals(fileName, crops.fileName) &&
-                Objects.equals(filePath, crops.filePath) &&
-                Objects.equals(fileExtention, crops.fileExtention);
+                Objects.equals(perUnitSellingPrice, crops.perUnitSellingPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, duration, productCode, quantity, perUnitSellingPrice, fileSize, fileName, filePath, fileExtention);
+        return Objects.hash(id, name, duration, productCode, quantity, perUnitSellingPrice);
     }
 
     @Override
@@ -162,10 +115,6 @@ public class Crops {
                 ", productCode='" + productCode + '\'' +
                 ", quantity=" + quantity +
                 ", perUnitSellingPrice=" + perUnitSellingPrice +
-                ", fileSize=" + fileSize +
-                ", fileName='" + fileName + '\'' +
-                ", filePath='" + filePath + '\'' +
-                ", fileExtention='" + fileExtention + '\'' +
                 '}';
     }
 }

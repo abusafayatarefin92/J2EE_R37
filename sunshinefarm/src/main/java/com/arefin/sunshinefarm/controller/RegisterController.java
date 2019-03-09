@@ -41,7 +41,7 @@ public class RegisterController {
     PasswordEncoder passwordEncoder;
 
     private static String USER_NAME = "arefinsafayat92"; // GMail user name (just the part before "@gmail.com")
-    private static String PASSWORD = ""; // GMail password
+    private static String PASSWORD = "Arefin01676819391"; // GMail password
 
     @GetMapping(value = "/register")
     public String registerView(Model model){
@@ -53,19 +53,15 @@ public class RegisterController {
     public String add(@Valid User user, BindingResult result, Model model, HttpServletRequest request){
         user.setEnabled(false);
         Set<Role> roles=new HashSet<>();
-        roles.add(new Role(4L));
+        roles.add(new Role(1L));
         user.setRegistrationDate(new Date());
         user.setRoles(roles);
         user.setConfirmationToken(UUID.randomUUID().toString());
 
         if(result.hasErrors()){
             model.addAttribute("rejectMsg","opps, Something Wrong");
-            return "signup";
-        }
-        if(userRepo.existsByEmail(user.getEmail())){
-            model.addAttribute("rejectMsg","Already Have This Entry");
-            return "signup";
-        }else{
+            return "register";
+        } else{
 
             this.userRepo.save(user);
             //email sending
@@ -82,7 +78,7 @@ public class RegisterController {
             model.addAttribute("successMsg", "A confirmation e-mail has been sent to " + user.getEmail());
         }
 
-        return "signup";
+        return "register";
     }
 
     // Process confirmation link
@@ -96,7 +92,6 @@ public class RegisterController {
         } else { // Token found
             modelAndView.addObject("confirmationToken", user.getConfirmationToken());
         }
-
         modelAndView.setViewName("confirm");
         return modelAndView;
     }

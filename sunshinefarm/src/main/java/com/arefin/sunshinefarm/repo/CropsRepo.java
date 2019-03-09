@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CropsRepo extends JpaRepository<Crops, Long> {
     Crops findByName(String name);
+    Crops findByProductCode(String productCode);
 }

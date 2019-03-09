@@ -34,7 +34,7 @@ public class PesticidesController {
         return "pesticides/create";
     }
 
-    @GetMapping(value = "create")
+    @PostMapping(value = "create")
     public String addInsecticides(@Valid Pesticides pesticides, BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
             return "pesticides/create";

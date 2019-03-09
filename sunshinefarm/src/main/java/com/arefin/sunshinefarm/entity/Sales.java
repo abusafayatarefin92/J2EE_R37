@@ -35,7 +35,7 @@ public class Sales {
     private Date salesDate;
 
     @ManyToOne
-    @JoinColumn(name = "crops_id", nullable = false)
+    @JoinColumn(name = "crops_id")
     private Crops crops;
 
     public Sales() {
@@ -82,14 +82,6 @@ public class Sales {
         this.salesDate = salesDate;
     }
 
-    public Crops getCrops() {
-        return crops;
-    }
-
-    public void setCrops(Crops crops) {
-        this.crops = crops;
-    }
-
     public Double getPerUnitSalesPrice() {
         return perUnitSalesPrice;
     }
@@ -104,6 +96,14 @@ public class Sales {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Crops getCrops() {
+        return crops;
+    }
+
+    public void setCrops(Crops crops) {
+        this.crops = crops;
     }
 
     @Override
