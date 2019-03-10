@@ -44,45 +44,40 @@ public class RegisterController {
     private static String PASSWORD = ""; // GMail password
 
     @GetMapping(value = "/register")
-    public String registerView(Model model){
+    public String registerView(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
 
     @PostMapping(value = "/register")
-    public String add(@Valid User user, BindingResult result, Model model, HttpServletRequest request){
+    public String add(@Valid User user, BindingResult result, Model model, HttpServletRequest request) {
         user.setEnabled(false);
-        Set<Role> roles=new HashSet<>();
+        Set<Role> roles = new HashSet<>();
         roles.add(new Role(1L));
         user.setRegistrationDate(new Date());
         user.setRoles(roles);
         user.setConfirmationToken(UUID.randomUUID().toString());
 
-        if(result.hasErrors()){
-            model.addAttribute("rejectMsg","opps, Something Wrong");
+        if (result.hasErrors()) {
+            model.addAttribute("rejectMsg", "opps, Something Wrong");
             return "register";
-        } else{
-
-            this.userRepo.save(user);
-            //email sending
-            String appUrl = request.getScheme() + "://" + request.getServerName()+":"+"8008";
-            String from = USER_NAME;
-            String pass = PASSWORD;
-            String[] to = {user.getEmail()}; // list of recipient email addresses
-            String subject = "Registration Confirmation";
-            String body = "To confirm your e-mail address, please click the link below:\n"
-                    + appUrl + "/confirm?token=" + user.getConfirmationToken();
-
-            sendFromGMail(from, pass, to, subject, body);
-
-            model.addAttribute("successMsg", "A confirmation e-mail has been sent to " + user.getEmail());
         }
-
+        this.userRepo.save(user);
+        //email sending
+        String appUrl = request.getScheme() + "://" + request.getServerName() + ":" + "8008";
+        String from = USER_NAME;
+        String pass = PASSWORD;
+        String[] to = {user.getEmail()}; // list of recipient email addresses
+        String subject = "Registration Confirmation";
+        String body = "To confirm your e-mail address, please click the link below:\n"
+                + appUrl + "/confirm?token=" + user.getConfirmationToken();
+        sendFromGMail(from, pass, to, subject, body);
+        model.addAttribute("successMsg", "A confirmation e-mail has been sent to " + user.getEmail());
         return "register";
     }
 
     // Process confirmation link
-    @RequestMapping(value="/confirm", method = RequestMethod.GET)
+    @RequestMapping(value = "/confirm", method = RequestMethod.GET)
     public ModelAndView confirmRegistration(ModelAndView modelAndView, @RequestParam("token") String token) {
 
         User user = userRepo.findByConfirmationToken(token);
@@ -97,7 +92,7 @@ public class RegisterController {
     }
 
     // Process confirmation link
-    @RequestMapping(value="/confirm", method = RequestMethod.POST)
+    @RequestMapping(value = "/confirm", method = RequestMethod.POST)
     public ModelAndView confirmRegistration(ModelAndView modelAndView, BindingResult bindingResult, @RequestParam Map<String, String> requestParams, RedirectAttributes redir) {
 
         modelAndView.setViewName("confirm");
@@ -106,16 +101,16 @@ public class RegisterController {
 
         Strength strength = passwordCheck.measure(requestParams.get("password"));
 
-        if (strength.getScore() < 3) {
-            //modelAndView.addObject("errorMessage", "Your password is too weak.  Choose a stronger one.");
-            bindingResult.reject("password");
-
-            redir.addFlashAttribute("errorMessage", "Your password is too weak.  Choose a stronger one.");
-
-            modelAndView.setViewName("redirect:confirm?token=" + requestParams.get("token"));
-            //	System.out.println(requestParams.get("token"));
-            return modelAndView;
-        }
+//        if (strength.getScore() < 3) {
+//            //modelAndView.addObject("errorMessage", "Your password is too weak.  Choose a stronger one.");
+//            bindingResult.reject("password");
+//
+//            redir.addFlashAttribute("errorMessage", "Your password is too weak.  Choose a stronger one.");
+//
+//            modelAndView.setViewName("redirect:confirm?token=" + requestParams.get("token"));
+//            //	System.out.println(requestParams.get("token"));
+//            return modelAndView;
+//        }
 
         // Find the user associated with the reset token
         User user = userRepo.findByConfirmationToken(requestParams.get("token"));
@@ -132,6 +127,7 @@ public class RegisterController {
         modelAndView.addObject("successMessage", "Your password has been set!");
         return modelAndView;
     }
+
     private static void sendFromGMail(String from, String pass, String[] to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";

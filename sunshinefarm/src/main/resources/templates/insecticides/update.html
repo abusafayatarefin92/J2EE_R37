@@ -23,7 +23,6 @@
             Edit <strong>Insecticides</strong>
         </div>
         <div class="card-body card-block">
-            <span th:text="${existinsecticides}"></span>
             <form action="#" method="post" class="form-horizontal" th:object="${insecticides}"
                   th:action="@{/insecticides/update} + ${id}">
                 <div class="row form-group">

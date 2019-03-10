@@ -63,7 +63,7 @@ public class EquipmentController {
         this.equipmentRepo.save(equipment);
         model.addAttribute("equipment", new Equipment());
         model.addAttribute("croplist", this.cropsRepo.findAll());
-        return "equipment/list";
+        return "redirect:/equipment/list";
     }
 
     @GetMapping(value = "delete/{id}")
@@ -71,7 +71,7 @@ public class EquipmentController {
         if (id != null) {
             this.equipmentRepo.deleteById(id);
         }
-        return "equipment/list";
+        return "redirect:/equipment/list";
     }
 
     @GetMapping(value = "list")

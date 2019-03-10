@@ -59,7 +59,7 @@ public class DesignationController {
         if (id != null) {
             this.designationRepo.deleteById(id);
         }
-        return "user/list";
+        return "redirect:/user/list";
     }
 
     @GetMapping(value = "list")

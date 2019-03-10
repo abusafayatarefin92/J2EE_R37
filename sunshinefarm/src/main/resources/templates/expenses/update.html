@@ -23,7 +23,7 @@
             Add <strong>Expenses</strong>
         </div>
         <div class="card-body card-block">
-            <form action="#" method="post" class="form-horizontal" th:object="${obj}" th:action="@{/expenses/create} + ${id}">
+            <form action="#" method="post" class="form-horizontal" th:object="${obj}" th:action="@{/expenses/update} + ${id}">
                 <div class="row form-group">
                     <div class="col col-md-12">
                         <input type="hidden" th:field="*{id}" th:value="${obj.id}"/>

@@ -23,7 +23,6 @@
             Edit <strong>Pesticides</strong>
         </div>
         <div class="card-body card-block">
-            <span th:text="${existpesticides}"></span>
             <form action="#" method="post" class="form-horizontal" th:object="${pesticides}"
                   th:action="@{/pesticides/update} + ${id}">
                 <div class="row form-group">

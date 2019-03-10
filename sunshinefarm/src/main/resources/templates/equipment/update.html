@@ -23,7 +23,6 @@
             Edit <strong>Equipment</strong>
         </div>
         <div class="card-body card-block">
-            <span th:text="${existequipment}"></span>
             <form action="#" method="post" class="form-horizontal" th:object="${equipment}"
                   th:action="@{/equipment/update} + ${id}">
                 <div class="row form-group">

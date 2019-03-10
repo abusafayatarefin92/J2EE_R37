@@ -65,7 +65,7 @@ public class ExpenseController {
             this.expenseRepo.save(expenses);
             model.addAttribute("expenses", new Expenses());
         }
-        return "expenses/list";
+        return "redirect:/expenses/list";
     }
 
     @GetMapping(value = "delete/{id}")
@@ -73,7 +73,7 @@ public class ExpenseController {
         if (id != null) {
             this.expenseRepo.deleteById(id);
         }
-        return "expenses/list";
+        return "redirect:/expenses/list";
     }
 
     @GetMapping(value = "list")

@@ -69,7 +69,7 @@ public class EmployeesController {
             model.addAttribute("employees", new Employees());
             model.addAttribute("designationlist", this.designationRepo.findAll());
         }
-        return "employees/list";
+        return "redirect:/employees/list";
     }
 
     @GetMapping(value = "delete/{id}")
@@ -77,7 +77,7 @@ public class EmployeesController {
         if (id != null) {
             this.employeesRepo.deleteById(id);
         }
-        return "employees/list";
+        return "redirect:/employees/list";
     }
 
     @GetMapping(value = "list")

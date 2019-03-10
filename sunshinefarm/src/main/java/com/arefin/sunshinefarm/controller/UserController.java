@@ -90,7 +90,7 @@ public class UserController {
             model.addAttribute("user", new User());
             model.addAttribute("rolelist", this.roleRepo.findAll());
         }
-        return "user/list";
+        return "redirect:/user/list";
     }
 
     @GetMapping(value = "delete/{id}")
@@ -98,7 +98,7 @@ public class UserController {
         if (id != null) {
             this.userRepo.deleteById(id);
         }
-        return "user/list";
+        return "redirect:/user/list";
     }
 
     @GetMapping(value = "list")

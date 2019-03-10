@@ -29,7 +29,7 @@
                                 <tbody>
                                 <tr th:each="data : ${list}">
                                     <td th:text="${data.designationName}"></td>
-                                    <td><a th:href="@{'/designation/edit/' + ${data.id}}">edit</a> </td>
+                                    <td><a th:href="@{'/designation/update/' + ${data.id}}">edit</a> </td>
                                     <td><a th:href="@{'/designation/delete/' + ${data.id}}">delete</a> </td>
                                 </tr>
                                 </tbody>

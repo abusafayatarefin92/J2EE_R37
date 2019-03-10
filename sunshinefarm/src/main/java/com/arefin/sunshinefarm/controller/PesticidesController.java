@@ -61,7 +61,7 @@ public class PesticidesController {
         this.pesticidesRepo.save(pesticides);
         model.addAttribute("pesticides", new Pesticides());
         model.addAttribute("croplist", this.cropsRepo.findAll());
-        return "pesticides/list";
+        return "redirect:/pesticides/list";
     }
 
     @GetMapping(value = "delete/{id}")
@@ -69,7 +69,7 @@ public class PesticidesController {
         if (id != null) {
             this.pesticidesRepo.deleteById(id);
         }
-        return "pesticides/list";
+        return "redirect:/pesticides/list";
     }
 
     @GetMapping(value = "list")

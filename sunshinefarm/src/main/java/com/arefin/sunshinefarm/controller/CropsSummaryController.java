@@ -25,6 +25,6 @@ public class CropsSummaryController {
         if (id != null){
             this.cropsSummaryRepo.deleteById(id);
         }
-        return "crops-summary/list";
+        return "redirect:/crops-summary/list";
     }
 }

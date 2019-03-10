@@ -33,7 +33,7 @@
                                     <td th:text="${data.amount}"></td>
                                     <td th:text="${data.date}"></td>
                                     <td th:text="${data.personName}"></td>
-                                    <td><a th:href="@{'/expenses/edit/' + ${data.id}}">edit</a> </td>
+                                    <td><a th:href="@{'/expenses/update/' + ${data.id}}">edit</a> </td>
                                     <td><a th:href="@{'/expenses/delete/' + ${data.id}}">delete</a> </td>
                                 </tr>
                                 </tbody>

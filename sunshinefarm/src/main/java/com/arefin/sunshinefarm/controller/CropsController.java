@@ -76,6 +76,6 @@ public class CropsController {
         if (id != null) {
             this.cropsRepo.deleteById(id);
         }
-        return "crops/list";
+        return "redirect:/crops/list";
     }
 }

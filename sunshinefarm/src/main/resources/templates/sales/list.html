@@ -24,7 +24,6 @@
                                     <th>Quantity</th>
                                     <th>Per Unit Sales Price (Tk)</th>
                                     <th>Sales Date</th>
-                                    <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                                 </thead>
@@ -35,7 +34,6 @@
                                     <td th:text="${data.quantity}"></td>
                                     <td th:text="${data.perUnitSalesPrice}"></td>
                                     <td th:text="${data.salesDate}" th:pattern="yyyy-MM-dd"></td>
-                                    <td><a th:href="@{'/sales/edit/' + ${data.id}}">edit</a></td>
                                     <td><a th:href="@{'/sales/delete/' + ${data.id}}">delete</a></td>
                                 </tr>
                                 </tbody>
@@ -46,7 +44,6 @@
                                     <th>Quantity</th>
                                     <th>Per Unit Sales Price (Tk)</th>
                                     <th>Sales Date</th>
-                                    <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
                                 </tfoot>

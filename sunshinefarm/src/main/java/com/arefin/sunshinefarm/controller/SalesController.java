@@ -48,6 +48,7 @@ public class SalesController {
         try{
             CropsSummary cropsSummary = this.cropsSummaryRepo.findByProductCode(sales.getProductCode());
             if(sales.getQuantity() <= cropsSummary.getAvailableQuantity()){
+                sales.setSalesDate(new Date());
                 this.salesRepo.save(sales);
                 model.addAttribute("sales", new Sales());
                 model.addAttribute("successsales", "Sales successfully added");
@@ -74,7 +75,7 @@ public class SalesController {
         if (id != null) {
             this.salesRepo.deleteById(id);
         }
-        return "sales/list";
+        return "redirect:/sales/list";
     }
 
     @GetMapping(value = "list")

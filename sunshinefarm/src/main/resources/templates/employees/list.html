@@ -35,7 +35,7 @@
                                     <td th:text="${data.startingDate}" th:pattern="yyyy-MM-dd"></td>
                                     <td th:text="${data.monthlySalary}"></td>
                                     <td th:text="${data.designation.designationName}"></td>
-                                    <td><a th:href="@{'/employees/edit/' + ${data.id}}">edit</a></td>
+                                    <td><a th:href="@{'/employees/update/' + ${data.id}}">edit</a></td>
                                     <td><a th:href="@{'/employees/delete/' + ${data.id}}">delete</a></td>
                                 </tr>
                                 </tbody>
