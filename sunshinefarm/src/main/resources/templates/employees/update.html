@@ -24,7 +24,7 @@
         </div>
         <div class="card-body card-block">
             <span th:text="${existemployee}"></span>
-            <form action="#" method="post" class="form-horizontal" th:object="${employees}" th:action="@{/user/update} + ${id}">
+            <form action="#" method="post" class="form-horizontal" th:object="${employees}" th:action="@{/employees/update/} + ${id}">
                 <div class="row form-group">
                     <div class="col-12 col-md-12">
                         <input type="hidden" th:field="*{id}" th:value="${employees.id}"/>

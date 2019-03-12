@@ -24,7 +24,7 @@
         </div>
         <div class="card-body card-block">
             <form action="#" method="post" class="form-horizontal" th:object="${equipment}"
-                  th:action="@{/equipment/update} + ${id}">
+                  th:action="@{/equipment/update/} + ${id}">
                 <div class="row form-group">
                     <div class="col-12 col-md-12">
                         <input type="hidden" th:field="*{id}" th:value="${equipment.id}"/>

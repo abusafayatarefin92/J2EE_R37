@@ -60,15 +60,9 @@ public class EmployeesController {
         if (bindingResult.hasErrors()) {
             return "employees/update";
         }
-        Optional<Employees> employees1 = this.employeesRepo.findByName(employees.getName());
-        if (employees1.get().getId() != id) {
-            model.addAttribute("existemployee", "Already Have This Entry");
-            return "employees/update";
-        } else {
-            this.employeesRepo.save(employees);
-            model.addAttribute("employees", new Employees());
-            model.addAttribute("designationlist", this.designationRepo.findAll());
-        }
+        this.employeesRepo.save(employees);
+        model.addAttribute("employees", new Employees());
+        model.addAttribute("designationlist", this.designationRepo.findAll());
         return "redirect:/employees/list";
     }
 

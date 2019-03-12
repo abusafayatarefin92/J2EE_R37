@@ -47,6 +47,15 @@ public class User {
     @Column(nullable = false)
     private  String confirmationToken;
 
+    //////File Upload==============
+    @Column(nullable = true)
+    private long fileSize;
+    private String fileName;
+    //  @Lob
+    // private byte[] file;
+    private String filePath;
+    private String fileExtension;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
@@ -78,6 +87,10 @@ public class User {
         this.registrationDate = user.registrationDate;
         this.enabled = user.enabled;
         this.confirmationToken = user.confirmationToken;
+        this.fileSize = user.fileSize;
+        this.fileName = user.fileName;
+        this.filePath = user.filePath;
+        this.fileExtension = user.fileExtension;
         this.roles = user.roles;
     }
 
@@ -161,12 +174,45 @@ public class User {
         this.password = password;
     }
 
+    public long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public String getFileExtension() {
+        return fileExtension;
+    }
+
+    public void setFileExtension(String fileExtension) {
+        this.fileExtension = fileExtension;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return enabled == user.enabled &&
+                fileSize == user.fileSize &&
                 Objects.equals(id, user.id) &&
                 Objects.equals(userName, user.userName) &&
                 Objects.equals(password, user.password) &&
@@ -175,12 +221,15 @@ public class User {
                 Objects.equals(name, user.name) &&
                 Objects.equals(registrationDate, user.registrationDate) &&
                 Objects.equals(confirmationToken, user.confirmationToken) &&
+                Objects.equals(fileName, user.fileName) &&
+                Objects.equals(filePath, user.filePath) &&
+                Objects.equals(fileExtension, user.fileExtension) &&
                 Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userName, password, email, mobile, name, registrationDate, enabled, confirmationToken, roles);
+        return Objects.hash(id, userName, password, email, mobile, name, registrationDate, enabled, confirmationToken, fileSize, fileName, filePath, fileExtension, roles);
     }
 
     @Override
@@ -193,8 +242,12 @@ public class User {
                 ", mobile='" + mobile + '\'' +
                 ", name='" + name + '\'' +
                 ", registrationDate=" + registrationDate +
-                ", status=" + enabled +
+                ", enabled=" + enabled +
                 ", confirmationToken='" + confirmationToken + '\'' +
+                ", fileSize=" + fileSize +
+                ", fileName='" + fileName + '\'' +
+                ", filePath='" + filePath + '\'' +
+                ", fileExtension='" + fileExtension + '\'' +
                 ", roles=" + roles +
                 '}';
     }

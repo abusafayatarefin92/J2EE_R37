@@ -1,7 +1,7 @@
 package com.arefin.sunshinefarm.controller;
 
-import com.arefin.sunshinefarm.entity.Role;
 import com.arefin.sunshinefarm.entity.User;
+import com.arefin.sunshinefarm.image.ImageOptimizer;
 import com.arefin.sunshinefarm.repo.RoleRepo;
 import com.arefin.sunshinefarm.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +9,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
@@ -32,6 +33,12 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    //Save the uploaded file to this folder
+    private static final String UPLOADED_FOLDER = "src/main/resources/static/images/";
+
+    @Autowired
+    private ImageOptimizer imageOptimizer;
+
     @GetMapping(value = "create")
     public ModelAndView display() {
         ModelAndView modelAndView = new ModelAndView();
@@ -47,22 +54,21 @@ public class UserController {
         if (result.hasErrors()) {
             modelAndView.setViewName("user/create");
             return modelAndView;
-        } else {
-            if (obj != null) {
-                User user = this.userRepo.findByName(obj.getName());
-                if (user != null) {
-                    modelAndView.addObject("existuser", "user is already exist");
-                } else {
-                    obj.setRegistrationDate(new Date());
-                    obj.setEnabled(true);
-                    obj.setPassword(passwordEncoder.encode(obj.getPassword()));
-                    obj.setConfirmationToken(UUID.randomUUID().toString());
-                    this.userRepo.save(obj);
-                    modelAndView.addObject("successuser", "Save user Success");
-                    modelAndView.addObject("obj", new User());
-                    modelAndView.addObject("rolelist", roleRepo.findAll());
-                    modelAndView.setViewName("user/create");
-                }
+        }
+        if (obj != null) {
+            User user = this.userRepo.findByName(obj.getName());
+            if (user != null) {
+                modelAndView.addObject("existuser", "user is already exist");
+            } else {
+                obj.setRegistrationDate(new Date());
+                obj.setEnabled(true);
+                obj.setPassword(passwordEncoder.encode(obj.getPassword()));
+                obj.setConfirmationToken(UUID.randomUUID().toString());
+                this.userRepo.save(obj);
+                modelAndView.addObject("successuser", "Save user Success");
+                modelAndView.addObject("obj", new User());
+                modelAndView.addObject("rolelist", roleRepo.findAll());
+                modelAndView.setViewName("user/create");
             }
         }
         modelAndView.setViewName("user/create");
@@ -77,19 +83,29 @@ public class UserController {
     }
 
     @PostMapping(value = "update/{id}")
-    public String editUser(@Valid User user, BindingResult bindingResult, @PathVariable("id") Long id, Model model) {
+    public String editUser(@Valid User user, BindingResult bindingResult, @PathVariable("id") Long id, Model model, @RequestParam("file") MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "user/update";
         }
-        Optional<User> user1 = this.userRepo.findByEmail(user.getEmail());
-        if (user1.get().getId() != id) {
-            model.addAttribute("existuser", "Already Have This Entry");
-            return "user/update";
-        } else {
+        try {
+            //////////////////////For Image Upload start /////////////////////
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+
+            Files.write(path, bytes);
+            user.setFileName("new-" + file.getOriginalFilename());
+            user.setFileSize(file.getSize());
+            user.setFilePath("images/" + "new-" + file.getOriginalFilename());
+            user.setFileExtension(file.getContentType());
+            //////////////////////For Image Upload end/////////////////////
             this.userRepo.save(user);
             model.addAttribute("user", new User());
             model.addAttribute("rolelist", this.roleRepo.findAll());
+            imageOptimizer.optimizeImage(UPLOADED_FOLDER, file, 1.0f, 100, 100);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        model.addAttribute("rolelist", this.roleRepo.findAll());
         return "redirect:/user/list";
     }
 

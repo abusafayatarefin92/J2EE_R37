@@ -9,7 +9,6 @@
             color: greenyellow;
             font-weight: bold;
         }
-
         .err {
             color: red;
         }
@@ -23,8 +22,8 @@
             Edit <strong>User</strong>
         </div>
         <div class="card-body card-block">
-            <span th:text="${existuser}"></span>
-            <form action="#" method="post" class="form-horizontal" th:object="${user}" th:action="@{/user/update} + ${id}">
+            <!--<span th:text="${existuser}"></span>-->
+            <form action="#" method="post" class="form-horizontal" th:object="${user}" th:action="@{/user/update/} + ${id}" enctype="multipart/form-data">
                 <div class="row form-group">
                     <div class="col-12 col-md-12">
                         <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
@@ -69,6 +68,10 @@
                     <div class="col col-md-3">
                         <span th:class="err" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                     </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Photo</label></div>
+                    <div class="col-12 col-md-9"><input type="file" id="file" name="file" class="form-control-file" required></div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Role</label></div>

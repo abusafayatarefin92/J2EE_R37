@@ -20,7 +20,7 @@
 <div layout:fragment="custom-content">
     <div class="card, col-sm-12">
         <div class="card-header">
-            Edit <strong>Profile</strong>
+            User <strong>Profile</strong>
         </div>
         <div class="card-body card-block">
             <!--<span th:text="${existuser}"></span>-->
@@ -31,6 +31,12 @@
                         <input type="hidden" th:value="${user.get().password}"/>
                         <input type="hidden" th:value="${user.get().enabled}"/>
                         <input type="hidden" th:value="${user.get().confirmationToken}"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label class=" form-control-label">Photo</label></div>
+                    <div class="col-12 col-md-9">
+                        <img th:src="@{${user.get().getFilePath()}}" width="100" height="100"/>
                     </div>
                 </div>
                 <div class="row form-group">

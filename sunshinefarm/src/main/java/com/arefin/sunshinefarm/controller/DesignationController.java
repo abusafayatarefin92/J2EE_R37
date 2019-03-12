@@ -51,7 +51,7 @@ public class DesignationController {
         }
         this.designationRepo.save(designation);
         model.addAttribute("designation", new Designation());
-        return "designation/list";
+        return "redirect:/designation/list";
     }
 
     @GetMapping(value = "delete/{id}")
