@@ -71,7 +71,7 @@
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Role</label></div>
                     <div class="col-12 col-md-6">
-                        <select th:field="*{roles}" multiple>
+                        <select data-placeholder="Select roles" class="standardSelect" th:field="*{roles}" multiple>
                             <option th:each="tyyy : ${rolelist}" th:value="${tyyy.id}">
                                 <span th:text="${tyyy.roleName}"></span>
                             </option>

@@ -85,7 +85,7 @@
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Crops</label></div>
                     <div class="col-12 col-md-6">
-                        <select th:field="*{crops}" multiple>
+                        <select data-placeholder="Select crops" class="standardSelect" th:field="*{crops}" multiple>
                             <option th:each="tyyy : ${croplist}" th:value="${tyyy.id}">
                                 <span th:text="${tyyy.name}"></span>
                             </option>

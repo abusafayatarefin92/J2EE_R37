@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "/profile/")
+
 public class ProfileController {
     @Autowired
     private UserRepo userRepo;
@@ -23,13 +23,13 @@ public class ProfileController {
     @Autowired
     private RoleRepo roleRepo;
 
-    @GetMapping(value = "profile")
+    @GetMapping(value = "/profile")
     public String edituserView(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Optional<User> user = this.userRepo.findByUserName(auth.getName());
+        User user = this.userRepo.findByUserName(auth.getName());
         model.addAttribute("user", user);
         model.addAttribute("rolelist", this.roleRepo.findAll());
-        return "profile/profile";
+        return "profile";
     }
 
 //   @PostMapping(value = "/profile")

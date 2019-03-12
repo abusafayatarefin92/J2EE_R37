@@ -23,7 +23,6 @@
             Edit <strong>Employee</strong>
         </div>
         <div class="card-body card-block">
-            <span th:text="${existemployee}"></span>
             <form action="#" method="post" class="form-horizontal" th:object="${employees}" th:action="@{/employees/update/} + ${id}">
                 <div class="row form-group">
                     <div class="col-12 col-md-12">
@@ -60,7 +59,7 @@
                 <div class="row form-group">
                     <div class="col col-md-3"><label class=" form-control-label">Designation</label></div>
                     <div class="col-12 col-md-6">
-                        <select th:field="*{designation}">
+                        <select data-placeholder="Choose a Designation" class="standardSelect" tabindex="1" th:field="*{designation}">
                             <option th:each="tyyy : ${designationlist}" th:value="${tyyy.id}">
                                 <span th:text="${tyyy.designationName}"></span>
                             </option>

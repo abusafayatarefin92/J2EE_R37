@@ -40,20 +40,20 @@ public class HomeController {
         return "change-password";
     }
 
-//    @PostMapping(value = "/change-password")
-//    public String changePasswordv(User user, Model model){
-//        if(user.getPassword() == null){
-//            model.addAttribute("reject", "Wrong");
-//            return "change-password";
-//        }
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user1 = this.userRepo.findByUserName(auth.getName());
-//        user1.setPassword(passwordEncoder.encode(user1.getPassword()));
-//        this.userRepo.save(user1);
-//        model.addAttribute("user", new User());
-//        model.addAttribute("rolelist", this.roleRepo.findAll());
-//        model.addAttribute("success", "Password Successfully updated");
-//        return "change-password";
-//    }
+    @PostMapping(value = "/change-password")
+    public String changePasswordv(User user, Model model){
+        if(user.getPassword() == null){
+            model.addAttribute("reject", "Wrong");
+            return "change-password";
+        }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user1 = this.userRepo.findByUserName(auth.getName());
+        user1.setPassword(passwordEncoder.encode(user1.getPassword()));
+        this.userRepo.save(user1);
+        model.addAttribute("user", new User());
+        model.addAttribute("rolelist", this.roleRepo.findAll());
+        model.addAttribute("success", "Password Successfully updated");
+        return "change-password";
+    }
 
 }
