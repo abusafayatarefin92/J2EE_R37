@@ -27,12 +27,11 @@
                                     <th>Name</th>
                                     <th>Registration date</th>
                                     <th>Role Name</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="data : ${userlist}">
+                                <tr th:each="data : ${user}">
                                     <td th:text="${data.userName}"></td>
                                     <td th:text="${data.email}"></td>
                                     <td th:text="${data.mobile}"></td>
@@ -44,24 +43,9 @@
                                                  <span th:text="${r.roleName} + ' '"/>
                                           </span>
                                     </td>
-                                    <td><a th:href="@{'/user/update/' + ${data.id}}">edit</a> </td>
-                                    <td><a th:href="@{'/user/delete/' + ${data.id}}">delete</a> </td>
-                                </tr>
-                                <tr th:each="data : ${userbyusername}">
-                                    <td th:text="${data.userName}"></td>
-                                    <td th:text="${data.email}"></td>
-                                    <td th:text="${data.mobile}"></td>
-                                    <td th:text="${data.name}"></td>
 
-                                    <td th:text="${data.registrationDate}" th:pattern="yyyy-MM-dd"></td>
-                                    <td>
-                                          <span th:each="r : ${data.roles}">
-                                                 <span th:text="${r.roleName} + ' '"/>
-                                          </span>
-                                    </td>
-                                    <td><a th:href="@{'/user/update/' + ${data.id}}">edit</a> </td>
-                                    <td><a th:href="@{'/user/delete/' + ${data.id}}">delete</a> </td>
                                 </tr>
+
                                 </tbody>
                             </table>
                         </div>

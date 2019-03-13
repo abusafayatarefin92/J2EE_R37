@@ -49,17 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .authorizeRequests()
                 .antMatchers(
-                        "/public/**", "/login", "/user-save", "/role-save", "/assets/**", "/images/**", "/vendors/**","/register", "/confirm", "/access-denied", "/success", "/layout", "/fragments/**", "/change-password"
+                        "/public/**", "/login", "/user-save", "/role-save", "/assets/**", "/images/**", "/vendors/**","/register", "/confirm", "/access-denied", "/success", "/layout", "/fragments/**"
                 ).permitAll()
                 .antMatchers(
-                        "/role/**", "/user/**", "/designation/**", "/employees/**"
+                        "/role/**", "/designation/**", "/crops/**", "/crops-summary/**", "/employees/**", "/equipment/**", "/expenses/**", "/insecticides/**", "/pesticides/**", "/sales/**", "/user/**"
                 ).hasRole("ADMIN")
-                .antMatchers(
-                        "/crops/**", "/equipment/**", "/insecticides/**", "/pesticides/**", "/expenses/**", "/crops-summary/**", "/sales/**"
-                ).hasRole("ADMIN")
-                .antMatchers(
-                        "/crops/list", "/equipment/list", "/insecticides/list", "/pesticides/list", "/expenses/list", "/crops-summary/list", "/sales/list"
-                ).hasRole("CUSTOMERS")
                 .anyRequest()
                 .authenticated()
                 .and()

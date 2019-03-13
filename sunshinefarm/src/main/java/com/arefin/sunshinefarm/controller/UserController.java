@@ -1,10 +1,13 @@
 package com.arefin.sunshinefarm.controller;
 
+import com.arefin.sunshinefarm.entity.Role;
 import com.arefin.sunshinefarm.entity.User;
 import com.arefin.sunshinefarm.image.ImageOptimizer;
 import com.arefin.sunshinefarm.repo.RoleRepo;
 import com.arefin.sunshinefarm.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +20,7 @@ import javax.validation.Valid;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/user/")
@@ -119,11 +120,14 @@ public class UserController {
 
     @GetMapping(value = "list")
     public ModelAndView getList() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = this.userRepo.findByUserName(auth.getName());
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("userlist", userRepo.findAll());
-        this.userRepo.findAll().forEach((c) -> {
-            System.out.println(c.toString());
-        });
+//        if(user.getRoles().equals()){
+            modelAndView.addObject("userlist", this.userRepo.findAll());
+//        }else {
+//            modelAndView.addObject("userbyusername", this.userRepo.findAllByUserName(user.getUserName()));
+//        }
         modelAndView.setViewName("user/list");
         return modelAndView;
     }
