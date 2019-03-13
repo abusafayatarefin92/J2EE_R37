@@ -27,7 +27,7 @@
                                     <th>Name</th>
                                     <th>Registration date</th>
                                     <th>Role Name</th>
-
+                                    <th>Edit</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -43,10 +43,20 @@
                                                  <span th:text="${r.roleName} + ' '"/>
                                           </span>
                                     </td>
-
+                                    <td><a th:href="@{'/update-user/' + ${data.id}}">edit</a> </td>
                                 </tr>
-
                                 </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile No.</th>
+                                    <th>Name</th>
+                                    <th>Registration date</th>
+                                    <th>Role Name</th>
+                                    <th>Edit</th>
+                                </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
