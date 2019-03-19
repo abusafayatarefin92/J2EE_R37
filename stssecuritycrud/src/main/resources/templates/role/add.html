@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<span th:text="${successrole}"></span>
+    <form th:action="@{/role/add}" th:object="${role}" method="POST">
+        <table>
+            <tr>
+                <td><label>Role Name: </label></td>
+                <td>
+                    <input type="text" th:field="*{rolename}"/>
+                </td>
+                <span th:text="${exist}"></span>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Insert</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <a th:href="@{/role/list}">Role List</a>
+</body>
+</html>

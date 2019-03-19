@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<form action="#" th:action="@{/user/edit} + ${id}" th:object="${user}" method="POST">
+        <table>
+            <input type="hidden" th:field="*{id}" th:value="${user.id}"/>
+            <tr>
+                <td><label>Roles: </label></td>
+                <td>
+                    <select th:field="*{roles}" multiple>
+                        <option th:each="role : ${rolelist}" th:value="${role.id}">
+                            <span th:text="${role.rolename}"></span>
+                        </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Name: </label></td>
+                <td>
+                    <input type="text" th:field="*{name}" th:value="${user.name}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Mobile: </label></td>
+                <td>
+                    <input type="text" th:field="*{mobile}" th:value="${user.mobile}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Email: </label></td>
+                <td>
+                    <input type="email" th:field="*{email}" th:value="${user.email}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>User Name: </label></td>
+                <td>
+                    <input type="text" th:field="*{username}" th:value="${user.username}"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Password: </label></td>
+                <td>
+                    <input type="password" th:field="*{password}" th:value="${user.password}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+<h1>Welcome! You have Successfully Logged in</h1>
+See <a th:href="@{/role/list}">Role List</a><br/>
+See <a th:href="@{/user/list}">User List</a>
+</body>
+</html>
