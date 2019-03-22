@@ -1,6 +1,0 @@
-For class
-@Component
-@Service
-
-For interface
-@Repository
