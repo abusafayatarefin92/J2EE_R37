@@ -1,4 +1,4 @@
-package com.example.contextmenusir;
+package com.example.submenu;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -44,17 +44,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_about) {
-            Toast.makeText(this, "===========About=========", Toast.LENGTH_SHORT).show();
+        if (id == R.id.action_settings) {
             return true;
-        }else if (id == R.id.action_contact) {
-            Toast.makeText(this, "===========Contact=========", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.green) {
+            Toast.makeText(this, "==========Green==========", Toast.LENGTH_LONG).show();
             return true;
-        }else if (id == R.id.action_settings) {
-            Toast.makeText(this, "===========Settings=========", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.medium_text) {
+            Toast.makeText(this, "==========Medium Text==========", Toast.LENGTH_LONG).show();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

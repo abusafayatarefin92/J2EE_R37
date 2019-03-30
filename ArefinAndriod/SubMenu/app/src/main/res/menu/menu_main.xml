@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.submenu.MainActivity">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="1"
+        android:title="Text Color"
+        app:showAsAction="always|withText">
+        <menu>
+            <item
+                android:id="@+id/red"
+                android:title="Red" />
+            <item
+                android:id="@+id/green"
+                android:title="Green" />
+            <item
+                android:id="@+id/blue"
+                android:title="Blue" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/large_text"
+        android:orderInCategory="2"
+        android:title="Large"
+        app:showAsAction="ifRoom|withText">
+        <menu>
+            <item
+                android:id="@+id/medium_text"
+                android:orderInCategory="3"
+                android:title="Medium"
+                app:showAsAction="never|withText" />
+            <item
+                android:id="@+id/small_text"
+                android:orderInCategory="4"
+                android:title="Small"
+                app:showAsAction="never|withText" />
+        </menu>
+    </item>
+</menu>
