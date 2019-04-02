@@ -51,6 +51,17 @@ public class MyDbAdaptar {
         cv.put(MyDbHelper.PRODUCT_NAME, product.getProductName());
         cv.put(MyDbHelper.QTY, product.getQuantity());
         long id = db.insert(MyDbHelper.TABLE_NAME, null, cv);
+
+        return id;
+    }
+
+    public long updateData(Product product){
+        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(MyDbHelper.PRODUCT_NAME, product.getProductName());
+        cv.put(MyDbHelper.QTY, product.getQuantity());
+        long id = db.update(MyDbHelper.TABLE_NAME, cv, MyDbHelper.ID + " = " + String.valueOf(product.getId()), null);
         return id;
     }
 
