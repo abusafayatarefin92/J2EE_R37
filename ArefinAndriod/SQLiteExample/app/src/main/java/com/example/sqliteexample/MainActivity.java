@@ -1,8 +1,10 @@
 package com.example.sqliteexample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -22,7 +24,21 @@ ListView listView;
         name = (EditText) findViewById(R.id.editTextproductname);
         qty = (EditText) findViewById(R.id.editTextproductquantity);
         myDbHelper = new MyDbAdaptar(this);
-        getProductList();
+        listView = (ListView) findViewById(R.id.listview);
+        List<Product> p = myDbHelper.getList();
+        ProductAdapter adapter = new ProductAdapter(this, p);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                intent.putExtra("pos", position);
+                startActivity(intent);
+                //Toast.makeText(MainActivity.this, "ID: " + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
