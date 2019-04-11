@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GCM Example</string>
+    <string name="quickstart_messaging">Click the SUBSCRIBE TO WEATHER button below to subscribe to the weather topic. Messages sent to the weather topic will be received. The LOG TOKEN button logcat InstanceID token to logcat.</string>
+    <string name="subcribe_to_weather">Subcribe To Weather</string>
+    <string name="log_token">Log Token</string>
+
+    <string name="msg_sunscribed">Subscribed to Weather Topic</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
+
+    <string name="default_notification_channel_id" translatable="false">fmc_default_channel</string>
+
+    <string name="default_notification_channel_name" translatable="true">Weather</string>
+    <string name="msg_subscribed_failed">Failed to subscribe to weather topic</string>
+    <string name="fcm_message">FCM Message</string>
+</resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "858658938631",
+    "firebase_url": "https://gsmcloudmessagingexample.firebaseio.com",
+    "project_id": "gsmcloudmessagingexample",
+    "storage_bucket": "gsmcloudmessagingexample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858658938631:android:3667ff50f52ead38",
+        "android_client_info": {
+          "package_name": "com.arefin.gsmcloudmessagingexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858658938631-388bf5bop2pe3bp9fjn2tuh34nd8uoip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arefin.gsmcloudmessagingexample",
+            "certificate_hash": "f0b73ca42cd4255b08e184720f55859ff45d061d"
+          }
+        },
+        {
+          "client_id": "858658938631-a3s6e6pcmad7r41f7a6nqcqp8k6nurf1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA26dS7eUgZUX8sn4FtjsAhw-k80SuhKZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858658938631-a3s6e6pcmad7r41f7a6nqcqp8k6nurf1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
