@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "987645788901",
+    "firebase_url": "https://maps-example-8c0ba.firebaseio.com",
+    "project_id": "maps-example-8c0ba",
+    "storage_bucket": "maps-example-8c0ba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987645788901:android:d75f905cfc1586be",
+        "android_client_info": {
+          "package_name": "com.arefin.googlemapsexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987645788901-j9p4juvgqfrko460bacg467bgn1pe67i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVusDLMvpZZKhMapgRdARDtVFCE1kbu_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987645788901-j9p4juvgqfrko460bacg467bgn1pe67i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
